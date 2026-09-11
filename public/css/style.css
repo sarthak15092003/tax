@@ -590,6 +590,14 @@ body {
 .badge-filed { background: #D1FAE5; color: #059669; }
 .badge-notice { background: #FEE2E2; color: #DC2626; }
 
+/* WhatsApp Floating Widget — sits ABOVE the AI chat button */
+#whatsapp-widget {
+  position: fixed !important;
+  bottom: 95px !important;
+  right: 25px !important;
+  z-index: 1001 !important;
+}
+
 /* AI Floating Chatbot Widget */
 .ai-widget-button {
   position: fixed;
