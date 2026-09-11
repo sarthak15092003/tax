@@ -464,21 +464,62 @@
   <!-- Aadhaar OTP E-Verification Modal -->
   <div id="everify-modal" class="modal-backdrop">
     <div class="modal-card">
-      <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">📱 Aadhaar OTP E-Verification</h3>
-      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">
-        A 6-digit OTP has been sent to your Aadhaar linked mobile number ending in <strong>******4321</strong>.
-      </p>
+      <!-- Input OTP Section -->
+      <div id="everify-input-section">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">📱 Aadhaar OTP E-Verification</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">
+          A 6-digit OTP has been sent to your Aadhaar linked mobile number ending in <strong>******4321</strong>.
+        </p>
 
-      <div class="form-group">
-        <label for="otp-input" style="text-align:center;">Enter 6-Digit OTP</label>
-        <input type="text" id="otp-input" class="form-control" value="123456" maxlength="6" style="font-size:1.5rem; text-align:center; letter-spacing:8px; font-weight:800;">
+        <div class="form-group">
+          <label for="otp-input" style="text-align:center;">Enter 6-Digit OTP</label>
+          <input type="text" id="otp-input" class="form-control" value="123456" maxlength="6" style="font-size:1.5rem; text-align:center; letter-spacing:8px; font-weight:800;">
+        </div>
+
+        <div id="otp-status-msg" style="margin-bottom:1rem; font-size:0.85rem; text-align:center;"></div>
+
+        <div style="display:flex; gap:1rem;">
+          <button type="button" id="btn-modal-cancel" class="btn btn-outline" style="flex:1;">Cancel</button>
+          <button type="button" id="btn-modal-verify" class="btn btn-accent" style="flex:1;">Confirm & E-Verify</button>
+        </div>
       </div>
 
-      <div id="otp-status-msg" style="margin-bottom:1rem; font-size:0.85rem; text-align:center;"></div>
+      <!-- Success & Live Status Verification Section -->
+      <div id="everify-success-section" style="display:none; text-align:center;">
+        <div style="font-size:3rem; margin-bottom:0.3rem;">🎉</div>
+        <h3 style="font-family:var(--font-heading); color:#047857; margin-bottom:0.4rem;">ITR-1 E-Filed & E-Verified!</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
+          Your return for AY 2026-27 has been transmitted and confirmed with the Income Tax Department.
+        </p>
 
-      <div style="display:flex; gap:1rem;">
-        <button type="button" id="btn-modal-cancel" class="btn btn-outline" style="flex:1;">Cancel</button>
-        <button type="button" id="btn-modal-verify" class="btn btn-accent" style="flex:1;">Confirm & E-Verify</button>
+        <!-- Acknowledgement Card -->
+        <div style="background:#F8FAFC; border:2px dashed #CBD5E1; border-radius:10px; padding:0.85rem; margin-bottom:1rem;">
+          <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Official Acknowledgement Number</div>
+          <div id="success-ack-number" style="font-family:monospace; font-size:1.2rem; font-weight:800; color:var(--primary); margin:0.3rem 0;">ACK202612345678</div>
+          <button type="button" id="btn-copy-ack" class="btn btn-outline" style="font-size:0.75rem; padding:0.25rem 0.75rem; min-height:32px;">📋 Copy Ack Number</button>
+        </div>
+
+        <!-- Official Live ITD Portal Status Card -->
+        <div style="background:#ECFDF5; border:1px solid #6EE7B7; border-radius:10px; padding:1rem; margin-bottom:1.2rem; text-align:left;">
+          <div style="font-size:0.85rem; font-weight:700; color:#065F46; margin-bottom:0.2rem;">
+            🏛️ Check Live Status on Official Govt ITD Portal:
+          </div>
+          <p style="font-size:0.8rem; color:#047857; margin-bottom:0.7rem;">
+            You can verify your ITR status directly on the official Income Tax e-Filing portal using your PAN and Acknowledgement Number:
+          </p>
+          <a id="btn-live-itd-link" href="https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="width:100%; justify-content:center; text-decoration:none; font-size:0.88rem; padding:0.7rem;">
+            Check Status on incometax.gov.in ↗
+          </a>
+          <div style="font-size:0.72rem; color:#065F46; margin-top:0.4rem; text-align:center; font-family:monospace; word-break:break-all;">
+            https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.75rem;">
+          <button type="button" id="btn-success-close" class="btn btn-outline" style="flex:1;">Close</button>
+          <a href="dashboard.html" class="btn btn-primary" style="flex:1.2; text-decoration:none; justify-content:center;">View Dashboard →</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -506,15 +547,32 @@
 
       <!-- Completion Actions -->
       <div id="autopilot-done-actions" style="display:none; text-align:center;">
-        <div style="background:#ECFDF5; border:1px solid #6EE7B7; color:#065F46; padding:1rem; border-radius:8px; margin-bottom:1.2rem;">
+        <div style="background:#ECFDF5; border:1px solid #6EE7B7; color:#065F46; padding:1.2rem; border-radius:12px; margin-bottom:1.2rem;">
           <div style="font-size:1.3rem; font-weight:800;">🎉 ITR-1 E-Filed & E-Verified Successfully!</div>
-          <div id="autopilot-ack-no" style="font-size:0.95rem; font-weight:700; margin-top:0.3rem; font-family:monospace; color:#047857;">ACK2026-AUTO-998877</div>
+          <div id="autopilot-ack-no" style="font-size:1.1rem; font-weight:700; margin-top:0.4rem; font-family:monospace; color:#047857;">ACK2026-AUTO-998877</div>
           <div id="autopilot-refund-amount" style="font-size:1.15rem; font-weight:800; color:#047857; margin-top:0.3rem;">Refund Amount: ₹38,480</div>
+          <button type="button" id="btn-autopilot-copy-ack" class="btn btn-outline" style="font-size:0.75rem; padding:0.25rem 0.75rem; margin-top:0.6rem; min-height:32px; border-color:#047857; color:#047857;">📋 Copy Ack Number</button>
         </div>
 
-        <div style="display:flex; gap:1rem;">
+        <!-- Official Live ITD Portal Status Link -->
+        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:10px; padding:1rem; margin-bottom:1.2rem; text-align:left;">
+          <div style="font-size:0.85rem; font-weight:700; color:var(--text-dark); margin-bottom:0.2rem;">
+            🏛️ Check Live Status on Official Govt ITD Portal:
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.7rem;">
+            Verify your filing record directly on the Income Tax Department portal using your PAN and Acknowledgement Number:
+          </p>
+          <a href="https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="width:100%; justify-content:center; text-decoration:none; font-size:0.88rem; padding:0.7rem;">
+            Check Status on incometax.gov.in ↗
+          </a>
+          <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.4rem; text-align:center; font-family:monospace; word-break:break-all;">
+            https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.75rem;">
           <button type="button" id="btn-autopilot-close" class="btn btn-outline" style="flex:1;">Close</button>
-          <a href="dashboard.html" class="btn btn-accent" style="flex:1; text-decoration:none; text-align:center; display:inline-block; padding-top:0.75rem;">View Dashboard & Download ITR-V →</a>
+          <a href="dashboard.html" class="btn btn-primary" style="flex:1.2; text-decoration:none; text-align:center; justify-content:center;">Go to Dashboard →</a>
         </div>
       </div>
     </div>

@@ -327,11 +327,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res && res.success) {
           const ack = res.data?.ackNumber || activeFilingRecord?.ackNumber || 'ACK2026-CONFIRMED';
           otpStatusMsg.innerHTML = `<span style="color:#047857; font-weight:700;">✅ E-Verified! Ack No: ${ack}</span>`;
+
           setTimeout(() => {
-            everifyModal.classList.remove('open');
-            alert(`🎉 Success! Your Income Tax Return (ITR-1) for AY 2026-27 is E-Filed & E-Verified! \n\nAcknowledgement Number: ${ack}`);
-            window.location.href = 'dashboard.html';
-          }, 1200);
+            const inputSection = document.getElementById('everify-input-section');
+            const successSection = document.getElementById('everify-success-section');
+            const successAckNumber = document.getElementById('success-ack-number');
+            const btnCopyAck = document.getElementById('btn-copy-ack');
+            const btnSuccessClose = document.getElementById('btn-success-close');
+
+            if (inputSection && successSection) {
+              inputSection.style.display = 'none';
+              successSection.style.display = 'block';
+              if (successAckNumber) successAckNumber.innerText = ack;
+
+              if (btnCopyAck) {
+                btnCopyAck.onclick = () => {
+                  navigator.clipboard.writeText(ack);
+                  btnCopyAck.innerText = '✅ Copied!';
+                  setTimeout(() => btnCopyAck.innerText = '📋 Copy Ack Number', 2000);
+                };
+              }
+              if (btnSuccessClose) {
+                btnSuccessClose.onclick = () => {
+                  everifyModal.classList.remove('open');
+                  window.location.href = 'dashboard.html';
+                };
+              }
+            } else {
+              alert(`🎉 Success! Your Income Tax Return (ITR-1) for AY 2026-27 is E-Filed & E-Verified!\n\nAcknowledgement Number: ${ack}\n\nCheck official status at: https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus`);
+              window.location.href = 'dashboard.html';
+            }
+          }, 400);
         } else {
           otpStatusMsg.innerHTML = `<span style="color:red;">${res?.message || 'Verification error. Please retry.'}</span>`;
         }
@@ -413,6 +439,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const label = refund >= 0 ? `Refund Amount: ₹${refund.toLocaleString('en-IN')}` : `Tax Payable: ₹${Math.abs(refund).toLocaleString('en-IN')}`;
             refundEl.textContent = label;
             refundEl.style.color = refund >= 0 ? '#047857' : '#D97706';
+          }
+          const copyBtn = document.getElementById('btn-autopilot-copy-ack');
+          if (copyBtn) {
+            copyBtn.onclick = () => {
+              navigator.clipboard.writeText(d.ackNumber || 'ACK2026-AUTO-998877');
+              copyBtn.innerText = '✅ Copied!';
+              setTimeout(() => copyBtn.innerText = '📋 Copy Ack Number', 2000);
+            };
           }
         }
       } catch (e) {
