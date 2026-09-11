@@ -3,10 +3,14 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join(__dirname, 'data', 'itd_config.json');
+const rawConfigPath = path.join(__dirname, 'data', 'itd_config.json');
+const configPath = process.env.VERCEL ? path.join('/tmp', 'itd_config.json') : rawConfigPath;
 
 function getITDConfig() {
   try {
+    if (process.env.VERCEL && !fs.existsSync(configPath) && fs.existsSync(rawConfigPath)) {
+      try { fs.copyFileSync(rawConfigPath, configPath); } catch (e) {}
+    }
     if (fs.existsSync(configPath)) {
       return JSON.parse(fs.readFileSync(configPath, 'utf8'));
     }

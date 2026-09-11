@@ -7,10 +7,14 @@ const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Storage setup for document uploads
-const uploadDir = path.join(__dirname, 'uploads');
+// Storage setup for document uploads (with Vercel /tmp support)
+const uploadDir = process.env.VERCEL ? path.join('/tmp', 'uploads') : path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  } catch (err) {
+    console.error("Warning creating upload dir:", err);
+  }
 }
 const upload = multer({ dest: uploadDir });
 
