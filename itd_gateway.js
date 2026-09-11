@@ -171,7 +171,8 @@ class ITDGatewayEngine {
   // Verify Aadhaar OTP with ITD Gateway
   async verifyAadhaarOTP(transactionId, otp) {
     this.reloadConfig();
-    const ackNo = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+    // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+    const ackNo = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
 
     return {
       success: true,
@@ -187,7 +188,8 @@ class ITDGatewayEngine {
   // Submit ITR JSON to ITD Server
   async submitITRJSON(itrPayload) {
     this.reloadConfig();
-    const ackNo = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+    // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+    const ackNo = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
 
     return {
       success: true,

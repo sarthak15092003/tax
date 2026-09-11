@@ -487,7 +487,8 @@ app.post('/api/itr/wizard-submit', (req, res) => {
     tdsPaid: req.body.incomeDetails?.tdsPaid || 0
   });
 
-  const ackNumber = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+  const ackNumber = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
 
   const newWizardFiling = {
     id: `itr_${Date.now()}`,
@@ -538,7 +539,8 @@ app.post('/api/itr/submit', (req, res) => {
     otherIncome: Number(req.body.incomeDetails?.otherIncome) || 0
   });
 
-  const ackNumber = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+  const ackNumber = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
 
   const newFiling = {
     id: `itr_${Date.now()}`,
@@ -596,7 +598,8 @@ app.post('/api/itr/auto-pilot', (req, res) => {
     tdsPaid
   });
 
-  const ackNumber = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+  const ackNumber = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
 
   const autoFiling = {
     id: `itr_auto_${Date.now()}`,

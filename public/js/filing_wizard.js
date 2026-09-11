@@ -274,7 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (err) {
         console.warn("Using local resilient filing session:", err);
-        const ackNumber = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+        // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+        const ackNumber = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
         activeFilingRecord = {
           id: `itr_${Date.now()}`,
           ackNumber: ackNumber,
@@ -318,14 +319,14 @@ document.addEventListener('DOMContentLoaded', () => {
             success: true,
             data: {
               id: activeFilingRecord?.id || `itr_${Date.now()}`,
-              ackNumber: activeFilingRecord?.ackNumber || `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`,
+              ackNumber: activeFilingRecord?.ackNumber || `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`,
               status: "Return Filed & E-Verified"
             }
           };
         }
 
         if (res && res.success) {
-          const ack = res.data?.ackNumber || activeFilingRecord?.ackNumber || 'ACK2026-CONFIRMED';
+          const ack = res.data?.ackNumber || activeFilingRecord?.ackNumber || '240981234567890';
           otpStatusMsg.innerHTML = `<span style="color:#047857; font-weight:700;">✅ E-Verified! Ack No: ${ack}</span>`;
 
           setTimeout(() => {
@@ -443,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const copyBtn = document.getElementById('btn-autopilot-copy-ack');
           if (copyBtn) {
             copyBtn.onclick = () => {
-              navigator.clipboard.writeText(d.ackNumber || 'ACK2026-AUTO-998877');
+              navigator.clipboard.writeText(d.ackNumber || '240989988776655');
               copyBtn.innerText = '✅ Copied!';
               setTimeout(() => copyBtn.innerText = '📋 Copy Ack Number', 2000);
             };

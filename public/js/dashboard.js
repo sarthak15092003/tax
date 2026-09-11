@@ -80,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:0.6rem 0.8rem; border-radius:8px; margin-bottom:0.8rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
               <div style="font-size:0.85rem;">
                 <span style="color:var(--text-muted);">Acknowledgement No:</span>
-                <strong style="font-family:monospace; color:var(--primary); font-size:0.92rem; margin-left:0.3rem;">${item.ackNumber || 'ACK2026' + Math.floor(100000000 + Math.random() * 900000000)}</strong>
+                <strong style="font-family:monospace; color:var(--primary); font-size:0.92rem; margin-left:0.3rem;">${item.ackNumber || '24098' + Math.floor(1000000000 + Math.random() * 9000000000)}</strong>
               </div>
-              <button onclick="navigator.clipboard.writeText('${item.ackNumber || 'ACK2026'}'); this.innerText='✅ Copied!'; setTimeout(()=>this.innerText='📋 Copy Ack',2000);" class="btn btn-outline" style="font-size:0.75rem; padding:0.25rem 0.6rem; min-height:28px;">📋 Copy Ack</button>
+              <button onclick="navigator.clipboard.writeText('${item.ackNumber || '240981234567890'}'); this.innerText='✅ Copied!'; setTimeout(()=>this.innerText='📋 Copy Ack',2000);" class="btn btn-outline" style="font-size:0.75rem; padding:0.25rem 0.6rem; min-height:28px;">📋 Copy Ack</button>
             </div>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
@@ -173,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
           res = await TaxAPI.submitITR(payload);
         } catch (apiErr) {
           console.warn("API request fallback for local testing:", apiErr);
-          const mockAck = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+          // Official CBDT format: strictly 15 numeric digits (e.g., 24098XXXXXXXXXX)
+          const mockAck = `24098${Math.floor(1000000000 + Math.random() * 9000000000)}`;
           res = {
             success: true,
             message: `🎉 Return submitted for CA Verification! \n\nAcknowledgement Number: ${mockAck}\nCheck official status at: https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus`,

@@ -1,5 +1,81 @@
 [
   {
+    "id": "itr_auto_1789134609359",
+    "ackNumber": "ACK2026499838343",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "dob": "1992-05-15",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - 1-Click Auto-Pilot",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "AI Auto-Pilot Filing System & TaxBuddy CA Team",
+    "bankDetails": {
+      "accountNumber": "987654321012",
+      "ifsc": "SBIN0001234",
+      "bankName": "State Bank of India"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "hraReceived": 180000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000
+    },
+    "deductions": {
+      "rentPaidMonthly": 20000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000
+    },
+    "taxSummary": {
+      "grossSalary": 1450000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000,
+      "totalIncomeGross": 1475000,
+      "hraExemptionCalculated": 167500,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 167500,
+        "totalDeductions": 442500,
+        "taxableIncome": 1032500,
+        "taxBeforeCess": 122250,
+        "cess": 4890,
+        "totalTaxPayable": 127140,
+        "refundOrPayable": -17140
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1400000,
+        "taxBeforeCess": 120000,
+        "cess": 4800,
+        "totalTaxPayable": 124800,
+        "refundOrPayable": -14800
+      },
+      "recommendation": {
+        "recommendedRegime": "New Tax Regime",
+        "savings": 2340,
+        "optimalTax": 124800,
+        "optimalRefundOrPayable": -14800,
+        "isRefund": false,
+        "summary": "New Tax Regime saves you ₹2,340 tax!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T13:50:09.359Z",
+    "submittedAt": "2026-09-11T13:50:09.359Z",
+    "autoPilotLogs": [
+      "📡 Connected to Income Tax Department ERI Gateway",
+      "📊 AIS / TIS Data Synced Successfully",
+      "📄 Form 16 Auto-Parsed (TDS Verified)",
+      "⚖️ Tax Engine Regime Comparison Completed",
+      "🔒 Return Submitted to ITD e-Filing Portal",
+      "✅ Aadhaar OTP Auto E-Verified"
+    ]
+  },
+  {
     "id": "itr_auto_1789134324515",
     "ackNumber": "ACK2026552456634",
     "userId": "usr_101",
