@@ -206,6 +206,16 @@ const TaxAPI = {
     return res.json();
   },
 
+  // 1-Click Auto-Pilot Automated Filing
+  autoPilotITR: async (data) => {
+    const res = await fetch(`${API_BASE}/itr/auto-pilot`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data || {})
+    });
+    return res.json();
+  },
+
   // E-Verify ITR
   everifyITR: async (filingId, otp) => {
     const res = await fetch(`${API_BASE}/itr/everify`, {

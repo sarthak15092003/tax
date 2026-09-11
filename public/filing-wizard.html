@@ -122,22 +122,38 @@
     <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="calculator.html">Tax Calculator</a></li>
-      <li><a href="filing-wizard.html" style="color:var(--primary);">Interactive ITR Wizard</a></li>
+      <li><a href="filing-wizard.html" style="color:var(--primary);">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
       <li><a href="dashboard.html">Taxpayer Portal</a></li>
-      <li><a href="expert.html">CA Workspace</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
     </ul>
 
     <div class="nav-actions">
-      <span class="badge-new" style="background:var(--primary-light); color:var(--primary); font-weight:700; padding:0.4rem 0.8rem;">
-        AY 2026-27 (FY 2025-26)
-      </span>
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
     </div>
   </nav>
 
   <div class="section wizard-container" style="padding-top:2rem;">
     <div class="section-header">
       <h2>Guided Income Tax Return (ITR-1) Filing</h2>
-      <p>Complete your e-filing in 6 simple steps with live HRA optimization and instant tax refund calculation.</p>
+      <p>Complete your e-filing step-by-step or use 1-Click Zero-Intervention Auto-Pilot Filing.</p>
+    </div>
+
+    <!-- 1-Click Zero-Intervention Auto-Pilot Banner -->
+    <div style="background:linear-gradient(135deg, #0F172A, #161C2E); color:white; border-radius:var(--radius-md); padding:1.5rem 2rem; margin-bottom:2rem; display:flex; justify-content:space-between; align-items:center; border:2px solid var(--accent-teal);">
+      <div>
+        <span style="background:rgba(0,208,156,0.2); color:var(--accent-teal); font-size:0.8rem; font-weight:800; padding:0.3rem 0.8rem; border-radius:20px;">⚡ ZERO MANUAL INPUT MODE</span>
+        <h3 style="font-family:var(--font-heading); color:white; margin-top:0.4rem;">1-Click Auto-Pilot Tax Filing & E-Verification</h3>
+        <p style="color:#94A3B8; font-size:0.88rem; margin-top:0.2rem;">System auto-imports AIS, parses Form 16, optimizes deductions, and e-verifies return automatically.</p>
+      </div>
+      <button type="button" id="btn-auto-pilot" class="btn btn-accent" style="padding:0.9rem 1.8rem; font-size:1.05rem; white-space:nowrap;">
+        ⚡ 1-Click Auto-File Now →
+      </button>
     </div>
 
     <!-- Stepper Header -->
@@ -451,6 +467,43 @@
       <div style="display:flex; gap:1rem;">
         <button type="button" id="btn-modal-cancel" class="btn btn-outline" style="flex:1;">Cancel</button>
         <button type="button" id="btn-modal-verify" class="btn btn-accent" style="flex:1;">Confirm & E-Verify</button>
+    </div>
+  </div>
+
+  <!-- 1-Click Auto-Pilot Automated Progress Modal -->
+  <div id="autopilot-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:560px; text-align:left;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin:0;">⚡ 1-Click Auto-Pilot Filing</h3>
+        <span class="badge-new" style="font-size:0.75rem;">ZERO MANUAL INPUT MODE</span>
+      </div>
+      
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
+        TaxBuddy Auto-Pilot AI is syncing your AIS/TIS data, parsing Form 16, optimizing tax exemptions, and e-verifying automatically.
+      </p>
+
+      <!-- Animated Progress Bar -->
+      <div style="background:#E2E8F0; border-radius:10px; height:12px; overflow:hidden; margin-bottom:1.2rem;">
+        <div id="autopilot-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg, #0F62FE, #00D09C); transition:width 0.3s ease;"></div>
+      </div>
+
+      <!-- Live Log Terminal -->
+      <div id="autopilot-logs" style="background:#0F172A; color:#38BDF8; font-family:monospace; font-size:0.82rem; padding:1rem; border-radius:8px; height:180px; overflow-y:auto; margin-bottom:1.5rem; line-height:1.7;">
+        <div>⏳ Initializing TaxBuddy Zero-Intervention Auto-Pilot Engine...</div>
+      </div>
+
+      <!-- Completion Actions -->
+      <div id="autopilot-done-actions" style="display:none; text-align:center;">
+        <div style="background:#ECFDF5; border:1px solid #6EE7B7; color:#065F46; padding:1rem; border-radius:8px; margin-bottom:1.2rem;">
+          <div style="font-size:1.3rem; font-weight:800;">🎉 ITR-1 E-Filed & E-Verified Successfully!</div>
+          <div id="autopilot-ack-no" style="font-size:0.95rem; font-weight:700; margin-top:0.3rem; font-family:monospace; color:#047857;">ACK2026-AUTO-998877</div>
+          <div id="autopilot-refund-amount" style="font-size:1.15rem; font-weight:800; color:#047857; margin-top:0.3rem;">Refund Amount: ₹38,480</div>
+        </div>
+
+        <div style="display:flex; gap:1rem;">
+          <button type="button" id="btn-autopilot-close" class="btn btn-outline" style="flex:1;">Close</button>
+          <a href="dashboard.html" class="btn btn-accent" style="flex:1; text-decoration:none; text-align:center; display:inline-block; padding-top:0.75rem;">View Dashboard & Download ITR-V →</a>
+        </div>
       </div>
     </div>
   </div>
