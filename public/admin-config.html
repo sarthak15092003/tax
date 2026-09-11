@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaxBuddy Platform Admin - ITD ERI Server Setup</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:#DC2626; font-weight:700;">PLATFORM ADMIN DESK</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Main Site</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+      <li><a href="admin-config.html" style="color:var(--primary);">Admin ITD Gateway</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span class="badge-new" style="background:#FEE2E2; color:#DC2626; font-weight:700; padding:0.4rem 0.8rem;">
+        🔐 System Administrator Access
+      </span>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>Platform Administrator - ITD ERI Server Configuration</h2>
+      <p>Configure global ITD ERI credentials for all end-users and multi-client filings across the platform.</p>
+    </div>
+
+    <!-- Status Banner -->
+    <div id="itd-status-banner" style="background:#FFFBEB; border:2px solid #F59E0B; padding:1.2rem; border-radius:var(--radius-md); text-align:center; margin-bottom:2rem;">
+      <span id="itd-status-badge" class="status-badge badge-pending" style="font-size:0.9rem;">🟡 ITD ERI SANDBOX ACTIVE</span>
+      <h3 id="itd-status-title" style="font-family:var(--font-heading); margin-top:0.4rem; color:#92400E;">Connected to Income Tax Staging Gateway</h3>
+      <p id="itd-status-desc" style="font-size:0.88rem; color:#B45309;">All 100,000+ platform clients execute returns against ITD Staging Gateway.</p>
+    </div>
+
+    <!-- Connection Console Box -->
+    <div id="connection-console" style="display:none; background:#0F172A; color:#38BDF8; font-family:monospace; padding:1.2rem; border-radius:12px; margin-bottom:2rem; font-size:0.9rem;">
+      <div id="console-output">⌛ Testing ITD Gateway handshake...</div>
+    </div>
+
+    <div class="calculator-card">
+      <form id="itd-config-form">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1rem;">1. Select Global Platform API Mode</h3>
+
+        <div class="form-group">
+          <label for="itd-mode">Environment Mode for All Platform Clients</label>
+          <select id="itd-mode" class="form-control" style="font-weight:700;">
+            <option value="SANDBOX">🟡 ERI Sandbox Mode (Recommended for testing all client filings)</option>
+            <option value="PRODUCTION">🟢 Live ITD Production Gateway (incometax.gov.in)</option>
+          </select>
+        </div>
+
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin:1.5rem 0 1rem 0;">2. Global Platform ERI Credentials (Set ONCE for All Clients)</h3>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+          <div class="form-group">
+            <label for="itd-client-id">ERI Client ID (Issued to Platform Owner by ITD)</label>
+            <input type="text" id="itd-client-id" class="form-control" value="ERI_SANDBOX_DEMO_CLIENT_ID" required>
+          </div>
+
+          <div class="form-group">
+            <label for="itd-client-secret">ERI Client Secret Key</label>
+            <input type="password" id="itd-client-secret" class="form-control" value="************************" required>
+          </div>
+
+          <div class="form-group">
+            <label for="itd-cert-path">Server mTLS PFX/P12 Certificate Path</label>
+            <input type="text" id="itd-cert-path" class="form-control" placeholder="C:\certs\itd_eri_production.pfx">
+          </div>
+
+          <div class="form-group">
+            <label for="itd-cert-pass">Certificate Passphrase</label>
+            <input type="password" id="itd-cert-pass" class="form-control" placeholder="Enter PFX password">
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem; display:flex; gap:1rem;">
+          <button type="submit" id="btn-save-cfg" class="btn btn-primary" style="flex:1;">Save Global Server Configuration</button>
+          <button type="button" id="btn-test-conn" class="btn btn-accent" style="flex:1;">Test Live Gateway Handshake →</button>
+        </div>
+      </form>
+
+      <!-- Quick Action Buttons -->
+      <div style="margin-top:2rem; border-top:1px solid #E2E8F0; padding-top:1.5rem; display:flex; gap:1rem; justify-content:center;">
+        <button type="button" class="btn btn-outline" onclick="loadDemoCredentials('SANDBOX')">Set Staging Sandbox Mode</button>
+        <button type="button" class="btn btn-outline" onclick="loadDemoCredentials('PRODUCTION')">Set Production Mode</button>
+        <a href="docs/ITD_ERI_Registration_Guide.md" target="_blank" class="btn btn-outline" style="color:var(--text-dark); border-color:#CBD5E1;">📖 ERI Registration Guide</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const modeEl = document.getElementById('itd-mode');
+      const clientIdEl = document.getElementById('itd-client-id');
+      const clientSecEl = document.getElementById('itd-client-secret');
+      const certPathEl = document.getElementById('itd-cert-path');
+      const certPassEl = document.getElementById('itd-cert-pass');
+
+      const bannerEl = document.getElementById('itd-status-banner');
+      const badgeEl = document.getElementById('itd-status-badge');
+      const titleEl = document.getElementById('itd-status-title');
+      const descEl = document.getElementById('itd-status-desc');
+
+      const consoleBox = document.getElementById('connection-console');
+      const consoleOutput = document.getElementById('console-output');
+
+      // Load Config
+      try {
+        const res = await fetch('/api/v1/itd/config');
+        const json = await res.json();
+        if (json.success) {
+          const cfg = json.data;
+          modeEl.value = cfg.mode || 'SANDBOX';
+          clientIdEl.value = cfg.clientId || '';
+          clientSecEl.value = cfg.clientSecret || '';
+          certPathEl.value = cfg.certPath || '';
+          updateUIBanner(cfg.mode);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+
+      function updateUIBanner(mode) {
+        if (mode === 'PRODUCTION') {
+          bannerEl.style.background = '#ECFDF5';
+          bannerEl.style.borderColor = '#10B981';
+          badgeEl.className = 'status-badge badge-filed';
+          badgeEl.textContent = '🟢 ITD PRODUCTION GATEWAY ACTIVE FOR ALL CLIENTS';
+          titleEl.textContent = 'Connected to Live Income Tax Portal (incometax.gov.in)';
+          titleEl.style.color = '#047857';
+          descEl.textContent = 'All multi-client filings & OTPs are transmitted live to the Income Tax Department ERI engine.';
+          descEl.style.color = '#065F46';
+        } else {
+          bannerEl.style.background = '#FFFBEB';
+          bannerEl.style.borderColor = '#F59E0B';
+          badgeEl.className = 'status-badge badge-pending';
+          badgeEl.textContent = '🟡 ITD ERI SANDBOX ACTIVE';
+          titleEl.textContent = 'Connected to Income Tax Staging Gateway';
+          titleEl.style.color = '#92400E';
+          descEl.textContent = 'All multi-client filings & OTPs run against ITD Sandbox API gateway.';
+          descEl.style.color = '#B45309';
+        }
+      }
+
+      modeEl.addEventListener('change', () => updateUIBanner(modeEl.value));
+
+      window.loadDemoCredentials = (mode) => {
+        modeEl.value = mode;
+        if (mode === 'SANDBOX') {
+          clientIdEl.value = "ERI_SANDBOX_DEMO_CLIENT_ID";
+          clientSecEl.value = "ERI_SANDBOX_DEMO_CLIENT_SECRET";
+          certPathEl.value = "";
+        } else {
+          clientIdEl.value = "ERI_PROD_908123_LIVE";
+          clientSecEl.value = "ERI_PROD_LIVE_SECRET_KEY";
+          certPathEl.value = "C:\\certs\\itd_eri_production.pfx";
+        }
+        updateUIBanner(mode);
+      };
+
+      document.getElementById('itd-config-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          mode: modeEl.value,
+          clientId: clientIdEl.value,
+          clientSecret: clientSecEl.value,
+          certPath: certPathEl.value,
+          certPassphrase: certPassEl.value
+        };
+
+        try {
+          const res = await fetch('/api/v1/itd/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const json = await res.json();
+          if (json.success) {
+            alert("✅ Global Server Config Saved! Active Mode: " + payload.mode);
+            updateUIBanner(payload.mode);
+          }
+        } catch (err) {
+          alert("Error saving configuration: " + err.message);
+        }
+      });
+
+      document.getElementById('btn-test-conn').addEventListener('click', async () => {
+        consoleBox.style.display = 'block';
+        consoleOutput.innerHTML = `⏳ <strong>Connecting to ITD Gateway (${modeEl.value} mode)...</strong><br>> Sending OAuth Client Credentials handshake to ITD ERI Gateway...`;
+
+        try {
+          await fetch('/api/v1/itd/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              mode: modeEl.value,
+              clientId: clientIdEl.value,
+              clientSecret: clientSecEl.value,
+              certPath: certPathEl.value,
+              certPassphrase: certPassEl.value
+            })
+          });
+
+          const res = await fetch('/api/v1/itd/test-connection', { method: 'POST' });
+          const json = await res.json();
+          
+          if (json.success) {
+            consoleOutput.innerHTML = `✅ <strong>ITD Global Gateway Connection Successful!</strong><br>> Response: ${json.message}<br>> Handshake status: 200 OK`;
+          } else {
+            consoleOutput.innerHTML = `⚠️ <strong>ITD Production Handshake Notice:</strong><br>> ${json.message}`;
+          }
+        } catch (err) {
+          consoleOutput.innerHTML = `❌ <strong>Connection Error:</strong> ${err.message}`;
+        }
+      });
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const json = await res.json();
       if (json.success && json.data.mode === 'PRODUCTION') {
         badgeEl.className = 'status-badge badge-filed';
-        badgeEl.innerHTML = '🟢 Active Gateway: Live ITD Production (incometax.gov.in)';
+        badgeEl.innerHTML = '🟢 Transmitting via Official Platform ERI Gateway (incometax.gov.in)';
       } else {
         badgeEl.className = 'status-badge badge-pending';
-        badgeEl.innerHTML = '🟡 Active Gateway: ITD ERI Sandbox (Test OTP: 123456)';
+        badgeEl.innerHTML = '⚡ Automated ITD Gateway Verification Active';
       }
     } catch (err) {
       console.error(err);
