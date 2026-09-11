@@ -196,6 +196,16 @@ const TaxAPI = {
     return res.json();
   },
 
+  // Submit ITR from Dashboard Form
+  submitITR: async (data) => {
+    const res = await fetch(`${API_BASE}/itr/submit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
   // Submit Wizard ITR
   submitWizardITR: async (wizardData) => {
     const res = await fetch(`${API_BASE}/itr/wizard-submit`, {

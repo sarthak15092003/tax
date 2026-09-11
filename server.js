@@ -524,6 +524,52 @@ app.post('/api/itr/wizard-submit', (req, res) => {
   });
 });
 
+app.post('/api/itr/submit', (req, res) => {
+  const filings = readJSON(FILINGS_FILE);
+  const userName = req.body.userName || "Rajesh Kumar";
+  const pan = (req.body.pan || "ABCDE1234F").toUpperCase();
+  const planType = req.body.planType || "Assisted - Salaried Professional";
+  const grossSalary = Number(req.body.incomeDetails?.grossSalary) || 1450000;
+  const tdsPaid = Number(req.body.incomeDetails?.tdsPaid) || 110000;
+
+  const taxSummary = calculateTax({
+    grossSalary,
+    tdsPaid,
+    otherIncome: Number(req.body.incomeDetails?.otherIncome) || 0
+  });
+
+  const ackNumber = `ACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+
+  const newFiling = {
+    id: `itr_${Date.now()}`,
+    ackNumber: ackNumber,
+    userId: "usr_101",
+    userName: userName,
+    pan: pan,
+    assessmentYear: "2026-27",
+    financialYear: "2025-26",
+    planType: planType,
+    status: "Under CA Review",
+    assignedCA: "CA Gaurav Sharma (Ex-IRS Advisor)",
+    incomeDetails: { grossSalary, tdsPaid },
+    taxSummary: {
+      taxSaved: taxSummary.taxDifference || 42500,
+      recommendedRegime: taxSummary.recommendedRegime,
+      finalTax: taxSummary.optimalTax
+    },
+    submittedAt: new Date().toISOString()
+  };
+
+  filings.unshift(newFiling);
+  writeJSON(FILINGS_FILE, filings);
+
+  res.json({
+    success: true,
+    message: `🎉 Return submitted for CA Verification! \n\nAcknowledgement Number: ${ackNumber}\nCheck official status at: https://eportal.incometax.gov.in/iec/foservices/#/pre-login/itrStatus`,
+    data: newFiling
+  });
+});
+
 app.post('/api/itr/auto-pilot', (req, res) => {
   const filings = readJSON(FILINGS_FILE);
   const pan = (req.body.pan || "ABCDE1234F").toUpperCase();

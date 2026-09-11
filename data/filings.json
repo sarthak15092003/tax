@@ -1,5 +1,45 @@
 [
   {
+    "id": "itr_1789134140606",
+    "ackNumber": "ACK2026588767357",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried",
+    "status": "Under CA Review",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "tdsPaid": 110000
+    },
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "submittedAt": "2026-09-11T13:42:20.606Z"
+  },
+  {
+    "id": "itr_1789134083037",
+    "ackNumber": "ACK2026516327302",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Under CA Review",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "tdsPaid": 110000
+    },
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "submittedAt": "2026-09-11T13:41:23.037Z"
+  },
+  {
     "id": "itr_1789133770914",
     "ackNumber": "ACK2026213883154",
     "userId": "usr_101",
