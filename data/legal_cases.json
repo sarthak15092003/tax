@@ -1,0 +1,76 @@
+[
+  {
+    "id": "app_1789114313652",
+    "caseType": "CIT(A) Income Tax Appeal",
+    "taxpayerName": "Rajesh Kumar",
+    "assessmentYear": "2024-25",
+    "disputedDemand": 145000,
+    "groundsOfAppeal": "Disallowance of HRA & Sec 80C deductions despite submitting rent receipts.",
+    "assignedAdvocate": "Adv. Meenakshi Sundaram (High Court Panelist)",
+    "status": "Appeal Drafted & Form 35 Submitted to CIT(A)",
+    "submittedAt": "2026-09-11T08:11:53.652Z"
+  },
+  {
+    "id": "leg_1789114310305",
+    "caseType": "Form 26QB Property Sale TDS",
+    "buyerName": "Rajesh Kumar",
+    "buyerPAN": "ABCDE1234F",
+    "sellerName": "Suresh Mehta",
+    "sellerPAN": "XYZPM9876K",
+    "propertyValue": 7500000,
+    "tdsAmount": 75000,
+    "challanNo": "CHAL2026338148",
+    "status": "Challan Generated & Form 26QB Transmitted",
+    "submittedAt": "2026-09-11T08:11:50.305Z"
+  },
+  {
+    "id": "leg_1789114308873",
+    "caseType": "Form 26QB Property Sale TDS",
+    "buyerName": "Rajesh Kumar",
+    "buyerPAN": "ABCDE1234F",
+    "sellerName": "Suresh Mehta",
+    "sellerPAN": "XYZPM9876K",
+    "propertyValue": 7500000,
+    "tdsAmount": 75000,
+    "challanNo": "CHAL2026997569",
+    "status": "Challan Generated & Form 26QB Transmitted",
+    "submittedAt": "2026-09-11T08:11:48.873Z"
+  },
+  {
+    "id": "app_1789113441217",
+    "caseType": "CIT(A) Income Tax Appeal",
+    "taxpayerName": "Rajesh Kumar",
+    "assessmentYear": "2025-26",
+    "disputedDemand": 180000,
+    "groundsOfAppeal": "HRA exemption disallowance appeal.",
+    "assignedAdvocate": "Adv. Meenakshi Sundaram (High Court Panelist)",
+    "status": "Appeal Drafted & Form 35 Submitted to CIT(A)",
+    "submittedAt": "2026-09-11T07:57:21.217Z"
+  },
+  {
+    "id": "leg_1789113441118",
+    "caseType": "Form 26QB Property Sale TDS",
+    "buyerName": "Rajesh Kumar",
+    "buyerPAN": "ABCDE1234F",
+    "sellerName": "Suresh Mehta",
+    "sellerPAN": "XYZPM9876K",
+    "propertyValue": 8500000,
+    "tdsAmount": 85000,
+    "challanNo": "CHAL2026141205",
+    "status": "Challan Generated & Form 26QB Transmitted",
+    "submittedAt": "2026-09-11T07:57:21.118Z"
+  },
+  {
+    "id": "leg_801",
+    "caseType": "Form 26QB Property Sale TDS",
+    "buyerName": "Rajesh Kumar",
+    "buyerPAN": "ABCDE1234F",
+    "sellerName": "Suresh Mehta",
+    "sellerPAN": "XYZPM9876K",
+    "propertyValue": 7500000,
+    "tdsAmount": 75000,
+    "challanNo": "CHAL202690812",
+    "status": "Challan Paid & Form 26QB Submitted",
+    "submittedAt": "2026-08-14T15:30:00Z"
+  }
+]

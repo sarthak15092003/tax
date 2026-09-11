@@ -1,0 +1,31 @@
+[
+  {
+    "id": "usr_101",
+    "name": "Rajesh Kumar",
+    "email": "rajesh.k@example.com",
+    "mobile": "+91 98765 43210",
+    "role": "taxpayer",
+    "pan": "ABCDE1234F",
+    "employer": "Tech Corp Pvt Ltd",
+    "createdAt": "2026-08-10T10:00:00Z"
+  },
+  {
+    "id": "usr_102",
+    "name": "Priya Sharma",
+    "email": "priya.s@example.com",
+    "mobile": "+91 91234 56789",
+    "role": "taxpayer",
+    "pan": "FGHIJ5678K",
+    "employer": "Global Financials",
+    "createdAt": "2026-08-15T14:30:00Z"
+  },
+  {
+    "id": "exp_001",
+    "name": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "email": "gaurav.ca@taxbuddy.com",
+    "mobile": "+91 99999 88888",
+    "role": "ca_expert",
+    "membershipNo": "CA-543210",
+    "specialization": "Salaried, Capital Gains & Notice Defense"
+  }
+]

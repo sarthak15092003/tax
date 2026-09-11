@@ -1,0 +1,42 @@
+[
+  {
+    "id": "biz_1789113838569",
+    "businessName": "Zenith Innovations Pvt Ltd",
+    "serviceType": "GSTR-1 & GSTR-3B Monthly Return",
+    "gstin": "27AAACZ1234K1Z5",
+    "period": "August 2026",
+    "status": "Filing Accepted & E-Filed",
+    "itcClaimed": 52000,
+    "submittedAt": "2026-09-11T08:03:58.569Z"
+  },
+  {
+    "id": "biz_1789113695103",
+    "businessName": "Zenith Innovations Pvt Ltd",
+    "serviceType": "GSTR-1 & GSTR-3B Monthly Return",
+    "gstin": "27AAACZ1234K1Z5",
+    "period": "August 2026",
+    "status": "Filing Accepted & E-Filed",
+    "itcClaimed": 52000,
+    "submittedAt": "2026-09-11T08:01:35.103Z"
+  },
+  {
+    "id": "biz_1789113441108",
+    "businessName": "Horizon Tech Pvt Ltd",
+    "serviceType": "GSTR-1 & GSTR-3B Monthly Return",
+    "gstin": "27BBBZ9999K1Z2",
+    "period": "August 2026",
+    "status": "Filing Accepted & E-Filed",
+    "itcClaimed": 64000,
+    "submittedAt": "2026-09-11T07:57:21.108Z"
+  },
+  {
+    "id": "biz_701",
+    "businessName": "Zenith Innovations Pvt Ltd",
+    "serviceType": "GST Return Filing & GSTR-1",
+    "gstin": "27AAACZ1234K1Z5",
+    "period": "July 2026",
+    "status": "GSTR-3B Filed",
+    "itcClaimed": 42500,
+    "submittedAt": "2026-08-05T09:00:00Z"
+  }
+]

@@ -1,0 +1,773 @@
+[
+  {
+    "id": "itr_1789114377457",
+    "ackNumber": "ACK2026423639832",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "dob": "1992-05-15",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "accountNumber": "50100234567891",
+      "ifsc": "HDFC0000123",
+      "bankName": "HDFC Bank"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "hraReceived": 180000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000
+    },
+    "deductions": {
+      "rentPaidMonthly": 20000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000,
+      "homeLoanInterest": 0
+    },
+    "taxSummary": {
+      "grossSalary": 1450000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000,
+      "totalIncomeGross": 1475000,
+      "hraExemptionCalculated": 167500,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 167500,
+        "totalDeductions": 442500,
+        "taxableIncome": 1032500,
+        "taxBeforeCess": 122250,
+        "cess": 4890,
+        "totalTaxPayable": 127140,
+        "refundOrPayable": -17140
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1400000,
+        "taxBeforeCess": 120000,
+        "cess": 4800,
+        "totalTaxPayable": 124800,
+        "refundOrPayable": -14800
+      },
+      "recommendation": {
+        "recommendedRegime": "New Tax Regime",
+        "savings": 2340,
+        "optimalTax": 124800,
+        "optimalRefundOrPayable": -14800,
+        "isRefund": false,
+        "summary": "New Tax Regime saves you ₹2,340 tax!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T08:12:59.341Z",
+    "submittedAt": "2026-09-11T08:12:57.457Z"
+  },
+  {
+    "id": "itr_1789113330829",
+    "ackNumber": "ACK2026459966806",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "dob": "1992-05-15",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "accountNumber": "50100234567891",
+      "ifsc": "HDFC0000123",
+      "bankName": "HDFC Bank"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "hraReceived": 180000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000
+    },
+    "deductions": {
+      "rentPaidMonthly": 20000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000,
+      "homeLoanInterest": 0
+    },
+    "taxSummary": {
+      "grossSalary": 1450000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000,
+      "totalIncomeGross": 1475000,
+      "hraExemptionCalculated": 167500,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 167500,
+        "totalDeductions": 442500,
+        "taxableIncome": 1032500,
+        "taxBeforeCess": 122250,
+        "cess": 4890,
+        "totalTaxPayable": 127140,
+        "refundOrPayable": -17140
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1400000,
+        "taxBeforeCess": 120000,
+        "cess": 4800,
+        "totalTaxPayable": 124800,
+        "refundOrPayable": -14800
+      },
+      "recommendation": {
+        "recommendedRegime": "New Tax Regime",
+        "savings": 2340,
+        "optimalTax": 124800,
+        "optimalRefundOrPayable": -14800,
+        "isRefund": false,
+        "summary": "New Tax Regime saves you ₹2,340 tax!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T07:55:34.461Z",
+    "submittedAt": "2026-09-11T07:55:30.829Z"
+  },
+  {
+    "id": "itr_1789113280629",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:40.629Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:40.629Z"
+  },
+  {
+    "id": "itr_1789113280441",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:40.441Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:40.441Z"
+  },
+  {
+    "id": "itr_1789113280291",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:40.291Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:40.291Z"
+  },
+  {
+    "id": "itr_1789113280104",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:40.105Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:40.105Z"
+  },
+  {
+    "id": "itr_1789113279931",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:39.931Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:39.931Z"
+  },
+  {
+    "id": "itr_1789113279733",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:39.735Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:39.735Z"
+  },
+  {
+    "id": "itr_1789113279553",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:39.553Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:39.554Z"
+  },
+  {
+    "id": "itr_1789113279308",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:39.308Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:39.308Z"
+  },
+  {
+    "id": "itr_1789113277488",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:37.488Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:37.488Z"
+  },
+  {
+    "id": "itr_1789113254410",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:14.410Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:14.410Z"
+  },
+  {
+    "id": "itr_1789113253934",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:13.934Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:13.934Z"
+  },
+  {
+    "id": "itr_1789113252511",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Submitted to CA",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "bankName": "HDFC Bank",
+      "accountNumber": "XXXX1234",
+      "ifsc": "HDFC0000123"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {
+      "taxSaved": 42500
+    },
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:54:12.511Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:54:12.511Z"
+  },
+  {
+    "id": "itr_1789112949337",
+    "ackNumber": "ACK2026949346998",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "dob": "1992-05-15",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "accountNumber": "50100234567891",
+      "ifsc": "HDFC0000123",
+      "bankName": "HDFC Bank"
+    },
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "hraReceived": 180000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000
+    },
+    "deductions": {
+      "rentPaidMonthly": 25000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000,
+      "homeLoanInterest": 0
+    },
+    "taxSummary": {
+      "grossSalary": 1450000,
+      "otherIncome": 25000,
+      "tdsPaid": 110000,
+      "totalIncomeGross": 1475000,
+      "hraExemptionCalculated": 180000,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 180000,
+        "totalDeductions": 455000,
+        "taxableIncome": 1020000,
+        "taxBeforeCess": 118500,
+        "cess": 4740,
+        "totalTaxPayable": 123240,
+        "refundOrPayable": -13240
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1400000,
+        "taxBeforeCess": 120000,
+        "cess": 4800,
+        "totalTaxPayable": 124800,
+        "refundOrPayable": -14800
+      },
+      "recommendation": {
+        "recommendedRegime": "Old Tax Regime",
+        "savings": 1560,
+        "optimalTax": 123240,
+        "optimalRefundOrPayable": -13240,
+        "isRefund": false,
+        "summary": "Old Tax Regime saves you ₹1,560 tax due to claimed exemptions!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T07:49:53.201Z",
+    "submittedAt": "2026-09-11T07:49:09.337Z"
+  },
+  {
+    "id": "itr_1789112554957",
+    "ackNumber": "ACK2026351001193",
+    "userId": "usr_101",
+    "userName": "Ananya Deshmukh",
+    "pan": "PQRS5678M",
+    "dob": "1994-08-20",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "accountNumber": "000401567890",
+      "ifsc": "ICIC0000004",
+      "bankName": "ICICI Bank"
+    },
+    "incomeDetails": {
+      "grossSalary": 1650000,
+      "hraReceived": 210000,
+      "otherIncome": 30000,
+      "tdsPaid": 135000
+    },
+    "deductions": {
+      "rentPaidMonthly": 22000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000
+    },
+    "taxSummary": {
+      "grossSalary": 1650000,
+      "otherIncome": 30000,
+      "tdsPaid": 135000,
+      "totalIncomeGross": 1680000,
+      "hraExemptionCalculated": 181500,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 181500,
+        "totalDeductions": 456500,
+        "taxableIncome": 1223500,
+        "taxBeforeCess": 179550,
+        "cess": 7182,
+        "totalTaxPayable": 186732,
+        "refundOrPayable": -51732
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1605000,
+        "taxBeforeCess": 171500,
+        "cess": 6860,
+        "totalTaxPayable": 178360,
+        "refundOrPayable": -43360
+      },
+      "recommendation": {
+        "recommendedRegime": "New Tax Regime",
+        "savings": 8372,
+        "optimalTax": 178360,
+        "optimalRefundOrPayable": -43360,
+        "isRefund": false,
+        "summary": "New Tax Regime saves you ₹8,372 tax!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T07:42:34.995Z",
+    "submittedAt": "2026-09-11T07:42:34.957Z"
+  },
+  {
+    "id": "itr_1789111548313",
+    "userId": "usr_101",
+    "userName": "Vikram Malhotra",
+    "pan": "XYZPD9876Q",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried",
+    "status": "Return Filed",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "incomeDetails": {
+      "grossSalary": 1800000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {},
+    "taxSummary": {},
+    "documents": [
+      {
+        "name": "Form16_Uploaded.pdf",
+        "uploadedAt": "2026-09-11T07:25:48.313Z",
+        "size": "1.4 MB"
+      }
+    ],
+    "submittedAt": "2026-09-11T07:25:48.313Z",
+    "updatedAt": "2026-09-11T07:38:04.826Z",
+    "caNotes": "Verified by CA Expert"
+  },
+  {
+    "id": "itr_9001",
+    "userId": "usr_101",
+    "userName": "Rajesh Kumar",
+    "pan": "ABCDE1234F",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried",
+    "status": "CA Reviewing",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "incomeDetails": {
+      "grossSalary": 1450000,
+      "hraReceived": 180000,
+      "otherIncome": 35000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {
+      "section80C": 150000,
+      "section80D": 25000,
+      "nps80CCD1B": 50000,
+      "homeLoanInterest": 0
+    },
+    "taxSummary": {
+      "totalIncome": 1375000,
+      "taxOldRegime": 182000,
+      "taxNewRegime": 105000,
+      "recommendedRegime": "New Regime",
+      "taxSaved": 77000,
+      "tdsPaid": 110000,
+      "refundOrPayable": -5000
+    },
+    "documents": [
+      {
+        "name": "Form16_Rajesh_TechCorp.pdf",
+        "uploadedAt": "2026-08-11T09:15:00Z",
+        "size": "1.2 MB"
+      },
+      {
+        "name": "26AS_Statement.pdf",
+        "uploadedAt": "2026-08-11T09:16:00Z",
+        "size": "850 KB"
+      }
+    ],
+    "submittedAt": "2026-08-11T09:20:00Z"
+  },
+  {
+    "id": "itr_9002",
+    "userId": "usr_102",
+    "userName": "Priya Sharma",
+    "pan": "FGHIJ5678K",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "DIY TaxBuddy AI",
+    "status": "Return Filed",
+    "assignedCA": "AI Auto Validator",
+    "incomeDetails": {
+      "grossSalary": 920000,
+      "hraReceived": 120000,
+      "otherIncome": 15000,
+      "regimeChosen": "New Regime"
+    },
+    "deductions": {
+      "section80C": 120000,
+      "section80D": 15000,
+      "nps80CCD1B": 0,
+      "homeLoanInterest": 0
+    },
+    "taxSummary": {
+      "totalIncome": 845000,
+      "taxOldRegime": 81500,
+      "taxNewRegime": 34500,
+      "recommendedRegime": "New Regime",
+      "taxSaved": 47000,
+      "tdsPaid": 40000,
+      "refundOrPayable": -5500
+    },
+    "documents": [
+      {
+        "name": "Form16_Priya_GlobalFin.pdf",
+        "uploadedAt": "2026-08-16T11:00:00Z",
+        "size": "1.5 MB"
+      }
+    ],
+    "submittedAt": "2026-08-16T11:10:00Z"
+  }
+]

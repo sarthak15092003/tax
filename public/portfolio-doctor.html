@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Doctor & Capital Gains Tax Calculator | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">PORTFOLIO DOCTOR</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html" style="color:var(--primary);">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal & 26QB</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="filing-wizard.html" class="btn btn-primary">File ITR with Capital Gains</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>TaxBuddy Portfolio Doctor</h2>
+      <p>Scan your CAMS / KFintech CAS PDF statement to compute Capital Gains (Equity STCG/LTCG & Crypto) and harvest tax losses.</p>
+    </div>
+
+    <div class="calculator-card" style="margin-bottom:2rem;">
+      <div style="background:var(--primary-light); padding:1.5rem; border-radius:var(--radius-md); text-align:center; border:2px dashed var(--primary); margin-bottom:2rem; cursor:pointer;" onclick="document.getElementById('cas-file').click()">
+        <div style="font-size:2.5rem; margin-bottom:0.4rem;">📊</div>
+        <h3 style="font-family:var(--font-heading); color:var(--primary);">Upload CAMS / KFintech CAS PDF Statement</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">Auto-extract equity mutual funds, stock trades, STCG & LTCG gains</p>
+        <input type="file" id="cas-file" style="display:none;" accept=".pdf">
+      </div>
+
+      <div class="calc-grid">
+        <div>
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1rem;">Manual Capital Gains Entry</h3>
+          
+          <div class="form-group">
+            <label for="cas-stcg">Equity Short-Term Capital Gains (STCG - Sec 111A 20%) (₹)</label>
+            <input type="number" id="cas-stcg" class="form-control" value="45000">
+          </div>
+
+          <div class="form-group">
+            <label for="cas-ltcg">Equity Long-Term Capital Gains (LTCG - Sec 112A 12.5%) (₹)</label>
+            <input type="number" id="cas-ltcg" class="form-control" value="165000">
+            <small style="color:var(--text-muted);">Sec 112A provides ₹1,25,000 exemption limit.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="cas-crypto">Virtual Digital Assets / Crypto Gains (Sec 115BBH 30%) (₹)</label>
+            <input type="number" id="cas-crypto" class="form-control" value="25000">
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-result-box" style="background:#F8FAFC; border:1px solid #CBD5E1;">
+            <h3 style="font-family:var(--font-heading); text-align:center; margin-bottom:1rem;">Capital Gains Tax Summary</h3>
+
+            <table class="regime-table">
+              <tbody>
+                <tr>
+                  <td>STCG Tax (20% under Sec 111A)</td>
+                  <td id="res-stcg-tax">₹9,000</td>
+                </tr>
+                <tr>
+                  <td>LTCG Exemption Claimed (Sec 112A)</td>
+                  <td>₹1,25,000</td>
+                </tr>
+                <tr>
+                  <td>Taxable LTCG (Above ₹1.25L)</td>
+                  <td id="res-taxable-ltcg">₹40,000</td>
+                </tr>
+                <tr>
+                  <td>LTCG Tax (12.5% under Sec 112A)</td>
+                  <td id="res-ltcg-tax">₹5,000</td>
+                </tr>
+                <tr>
+                  <td>Crypto Tax (30% under Sec 115BBH)</td>
+                  <td id="res-crypto-tax">₹7,500</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Total Capital Gains Tax (incl 4% Cess)</td>
+                  <td id="res-total-cg-tax" style="font-size:1.2rem; font-weight:800; color:var(--primary);">₹22,360</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="background:#FEF3C7; border:1px solid #F59E0B; border-radius:8px; padding:1rem; margin-top:1rem; font-size:0.88rem; color:#92400E;">
+              💡 <strong>Tax Loss Harvesting Suggestion:</strong><br>
+              Sell 15 shares of Tata Motors to harvest <strong>₹18,000 capital loss</strong> before March 31st to offset STCG!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stcgEl = document.getElementById('cas-stcg');
+      const ltcgEl = document.getElementById('cas-ltcg');
+      const cryptoEl = document.getElementById('cas-crypto');
+      const casFile = document.getElementById('cas-file');
+
+      [stcgEl, ltcgEl, cryptoEl].forEach(el => el.addEventListener('input', runPortfolioCalc));
+
+      casFile.addEventListener('change', async (e) => {
+        if (e.target.files.length > 0) {
+          const formData = new FormData();
+          formData.append('file', e.target.files[0]);
+          formData.append('equitySTCG', stcgEl.value);
+          formData.append('equityLTCG', ltcgEl.value);
+          formData.append('cryptoGains', cryptoEl.value);
+
+          const res = await TaxAPI.analyzePortfolio(formData);
+          if (res.success) {
+            alert(res.message);
+            runPortfolioCalc();
+          }
+        }
+      });
+
+      function runPortfolioCalc() {
+        const stcg = Number(stcgEl.value || 0);
+        const ltcg = Number(ltcgEl.value || 0);
+        const crypto = Number(cryptoEl.value || 0);
+
+        const stcgTax = Math.round(stcg * 0.20);
+        const taxableLTCG = Math.max(0, ltcg - 125000);
+        const ltcgTax = Math.round(taxableLTCG * 0.125);
+        const cryptoTax = Math.round(crypto * 0.30);
+        const total = Math.round((stcgTax + ltcgTax + cryptoTax) * 1.04);
+
+        document.getElementById('res-stcg-tax').textContent = `₹${stcgTax.toLocaleString('en-IN')}`;
+        document.getElementById('res-taxable-ltcg').textContent = `₹${taxableLTCG.toLocaleString('en-IN')}`;
+        document.getElementById('res-ltcg-tax').textContent = `₹${ltcgTax.toLocaleString('en-IN')}`;
+        document.getElementById('res-crypto-tax').textContent = `₹${cryptoTax.toLocaleString('en-IN')}`;
+        document.getElementById('res-total-cg-tax').textContent = `₹${total.toLocaleString('en-IN')}`;
+      }
+
+      runPortfolioCalc();
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

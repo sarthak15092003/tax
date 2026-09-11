@@ -1,0 +1,28 @@
+[
+  {
+    "companyName": "TechCorp Global Pvt Ltd",
+    "employeeId": "EMP-1815",
+    "employeeName": "Rajesh Kumar",
+    "baseSalary": 1200000,
+    "flexiComponents": {},
+    "totalFlexiExemption": 154400,
+    "taxSavedAnnual": 48173,
+    "configuredAt": "2026-09-11T07:59:29.530Z"
+  },
+  {
+    "companyName": "TechCorp Global Pvt Ltd",
+    "employeeId": "EMP-9081",
+    "employeeName": "Rajesh Kumar",
+    "baseSalary": 1200000,
+    "flexiComponents": {
+      "foodCard": 26400,
+      "lta": 50000,
+      "fuelAllowance": 39600,
+      "booksSubscriptions": 15000,
+      "internetReimbursement": 18000
+    },
+    "totalFlexiExemption": 149000,
+    "taxSavedAnnual": 46488,
+    "configuredAt": "2026-08-01T10:00:00Z"
+  }
+]

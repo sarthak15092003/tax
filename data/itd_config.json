@@ -1,0 +1,7 @@
+{
+  "mode": "PRODUCTION",
+  "clientId": "ERI_PROD_908123_LIVE",
+  "clientSecret": "ERI_PROD_LIVE_SECRET_KEY",
+  "certPath": "C:\\certs\\itd_eri_production.pfx",
+  "certPassphrase": ""
+}

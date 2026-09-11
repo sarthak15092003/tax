@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Old vs New Tax Regime Calculator FY 2025-26 (AY 2026-27) | TaxBuddy</title>
+  <meta name="description" content="Calculate your tax liability under Old vs New Tax Regime for FY 2025-26 (AY 2026-27). Instant side-by-side tax savings comparison.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html" style="color:var(--primary);">Tax Calculator <span class="badge-new">FY 25-26</span></a></li>
+      <li><a href="dashboard.html">Self-Filing DIY</a></li>
+      <li><a href="dashboard.html">Assisted ITR</a></li>
+      <li><a href="expert.html">CA Workspace</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-primary">File My ITR Now</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>Income Tax Calculator & Regime Optimizer</h2>
+      <p>Financial Year 2025-26 (Assessment Year 2026-27)</p>
+    </div>
+
+    <div class="calculator-card">
+      <div class="calc-grid">
+
+        <!-- Input Column -->
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:1.2rem; color:var(--primary);">1. Enter Your Income & Exemptions</h3>
+
+          <div class="form-group">
+            <label for="calc-gross">Gross Annual Salary (₹)</label>
+            <input type="number" id="calc-gross" class="form-control" value="1450000" step="10000">
+            <input type="range" id="slider-gross" class="slider-control" min="300000" max="5000000" step="25000" value="1450000" style="margin-top:0.5rem;">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-hra">HRA Exemption Claimable (₹)</label>
+            <input type="number" id="calc-hra" class="form-control" value="180000" placeholder="e.g. 180000">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-other">Other Income (Interest / Savings) (₹)</label>
+            <input type="number" id="calc-other" class="form-control" value="35000">
+          </div>
+
+          <h3 style="font-family:var(--font-heading); font-size:1.3rem; margin:1.5rem 0 1rem 0; color:var(--primary);">2. Enter Chapter VI-A Deductions (Old Regime)</h3>
+
+          <div class="form-group">
+            <label for="calc-80c">Section 80C (PPF, EPF, ELSS, Insurance) (Max ₹1.5L)</label>
+            <input type="number" id="calc-80c" class="form-control" value="150000">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-80d">Section 80D (Health Insurance) (₹)</label>
+            <input type="number" id="calc-80d" class="form-control" value="25000">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-nps">Section 80CCD(1B) (NPS Extra Contribution) (Max ₹50k)</label>
+            <input type="number" id="calc-nps" class="form-control" value="50000">
+          </div>
+
+          <div class="form-group">
+            <label for="calc-homeloan">Section 24(b) Home Loan Interest (Max ₹2L)</label>
+            <input type="number" id="calc-homeloan" class="form-control" value="0">
+          </div>
+        </div>
+
+        <!-- Result Column -->
+        <div>
+          <div class="calc-result-box">
+            <h3 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:1rem; text-align:center;">Tax Calculation Summary</h3>
+
+            <div id="recommendation-banner" class="recommendation-banner">
+              Calculating optimal tax regime...
+            </div>
+
+            <table class="regime-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Old Tax Regime</th>
+                  <th>New Tax Regime</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gross Income</td>
+                  <td id="res-old-gross">₹0</td>
+                  <td id="res-new-gross">₹0</td>
+                </tr>
+                <tr>
+                  <td>Standard Deduction</td>
+                  <td>₹50,000</td>
+                  <td>₹75,000</td>
+                </tr>
+                <tr>
+                  <td>Total Deductions & Exemptions</td>
+                  <td id="res-old-ded">₹0</td>
+                  <td id="res-new-ded">₹75,000</td>
+                </tr>
+                <tr style="font-weight:700;">
+                  <td>Taxable Income</td>
+                  <td id="res-old-taxable">₹0</td>
+                  <td id="res-new-taxable">₹0</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Total Tax Payable (incl 4% Cess)</td>
+                  <td id="res-old-tax">₹0</td>
+                  <td id="res-new-tax">₹0</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div id="res-savings-notice" style="background:#FFF; padding:1rem; border-radius:8px; font-size:0.9rem; border:1px solid #CBD5E1;">
+              💡 <strong>Tax Optimization Tip:</strong> Enter your details to compare Old vs New Regime.
+            </div>
+
+            <div style="margin-top:1.5rem; text-align:center;">
+              <a href="dashboard.html" class="btn btn-primary" style="width:100%;">File Return with This Selection →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Income Tax Calculators Suite | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .tab-btn {
+      padding: 0.7rem 1.4rem;
+      font-weight: 700;
+      border: none;
+      background: #E2E8F0;
+      color: var(--text-dark);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">CALCULATORS</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Old vs New Tax</a></li>
+      <li><a href="calculators-suite.html" style="color:var(--primary);">Tax Tools Suite</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal & 26QB</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>Comprehensive Financial & Tax Calculators</h2>
+      <p>Instant standalone calculators for HRA exemption, Crypto 30% tax, Gratuity exemption, and SIP returns.</p>
+    </div>
+
+    <!-- Tabs Header -->
+    <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:2rem; flex-wrap:wrap;">
+      <button type="button" class="tab-btn active" onclick="switchCalc('hra')">🏠 HRA Exemption Calculator</button>
+      <button type="button" class="tab-btn" onclick="switchCalc('crypto')">🪙 Crypto 30% Tax Calculator</button>
+      <button type="button" class="tab-btn" onclick="switchCalc('gratuity')">💼 Gratuity Exemption Calculator</button>
+    </div>
+
+    <!-- HRA Tool -->
+    <div id="calc-tab-hra" class="calculator-card">
+      <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">HRA Exemption Calculator (Sec 10(13A))</h3>
+      <div class="calc-grid">
+        <div>
+          <div class="form-group">
+            <label for="c-hra-basic">Annual Basic Salary (₹)</label>
+            <input type="number" id="c-hra-basic" class="form-control" value="600000">
+          </div>
+          <div class="form-group">
+            <label for="c-hra-received">Annual HRA Received (₹)</label>
+            <input type="number" id="c-hra-received" class="form-control" value="180000">
+          </div>
+          <div class="form-group">
+            <label for="c-hra-rent">Total Annual Rent Paid (₹)</label>
+            <input type="number" id="c-hra-rent" class="form-control" value="240000">
+          </div>
+          <div class="form-group">
+            <label for="c-hra-city">City Type</label>
+            <select id="c-hra-city" class="form-control">
+              <option value="0.5">Metro City (50% Basic Cap)</option>
+              <option value="0.4">Non-Metro City (40% Basic Cap)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-result-box" style="background:#EDF5FF; border:1px solid #93C5FD;">
+            <h4 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1rem;">HRA Calculation Breakdown</h4>
+            <div style="font-size:0.9rem; line-height:1.8;">
+              <div>1. Actual HRA Received: <strong id="res-rule1">₹1,80,000</strong></div>
+              <div>2. Rent Paid minus 10% Basic: <strong id="res-rule2">₹1,80,000</strong></div>
+              <div>3. Metro/Non-Metro Cap: <strong id="res-rule3">₹3,00,000</strong></div>
+            </div>
+            <div style="margin-top:1.5rem; padding:1rem; background:white; border-radius:8px; text-align:center;">
+              <span style="font-size:0.85rem; font-weight:700; color:var(--primary);">EXEMPT HRA AMOUNT</span>
+              <div id="res-hra-final" style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:var(--primary);">₹1,80,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crypto Tool -->
+    <div id="calc-tab-crypto" class="calculator-card" style="display:none;">
+      <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">Crypto & VDA 30% Tax Calculator (Sec 115BBH)</h3>
+      <div class="calc-grid">
+        <div>
+          <div class="form-group">
+            <label for="c-crypto-buy">Crypto Purchase Price (₹)</label>
+            <input type="number" id="c-crypto-buy" class="form-control" value="100000">
+          </div>
+          <div class="form-group">
+            <label for="c-crypto-sell">Crypto Selling Price (₹)</label>
+            <input type="number" id="c-crypto-sell" class="form-control" value="180000">
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-result-box" style="background:#FEF2F2; border:1px solid #FCA5A5;">
+            <h4 style="font-family:var(--font-heading); color:#DC2626; margin-bottom:1rem;">Flat 30% Tax Summary</h4>
+            <div style="font-size:0.9rem; line-height:1.8;">
+              <div>Total Crypto Profit: <strong id="res-crypto-profit">₹80,000</strong></div>
+              <div>1% TDS Deducted at Source (Sec 194S): <strong id="res-crypto-tds">₹1,800</strong></div>
+            </div>
+            <div style="margin-top:1.5rem; padding:1rem; background:white; border-radius:8px; text-align:center;">
+              <span style="font-size:0.85rem; font-weight:700; color:#DC2626;">TAX PAYABLE (30% + 4% CESS)</span>
+              <div id="res-crypto-tax-final" style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#DC2626;">₹24,960</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gratuity Tool -->
+    <div id="calc-tab-gratuity" class="calculator-card" style="display:none;">
+      <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">Gratuity Tax Exemption Calculator (Sec 10(10))</h3>
+      <div class="calc-grid">
+        <div>
+          <div class="form-group">
+            <label for="c-grat-last">Last Drawn Basic + DA (Monthly) (₹)</label>
+            <input type="number" id="c-grat-last" class="form-control" value="80000">
+          </div>
+          <div class="form-group">
+            <label for="c-grat-years">Tenure Completed Years</label>
+            <input type="number" id="c-grat-years" class="form-control" value="12">
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-result-box" style="background:#F0FDF4; border:1px solid #86EFAC;">
+            <h4 style="font-family:var(--font-heading); color:#166534; margin-bottom:1rem;">Gratuity Exemption Summary</h4>
+            <div style="margin-top:1rem; padding:1rem; background:white; border-radius:8px; text-align:center;">
+              <span style="font-size:0.85rem; font-weight:700; color:#166534;">MAXIMUM EXEMPT GRATUITY</span>
+              <div id="res-grat-final" style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#166534;">₹5,53,846</div>
+              <small style="color:var(--text-muted);">Calculated as (15/26) × Last Basic × Service Tenure Years</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    function switchCalc(calcName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('calc-tab-hra').style.display = calcName === 'hra' ? 'block' : 'none';
+      document.getElementById('calc-tab-crypto').style.display = calcName === 'crypto' ? 'block' : 'none';
+      document.getElementById('calc-tab-gratuity').style.display = calcName === 'gratuity' ? 'block' : 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // HRA Calc
+      const hBasic = document.getElementById('c-hra-basic');
+      const hRec = document.getElementById('c-hra-received');
+      const hRent = document.getElementById('c-hra-rent');
+      const hCity = document.getElementById('c-hra-city');
+
+      [hBasic, hRec, hRent, hCity].forEach(el => el.addEventListener('input', runHraTool));
+
+      function runHraTool() {
+        const b = Number(hBasic.value || 0);
+        const r = Number(hRec.value || 0);
+        const rent = Number(hRent.value || 0);
+        const capPct = Number(hCity.value);
+
+        const r1 = r;
+        const r2 = Math.max(0, rent - (b * 0.10));
+        const r3 = b * capPct;
+
+        const exempt = Math.min(r1, r2, r3);
+
+        document.getElementById('res-rule1').textContent = `₹${r1.toLocaleString('en-IN')}`;
+        document.getElementById('res-rule2').textContent = `₹${r2.toLocaleString('en-IN')}`;
+        document.getElementById('res-rule3').textContent = `₹${r3.toLocaleString('en-IN')}`;
+        document.getElementById('res-hra-final').textContent = `₹${exempt.toLocaleString('en-IN')}`;
+      }
+
+      // Crypto Calc
+      const cBuy = document.getElementById('c-crypto-buy');
+      const cSell = document.getElementById('c-crypto-sell');
+      [cBuy, cSell].forEach(el => el.addEventListener('input', runCryptoTool));
+
+      function runCryptoTool() {
+        const buy = Number(cBuy.value || 0);
+        const sell = Number(cSell.value || 0);
+        const profit = Math.max(0, sell - buy);
+        const tds = Math.round(sell * 0.01);
+        const tax = Math.round(profit * 0.30 * 1.04);
+
+        document.getElementById('res-crypto-profit').textContent = `₹${profit.toLocaleString('en-IN')}`;
+        document.getElementById('res-crypto-tds').textContent = `₹${tds.toLocaleString('en-IN')}`;
+        document.getElementById('res-crypto-tax-final').textContent = `₹${tax.toLocaleString('en-IN')}`;
+      }
+
+      // Gratuity Calc
+      const gLast = document.getElementById('c-grat-last');
+      const gYears = document.getElementById('c-grat-years');
+      [gLast, gYears].forEach(el => el.addEventListener('input', runGratTool));
+
+      function runGratTool() {
+        const l = Number(gLast.value || 0);
+        const y = Number(gYears.value || 0);
+        const amt = Math.round((15 / 26) * l * y);
+        document.getElementById('res-grat-final').textContent = `₹${amt.toLocaleString('en-IN')}`;
+      }
+
+      runHraTool();
+      runCryptoTool();
+      runGratTool();
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

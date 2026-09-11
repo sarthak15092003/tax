@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White-Label B2B Partner Desk & Affiliate Ledger | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">PARTNER DESK</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="partner-portal.html" style="color:var(--primary);">B2B Partner Desk</a></li>
+      <li><a href="epf-pf-withdrawal.html">EPFO & Form 13</a></li>
+      <li><a href="expert.html">CA Workspace</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span class="badge-new" style="background:var(--primary-light); color:var(--primary); font-weight:700; padding:0.4rem 0.8rem;">
+        🤝 Partner Code: PART_MUMBAI_CA
+      </span>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>White-Label B2B Partner Portal & Commission Ledger</h2>
+      <p>Empowering Chartered Accountants, Advisors & Brokers to file returns for clients with a 30% revenue share.</p>
+    </div>
+
+    <!-- Metric Counters -->
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; margin-bottom:2rem;">
+      <div class="feature-card" style="text-align:center;">
+        <div id="partner-total-leads" style="font-size:2rem; font-weight:800; color:var(--primary);">1</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Total Onboarded Clients</div>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div id="partner-total-earned" style="font-size:2rem; font-weight:800; color:#047857;">₹450</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Total Commission Earned (30%)</div>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div style="font-size:2rem; font-weight:800; color:var(--accent-teal);">Active</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">White-Label Status</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      
+      <!-- Onboard Client Form -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">👤 Onboard New Client Lead</h3>
+        <form id="partner-lead-form">
+          <div class="form-group">
+            <label for="p-firm-name">Partner CA Firm Name</label>
+            <input type="text" id="p-firm-name" class="form-control" value="Mehta & Associates CA Firm" required>
+          </div>
+
+          <div class="form-group">
+            <label for="p-client-name">Client Full Name</label>
+            <input type="text" id="p-client-name" class="form-control" value="Aakash Varma" required>
+          </div>
+
+          <div class="form-group">
+            <label for="p-client-pan">Client PAN Number</label>
+            <input type="text" id="p-client-pan" class="form-control" value="BHKPV9081L" style="text-transform:uppercase;" required>
+          </div>
+
+          <div class="form-group">
+            <label for="p-plan">Assisted Service Plan</label>
+            <select id="p-plan" class="form-control">
+              <option value="Assisted - Salaried Professional">Assisted - Salaried Professional (₹499)</option>
+              <option value="Assisted - Capital Gains Trader">Assisted - Capital Gains Trader (₹1,499)</option>
+              <option value="Assisted - Small Business / Freelancer">Assisted - Freelancer / Business (₹2,499)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">Onboard Client & Earn 30% Commission →</button>
+        </form>
+      </div>
+
+      <!-- Commission Ledger Table -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--text-dark); margin-bottom:1rem;">Commission Ledger History</h3>
+
+        <div style="overflow-x:auto;">
+          <table class="regime-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Plan</th>
+                <th>Fee Paid</th>
+                <th>Commission (30%)</th>
+              </tr>
+            </thead>
+            <tbody id="partner-ledger-body">
+              <tr><td colspan="4" style="text-align:center;">Loading partner ledger...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ledgerBody = document.getElementById('partner-ledger-body');
+      const leadsCountEl = document.getElementById('partner-total-leads');
+      const earnedCountEl = document.getElementById('partner-total-earned');
+
+      loadPartnerLedger();
+
+      async function loadPartnerLedger() {
+        if (!ledgerBody) return;
+        try {
+          const res = await TaxAPI.getPartnerLedger();
+          if (res.success) {
+            leadsCountEl.textContent = res.totalLeads;
+            earnedCountEl.textContent = `₹${res.totalCommissionEarned.toLocaleString('en-IN')}`;
+
+            ledgerBody.innerHTML = res.data.map(item => `
+              <tr>
+                <td><strong>${item.leadTaxpayerName}</strong><br><small style="color:var(--text-muted);">${item.leadPAN}</small></td>
+                <td>${item.planType}</td>
+                <td>₹${item.amountPaid.toLocaleString('en-IN')}</td>
+                <td><strong style="color:#047857;">+₹${item.commissionShare.toLocaleString('en-IN')}</strong></td>
+              </tr>
+            `).join('');
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      document.getElementById('partner-lead-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const plan = document.getElementById('p-plan').value;
+        let fee = 1499;
+        if (plan.includes('499')) fee = 499;
+        if (plan.includes('2,499')) fee = 2499;
+
+        const payload = {
+          partnerCode: "PART_MUMBAI_CA",
+          partnerName: document.getElementById('p-firm-name').value,
+          leadTaxpayerName: document.getElementById('p-client-name').value,
+          leadPAN: document.getElementById('p-client-pan').value,
+          planType: plan,
+          amountPaid: fee
+        };
+
+        const res = await TaxAPI.onboardPartnerLead(payload);
+        if (res.success) {
+          alert(res.message);
+          loadPartnerLedger();
+        }
+      });
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

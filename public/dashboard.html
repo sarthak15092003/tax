@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taxpayer Portal & Dashboard | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">Interactive ITR Wizard</a></li>
+      <li><a href="dashboard.html" style="color:var(--primary);">Taxpayer Portal</a></li>
+      <li><a href="#notice-section">Notice Hub</a></li>
+      <li><a href="expert.html">CA Workspace</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="filing-wizard.html" class="btn btn-primary">Start Filing Wizard →</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    
+    <!-- Visual Stepper -->
+    <div class="stepper">
+      <div class="step-item completed">
+        <div class="step-number">1</div>
+        <div class="step-label">Account Setup</div>
+      </div>
+      <div class="step-item active">
+        <div class="step-number">2</div>
+        <div class="step-label">Upload Form 16</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-label">CA Review</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-label">ITR E-Filed</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:3rem;">
+      
+      <!-- Form 16 Smart AI Scanner -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); margin-bottom:0.5rem; color:var(--primary);">🤖 Upload Form 16 (AI OCR Auto-Parse)</h3>
+        <p style="margin-bottom:1.5rem; color:var(--text-muted);">Drop your Form 16 PDF below. TaxBuddy AI automatically extracts your salary breakdown & TDS.</p>
+
+        <div id="form16-dropzone" class="file-dropzone">
+          <div style="font-size:2.5rem; margin-bottom:0.5rem;">📄</div>
+          <h4 style="font-family:var(--font-heading);">Drag & Drop Form 16 PDF here</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">or click to browse from device</p>
+          <input type="file" id="form16-file-input" style="display:none;" accept=".pdf,.png,.jpg">
+        </div>
+
+        <div id="form16-parsed-result"></div>
+      </div>
+
+      <!-- Quick ITR Submission Form -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); margin-bottom:0.5rem; color:var(--primary);">📝 Prepare New ITR Return (AY 2026-27)</h3>
+        <form id="itr-submission-form" style="margin-top:1rem;">
+          <div class="form-group">
+            <label>Taxpayer Full Name</label>
+            <input type="text" id="itr-name" class="form-control" value="Rajesh Kumar" required>
+          </div>
+
+          <div class="form-group">
+            <label>PAN Number</label>
+            <input type="text" id="itr-pan" class="form-control" value="ABCDE1234F" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Gross Salary (₹)</label>
+              <input type="number" id="itr-gross-salary" class="form-control" value="1450000">
+            </div>
+            <div class="form-group">
+              <label>TDS Paid (₹)</label>
+              <input type="number" id="itr-tds-paid" class="form-control" value="110000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Choose Service Plan</label>
+            <select id="itr-plan" class="form-control">
+              <option value="Assisted - Salaried">Assisted - Salaried Professional (₹499)</option>
+              <option value="DIY TaxBuddy AI">DIY TaxBuddy AI Self-Filing (₹0)</option>
+              <option value="Assisted - Capital Gains & Trader">Assisted - Capital Gains & FnO (₹1,499)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">Submit Return for CA Verification →</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Active Filings Dashboard -->
+    <div style="margin-bottom:3rem;">
+      <h3 style="font-family:var(--font-heading); font-size:1.6rem; margin-bottom:1rem; color:var(--text-dark);">My Active Tax Filings</h3>
+      <div id="user-filings-list"></div>
+    </div>
+
+    <!-- Notice Management Hub -->
+    <div id="notice-section" style="background:var(--white); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-sm); border:1px solid #E2E8F0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1.6rem; color:#DC2626;">🚨 Free Income Tax Notice Defense Hub</h3>
+          <p style="color:var(--text-muted); font-size:0.92rem;">Upload any Income Tax Notice received from the IT Department for expert resolution.</p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+        <div>
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">Submit New Tax Notice</h4>
+          <form id="notice-upload-form">
+            <div class="form-group">
+              <label>Notice Type / Section</label>
+              <select id="notice-type" class="form-control">
+                <option value="Section 143(1) Intimation">Section 143(1) Tax Demand / Intimation</option>
+                <option value="Section 139(9) Defective Return">Section 139(9) Defective Return</option>
+                <option value="Section 142(1) Inquiry Notice">Section 142(1) Pre-Assessment Inquiry</option>
+                <option value="Section 148 Reassessment">Section 148 Income Escaping Assessment</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Demand Amount in Notice (₹)</label>
+              <input type="number" id="notice-demand" class="form-control" value="12500">
+            </div>
+
+            <div class="form-group">
+              <label>Brief Description / Details</label>
+              <textarea id="notice-desc" class="form-control" rows="3" placeholder="Describe the notice issue..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-accent" style="width:100%;">Upload Notice for CA Defense →</button>
+          </form>
+        </div>
+
+        <div>
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">Your Reported Notices</h4>
+          <div id="user-notices-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyBizCFO - GST Return Filing & Business Services | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">MYBIZCFO</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html" style="color:var(--primary);">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal & 26QB</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="expert.html" class="btn btn-primary">CA Business Desk</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>MyBizCFO - Virtual CFO & Business Compliance</h2>
+      <p>GST registration, monthly GSTR-1/GSTR-3B filings, Form 24Q TDS returns, and SPICe+ Private Limited company incorporation.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      
+      <!-- GST Return Filing Form -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">🧾 GST Return Filing Assistant</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">File GSTR-1 and GSTR-3B with automated Input Tax Credit (ITC 2B) reconciliation.</p>
+
+        <form id="gst-form">
+          <div class="form-group">
+            <label for="gst-biz-name">Business Legal Name</label>
+            <input type="text" id="gst-biz-name" class="form-control" value="Zenith Innovations Pvt Ltd" required>
+          </div>
+
+          <div class="form-group">
+            <label for="gstin-no">GSTIN Number</label>
+            <input type="text" id="gstin-no" class="form-control" value="27AAACZ1234K1Z5" style="text-transform:uppercase;" required>
+          </div>
+
+          <div class="form-group">
+            <label for="gst-period">Filing Period</label>
+            <select id="gst-period" class="form-control">
+              <option value="August 2026">August 2026</option>
+              <option value="July 2026">July 2026</option>
+              <option value="Q1 FY 2026-27">Q1 FY 2026-27 (QRMP Scheme)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="gst-itc">Eligible Input Tax Credit (ITC 2B) (₹)</label>
+            <input type="number" id="gst-itc" class="form-control" value="52000">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">File GST Return & Generate ARN →</button>
+        </form>
+      </div>
+
+      <!-- Company Incorporation Wizard -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">🏢 Company Registration (SPICe+)</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">Incorporate your startup with MCA RUN approval, PAN, TAN & Digital Signature.</p>
+
+        <form id="company-reg-form">
+          <div class="form-group">
+            <label for="comp-name">Proposed Business Name</label>
+            <input type="text" id="comp-name" class="form-control" value="Apex Digital Solutions Pvt Ltd" required>
+          </div>
+
+          <div class="form-group">
+            <label for="comp-type">Entity Structure</label>
+            <select id="comp-type" class="form-control">
+              <option value="Private Limited Company">Private Limited Company (Pvt Ltd)</option>
+              <option value="Limited Liability Partnership">Limited Liability Partnership (LLP)</option>
+              <option value="One Person Company">One Person Company (OPC)</option>
+              <option value="Section 8 Section NGO">Section 8 Non-Profit</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="directors-count">Number of Directors</label>
+            <input type="number" id="directors-count" class="form-control" value="2" min="1" max="15">
+          </div>
+
+          <button type="submit" class="btn btn-accent" style="width:100%;">Submit RUN Incorporation Application →</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const gstForm = document.getElementById('gst-form');
+      const compForm = document.getElementById('company-reg-form');
+
+      if (gstForm) {
+        gstForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const payload = {
+            businessName: document.getElementById('gst-biz-name').value,
+            gstin: document.getElementById('gstin-no').value,
+            period: document.getElementById('gst-period').value,
+            itcClaimed: document.getElementById('gst-itc').value
+          };
+
+          const res = await TaxAPI.fileGST(payload);
+          if (res.success) {
+            alert(res.message);
+          }
+        });
+      }
+
+      if (compForm) {
+        compForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const payload = {
+            proposedName: document.getElementById('comp-name').value,
+            entityType: document.getElementById('comp-type').value,
+            directorsCount: document.getElementById('directors-count').value
+          };
+
+          const res = await TaxAPI.registerCompany(payload);
+          if (res.success) {
+            alert(res.message);
+          }
+        });
+      }
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

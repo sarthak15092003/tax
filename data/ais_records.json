@@ -1,0 +1,21 @@
+{
+  "ABCDE1234F": {
+    "pan": "ABCDE1234F",
+    "name": "Rajesh Kumar",
+    "financialYear": "2025-26",
+    "assessmentYear": "2026-27",
+    "summary": {
+      "totalSalarySec192": 1450000,
+      "savingsInterestSec194A": 18500,
+      "dividendSec194K": 6500,
+      "stockSaleProceedsSFT017": 240000,
+      "totalTDSCredits26AS": 110000
+    },
+    "aisEntries": [
+      { "category": "Salary (Sec 192)", "source": "TechCorp Global Pvt Ltd", "amount": 1450000, "tds": 110000 },
+      { "category": "Savings Interest (Sec 194A)", "source": "HDFC Bank Ltd", "amount": 18500, "tds": 0 },
+      { "category": "Dividend Income (Sec 194K)", "source": "Reliance Industries Ltd", "amount": 6500, "tds": 0 },
+      { "category": "Securities Sale (SFT-017)", "source": "Zerodha Broking Ltd", "amount": 240000, "tds": 0 }
+    ]
+  }
+}

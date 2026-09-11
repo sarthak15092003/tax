@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CA Expert Workspace & Review Portal | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">EXPERT WORKSPACE</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Main Website</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html" style="color:var(--primary);">CA Desk</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span class="badge-new" style="font-size:0.85rem; padding:0.4rem 0.8rem; background:rgba(0,208,156,0.15); color:var(--accent-teal-dark);">
+        💼 CA Gaurav Sharma (Ex-IRS Panelist)
+      </span>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>CA & Tax Expert Verification Desk</h2>
+      <p>Review incoming taxpayer return drafts, verify Form 16 & 26AS data, update filing progress, and manage notice defenses.</p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1.5rem; margin-bottom:2rem;">
+      <div class="feature-card" style="text-align:center;">
+        <div style="font-size:1.8rem; font-weight:800; color:var(--primary);">12</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Assigned Returns</div>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div style="font-size:1.8rem; font-weight:800; color:#D97706;">3</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Pending Verification</div>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div style="font-size:1.8rem; font-weight:800; color:#059669;">8</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Returns Filed Today</div>
+      </div>
+      <div class="feature-card" style="text-align:center;">
+        <div style="font-size:1.8rem; font-weight:800; color:#DC2626;">1</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">Active Notice Resolution</div>
+      </div>
+    </div>
+
+    <!-- Filings Table -->
+    <div class="calculator-card" style="padding:1.5rem;">
+      <h3 style="font-family:var(--font-heading); margin-bottom:1.2rem; color:var(--text-dark);">Client Tax Filings Pending Action</h3>
+
+      <div style="overflow-x:auto;">
+        <table class="regime-table">
+          <thead>
+            <tr>
+              <th>Filing ID</th>
+              <th>Taxpayer & PAN</th>
+              <th>Assessment Year</th>
+              <th>Gross Salary</th>
+              <th>Current Status</th>
+              <th>Update Filing Status</th>
+            </tr>
+          </thead>
+          <tbody id="expert-filings-body">
+            <tr>
+              <td colspan="6" style="text-align:center;">Loading assigned filings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/expert.js"></script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

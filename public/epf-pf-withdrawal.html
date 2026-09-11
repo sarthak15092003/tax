@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Provident Fund Withdrawal & Form 13 Assistant | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">EPFO & FORM 13</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="epf-pf-withdrawal.html" style="color:var(--primary);">EPFO & Form 13</a></li>
+      <li><a href="partner-portal.html">Partner Desk</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>EPFO PF Withdrawal & Section 197 Form 13 Assistant</h2>
+      <p>Effortless Provident Fund claims (Form 19/10C/31) and 0% Lower TDS certificate applications.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      
+      <!-- EPFO Claim Assistant -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">🏦 EPFO Provident Fund Withdrawal Assistant</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">Submit online claim forms directly to the EPFO Unified Member Portal.</p>
+
+        <form id="epf-claim-form">
+          <div class="form-group">
+            <label for="epf-uan">Universal Account Number (UAN)</label>
+            <input type="text" id="epf-uan" class="form-control" value="100908123456" maxlength="12" required>
+          </div>
+
+          <div class="form-group">
+            <label for="epf-member-id">PF Member ID</label>
+            <input type="text" id="epf-member-id" class="form-control" value="MH/BAN/0012345/000/0009081" required>
+          </div>
+
+          <div class="form-group">
+            <label for="epf-type">Claim Type</label>
+            <select id="epf-type" class="form-control">
+              <option value="Form 19 Final PF Settlement">Form 19 - Full PF Final Settlement</option>
+              <option value="Form 10C Pension Withdrawal">Form 10C - EPS Pension Withdrawal</option>
+              <option value="Form 31 PF Partial Advance">Form 31 - PF Partial Advance (House/Medical)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="epf-balance">Estimated PF Balance (₹)</label>
+            <input type="number" id="epf-balance" class="form-control" value="345000">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">Submit Claim to EPFO Portal →</button>
+        </form>
+      </div>
+
+      <!-- Section 197 Form 13 Assistant -->
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.5rem;">📄 Section 197 Form 13 (Lower/NIL TDS Certificate)</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.2rem;">Apply to Assessing Officer for a 0% or reduced TDS certificate on contract/rental income.</p>
+
+        <form id="form13-apply-form">
+          <div class="form-group">
+            <label for="f13-name">Taxpayer / Contractor Name</label>
+            <input type="text" id="f13-name" class="form-control" value="Rajesh Kumar" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f13-pan">PAN Number</label>
+            <input type="text" id="f13-pan" class="form-control" value="ABCDE1234F" style="text-transform:uppercase;" required>
+          </div>
+
+          <div class="form-group">
+            <label for="f13-income">Estimated Total Annual Income (₹)</label>
+            <input type="number" id="f13-income" class="form-control" value="1800000">
+          </div>
+
+          <div class="form-group">
+            <label for="f13-rate">Requested Lower TDS Rate (%)</label>
+            <input type="number" id="f13-rate" class="form-control" value="0" min="0" max="10" step="0.5">
+          </div>
+
+          <div class="form-group">
+            <label for="f13-ao">Assessing Officer (AO) Jurisdiction</label>
+            <input type="text" id="f13-ao" class="form-control" value="WARD 12(3) MUMBAI">
+          </div>
+
+          <button type="submit" class="btn btn-accent" style="width:100%;">Transmit Form 13 Application to AO Desk →</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('epf-claim-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          uan: document.getElementById('epf-uan').value,
+          memberId: document.getElementById('epf-member-id').value,
+          claimType: document.getElementById('epf-type').value,
+          pfBalance: document.getElementById('epf-balance').value
+        };
+
+        const res = await TaxAPI.submitEpfClaim(payload);
+        if (res.success) alert(res.message);
+      });
+
+      document.getElementById('form13-apply-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          taxpayerName: document.getElementById('f13-name').value,
+          pan: document.getElementById('f13-pan').value,
+          estimatedIncome: document.getElementById('f13-income').value,
+          requestedTdsRate: document.getElementById('f13-rate').value,
+          aoJurisdiction: document.getElementById('f13-ao').value
+        };
+
+        const res = await TaxAPI.applyForm13(payload);
+        if (res.success) alert(res.message);
+      });
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

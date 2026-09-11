@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlexiBuddy - Empowering Employers & Employees to Maximize Tax Savings | TaxBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-icon">T</div>
+      Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--accent-orange); font-weight:700;">FLEXIBUDDY</small>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="flexibuddy.html" style="color:var(--primary);">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal & 26QB</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>FlexiBuddy Salary Tax Saver Suite</h2>
+      <p>Structure your flexible salary components under Section 10 to save up to ₹46,488 in TDS every year.</p>
+    </div>
+
+    <div class="calculator-card">
+      <div class="calc-grid">
+        
+        <!-- Inputs Column -->
+        <div>
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1rem;">Configure Flexi-Benefit Allowances</h3>
+
+          <div class="form-group">
+            <label for="fb-base">Annual Base Salary (₹)</label>
+            <input type="number" id="fb-base" class="form-control" value="1200000" step="25000">
+          </div>
+
+          <div class="form-group">
+            <label for="fb-food">Meal Card / Food Coupon Allowance (₹2,200/mo = ₹26,400/yr)</label>
+            <input type="number" id="fb-food" class="form-control" value="26400">
+          </div>
+
+          <div class="form-group">
+            <label for="fb-lta">Leave Travel Allowance (LTA) (₹)</label>
+            <input type="number" id="fb-lta" class="form-control" value="50000">
+          </div>
+
+          <div class="form-group">
+            <label for="fb-fuel">Fuel & Driver Maintenance Allowance (₹3,300/mo = ₹39,600/yr)</label>
+            <input type="number" id="fb-fuel" class="form-control" value="39600">
+          </div>
+
+          <div class="form-group">
+            <label for="fb-books">Books, Periodicals & Subscriptions Allowance (₹)</label>
+            <input type="number" id="fb-books" class="form-control" value="15000">
+          </div>
+
+          <div class="form-group">
+            <label for="fb-internet">Internet & Telephone Reimbursement (₹1,500/mo = ₹18,000/yr)</label>
+            <input type="number" id="fb-internet" class="form-control" value="18000">
+          </div>
+        </div>
+
+        <!-- Result Summary -->
+        <div>
+          <div class="calc-result-box" style="background:linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 100%); border:2px solid var(--accent-teal);">
+            <h3 style="font-family:var(--font-heading); color:#047857; text-align:center; margin-bottom:1rem;">FlexiBuddy Savings Breakdown</h3>
+
+            <div style="text-align:center; margin-bottom:1.5rem;">
+              <span style="font-size:0.85rem; font-weight:700; color:#047857;">TOTAL ANNUAL TAX SAVED</span>
+              <div id="fb-tax-saved" style="font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:#047857;">₹46,488</div>
+              <div id="fb-takehome" style="font-size:0.9rem; font-weight:700; color:#065F46; margin-top:0.3rem;">Extra Monthly Take-Home: +₹3,874 / month</div>
+            </div>
+
+            <table class="regime-table">
+              <tbody>
+                <tr>
+                  <td>Base Salary Component</td>
+                  <td id="fb-val-base">₹12,00,000</td>
+                </tr>
+                <tr>
+                  <td>Total Flexi Exemptions Claimed</td>
+                  <td id="fb-val-exemption" style="font-weight:700; color:var(--primary);">₹1,49,000</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Revised Taxable Gross Salary</td>
+                  <td id="fb-val-revised" style="font-weight:800; color:#047857;">₹10,51,000</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button type="button" id="btn-save-flexi" class="btn btn-accent" style="width:100%; margin-top:1.5rem;">Save FlexiBuddy Structure for HR Submission →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const baseEl = document.getElementById('fb-base');
+      const foodEl = document.getElementById('fb-food');
+      const ltaEl = document.getElementById('fb-lta');
+      const fuelEl = document.getElementById('fb-fuel');
+      const booksEl = document.getElementById('fb-books');
+      const internetEl = document.getElementById('fb-internet');
+
+      const taxSavedEl = document.getElementById('fb-tax-saved');
+      const takehomeEl = document.getElementById('fb-takehome');
+      const valBase = document.getElementById('fb-val-base');
+      const valExemp = document.getElementById('fb-val-exemption');
+      const valRev = document.getElementById('fb-val-revised');
+      const btnSave = document.getElementById('btn-save-flexi');
+
+      [baseEl, foodEl, ltaEl, fuelEl, booksEl, internetEl].forEach(el => el.addEventListener('input', runFlexiCalc));
+
+      async function runFlexiCalc() {
+        const payload = {
+          baseSalary: Number(baseEl.value || 1200000),
+          foodCard: Number(foodEl.value || 0),
+          lta: Number(ltaEl.value || 0),
+          fuelAllowance: Number(fuelEl.value || 0),
+          booksSubscriptions: Number(booksEl.value || 0),
+          internetReimbursement: Number(internetEl.value || 0)
+        };
+
+        const res = await TaxAPI.calculateFlexi(payload);
+        if (res.success) {
+          const d = res.data;
+          taxSavedEl.textContent = `₹${d.annualTaxSaved.toLocaleString('en-IN')}`;
+          takehomeEl.textContent = `Extra Monthly Take-Home: +₹${d.monthlyTakeHomeIncrease.toLocaleString('en-IN')} / month`;
+          valBase.textContent = `₹${d.baseSalary.toLocaleString('en-IN')}`;
+          valExemp.textContent = `₹${d.totalFlexiExemption.toLocaleString('en-IN')}`;
+          valRev.textContent = `₹${d.revisedTaxableSalary.toLocaleString('en-IN')}`;
+        }
+      }
+
+      btnSave.addEventListener('click', async () => {
+        const payload = {
+          companyName: "TechCorp Global Pvt Ltd",
+          employeeName: "Rajesh Kumar",
+          baseSalary: Number(baseEl.value),
+          totalFlexiExemption: Number(valExemp.textContent.replace(/[^0-9]/g, '')),
+          taxSavedAnnual: Number(taxSavedEl.textContent.replace(/[^0-9]/g, ''))
+        };
+        const res = await TaxAPI.saveFlexi(payload);
+        if (res.success) {
+          alert(res.message);
+        }
+      });
+
+      runFlexiCalc();
+    });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

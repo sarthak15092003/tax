@@ -1,0 +1,52 @@
+[
+  {
+    "id": "epf_1789117188910",
+    "uan": "100908123456",
+    "memberId": "MH/BAN/0012345/000/0009081",
+    "claimType": "Form 19 Final PF Settlement",
+    "taxpayerName": "Rajesh Kumar",
+    "pfBalance": 345000,
+    "status": "Transmitted to EPFO Unified Portal",
+    "submittedAt": "2026-09-11T08:59:48.910Z"
+  },
+  {
+    "id": "epf_1789115435675",
+    "uan": "100908123456",
+    "memberId": "MH/BAN/0012345/000/0009081",
+    "claimType": "Form 19 Final PF Settlement",
+    "taxpayerName": "Rajesh Kumar",
+    "pfBalance": 345000,
+    "status": "Transmitted to EPFO Unified Portal",
+    "submittedAt": "2026-09-11T08:30:35.676Z"
+  },
+  {
+    "id": "epf_1789115282013",
+    "uan": "100908123456",
+    "memberId": "MH/BAN/0012345/000/0009081",
+    "claimType": "Form 19 Final PF Settlement",
+    "taxpayerName": "Rajesh Kumar",
+    "pfBalance": 345000,
+    "status": "Transmitted to EPFO Unified Portal",
+    "submittedAt": "2026-09-11T08:28:02.013Z"
+  },
+  {
+    "id": "epf_1789115212343",
+    "uan": "100908123456",
+    "memberId": "MH/BAN/0012345/000/0009081",
+    "claimType": "Form 19 Final PF Settlement",
+    "taxpayerName": "Rajesh Kumar",
+    "pfBalance": 345000,
+    "status": "Transmitted to EPFO Unified Portal",
+    "submittedAt": "2026-09-11T08:26:52.343Z"
+  },
+  {
+    "id": "epf_301",
+    "uan": "100908123456",
+    "memberId": "MH/BAN/0012345/000/0009081",
+    "claimType": "Form 19 Final PF Settlement",
+    "taxpayerName": "Rajesh Kumar",
+    "pfBalance": 345000,
+    "status": "Transmitted to EPFO Unified Portal",
+    "submittedAt": "2026-08-10T11:00:00Z"
+  }
+]

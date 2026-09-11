@@ -1,0 +1,41 @@
+[
+  {
+    "id": "fa_1789117188936",
+    "pan": "ABCDE1234F",
+    "taxpayerName": "Rajesh Kumar",
+    "foreignBroker": "Morgan Stanley / E*TRADE USA",
+    "foreignStockValueUSD": 50000,
+    "foreignStockValueINR": 4200000,
+    "usDividendUSD": 1200,
+    "usTdsDeductedUSD": 400,
+    "dtaaSec90CreditINR": 33600,
+    "status": "Schedule FA Structured for ITR-2",
+    "submittedAt": "2026-09-11T08:59:48.936Z"
+  },
+  {
+    "id": "fa_1789115212360",
+    "pan": "ABCDE1234F",
+    "taxpayerName": "Rajesh Kumar",
+    "foreignBroker": "Morgan Stanley / E*TRADE USA",
+    "foreignStockValueUSD": 50000,
+    "foreignStockValueINR": 4200000,
+    "usDividendUSD": 1200,
+    "usTdsDeductedUSD": 400,
+    "dtaaSec90CreditINR": 33600,
+    "status": "Schedule FA Structured for ITR-2",
+    "submittedAt": "2026-09-11T08:26:52.360Z"
+  },
+  {
+    "id": "fa_501",
+    "pan": "ABCDE1234F",
+    "taxpayerName": "Rajesh Kumar",
+    "foreignBroker": "Morgan Stanley / E*TRADE USA",
+    "foreignStockValueUSD": 45000,
+    "foreignStockValueINR": 3780000,
+    "usDividendUSD": 1200,
+    "usTdsDeductedUSD": 300,
+    "dtaaSec90CreditINR": 25200,
+    "status": "Schedule FA Structured for ITR-2",
+    "submittedAt": "2026-08-15T16:00:00Z"
+  }
+]

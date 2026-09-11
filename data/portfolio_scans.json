@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cas_1789113441097",
+    "fileName": "CAMS_CAS_Statement.pdf",
+    "pan": "ABCDE1234F",
+    "investorName": "Rajesh Kumar",
+    "totalPortfolioValue": 1850000,
+    "equitySTCG": 60000,
+    "equityLTCG": 180000,
+    "cryptoGains": 30000,
+    "taxableLTCG": 55000,
+    "stcgTax": 12000,
+    "ltcgTax": 6875,
+    "cryptoTax": 9000,
+    "totalCapitalGainsTax": 28990,
+    "harvestingRecommendation": "Sell 15 shares of Tata Motors to harvest ₹18,000 capital loss before March 31st!",
+    "scannedAt": "2026-09-11T07:57:21.097Z"
+  },
+  {
+    "id": "cas_501",
+    "pan": "ABCDE1234F",
+    "investorName": "Rajesh Kumar",
+    "totalPortfolioValue": 1850000,
+    "equitySTCG": 45000,
+    "equityLTCG": 165000,
+    "cryptoGains": 25000,
+    "ltcgExemptClaimed": 125000,
+    "taxableLTCG": 40000,
+    "totalCapitalGainsTax": 21500,
+    "scannedAt": "2026-08-12T11:00:00Z"
+  }
+]
