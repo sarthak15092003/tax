@@ -1,5 +1,73 @@
 [
   {
+    "id": "itr_1789133336381",
+    "ackNumber": "ACK2026508896872",
+    "userId": "usr_101",
+    "userName": "Ananya Deshmukh",
+    "pan": "PQRS5678M",
+    "dob": "1994-08-20",
+    "assessmentYear": "2026-27",
+    "financialYear": "2025-26",
+    "planType": "Assisted - Salaried Professional",
+    "status": "Return Filed & E-Verified",
+    "assignedCA": "CA Gaurav Sharma (Ex-IRS Advisor)",
+    "bankDetails": {
+      "accountNumber": "000401567890",
+      "ifsc": "ICIC0000004",
+      "bankName": "ICICI Bank"
+    },
+    "incomeDetails": {
+      "grossSalary": 1650000,
+      "hraReceived": 210000,
+      "otherIncome": 30000,
+      "tdsPaid": 135000
+    },
+    "deductions": {
+      "rentPaidMonthly": 22000,
+      "isMetro": true,
+      "sec80C": 150000,
+      "sec80D": 25000,
+      "nps80CCD": 50000
+    },
+    "taxSummary": {
+      "grossSalary": 1650000,
+      "otherIncome": 30000,
+      "tdsPaid": 135000,
+      "totalIncomeGross": 1680000,
+      "hraExemptionCalculated": 181500,
+      "oldRegime": {
+        "standardDeduction": 50000,
+        "hraExemption": 181500,
+        "totalDeductions": 456500,
+        "taxableIncome": 1223500,
+        "taxBeforeCess": 179550,
+        "cess": 7182,
+        "totalTaxPayable": 186732,
+        "refundOrPayable": -51732
+      },
+      "newRegime": {
+        "standardDeduction": 75000,
+        "totalDeductions": 75000,
+        "taxableIncome": 1605000,
+        "taxBeforeCess": 171500,
+        "cess": 6860,
+        "totalTaxPayable": 178360,
+        "refundOrPayable": -43360
+      },
+      "recommendation": {
+        "recommendedRegime": "New Tax Regime",
+        "savings": 8372,
+        "optimalTax": 178360,
+        "optimalRefundOrPayable": -43360,
+        "isRefund": false,
+        "summary": "New Tax Regime saves you ₹8,372 tax!"
+      }
+    },
+    "eVerified": true,
+    "everifiedAt": "2026-09-11T13:28:56.407Z",
+    "submittedAt": "2026-09-11T13:28:56.381Z"
+  },
+  {
     "id": "itr_1789114377457",
     "ackNumber": "ACK2026423639832",
     "userId": "usr_101",

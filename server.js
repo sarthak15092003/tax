@@ -1013,7 +1013,6 @@ app.post('/api/tax/plan-optimize', (req, res) => {
 // =============================================================
 // 16. INCOME TAX NOTICE HUB API
 // =============================================================
-const NOTICES_FILE = path.join(__dirname, 'data', 'notices.json');
 
 app.post('/api/notices/submit', (req, res) => {
   const notices = readJSON(NOTICES_FILE);

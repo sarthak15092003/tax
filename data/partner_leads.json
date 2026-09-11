@@ -1,5 +1,17 @@
 [
   {
+    "id": "part_1789133332430",
+    "partnerCode": "PART_MUMBAI_CA",
+    "partnerName": "Mehta & Associates CA Firm",
+    "leadTaxpayerName": "Karan Johar",
+    "leadPAN": "BHKPV9081L",
+    "planType": "Assisted - Capital Gains Trader",
+    "amountPaid": 2499,
+    "commissionShare": 750,
+    "status": "Lead Onboarded & CA Assigned",
+    "createdAt": "2026-09-11T13:28:52.430Z"
+  },
+  {
     "id": "part_1789117189209",
     "partnerCode": "PART_MUMBAI_CA",
     "partnerName": "Mehta & Associates CA Firm",
