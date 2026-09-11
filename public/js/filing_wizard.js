@@ -454,7 +454,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Show done state
-      if (autopilotDoneActions) autopilotDoneActions.style.display = 'block';
+      if (autopilotDoneActions) {
+        autopilotDoneActions.style.display = 'block';
+        if (autopilotLogs) {
+          autopilotLogs.style.height = '65px';
+          autopilotLogs.style.marginBottom = '0.8rem';
+        }
+        const modalInner = autopilotModal?.querySelector('.modal-card');
+        if (modalInner) {
+          setTimeout(() => {
+            modalInner.scrollTo({ top: modalInner.scrollHeight, behavior: 'smooth' });
+          }, 150);
+        }
+      }
     });
   }
 

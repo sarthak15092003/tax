@@ -590,6 +590,44 @@ body {
 .badge-filed { background: #D1FAE5; color: #059669; }
 .badge-notice { background: #FEE2E2; color: #DC2626; }
 
+/* Modals (Desktop & Mobile Unified Rules) */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.5rem 1rem;
+}
+
+.modal-backdrop.open {
+  display: flex !important;
+}
+
+.modal-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 540px;
+  max-width: 95%;
+  max-height: 88vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: auto;
+  padding: 1.6rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid #E2E8F0;
+  position: relative;
+}
+
 /* WhatsApp Floating Widget — sits ABOVE the AI chat button */
 #whatsapp-widget {
   position: fixed !important;
