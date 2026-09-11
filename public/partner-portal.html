@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,9 @@
       Tax<span class="highlight">Buddy</span> <small style="font-size:0.75rem; color:var(--primary); font-weight:700;">PARTNER DESK</small>
     </a>
 
-    <ul class="nav-menu">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button><ul class="nav-menu" id="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="calculator.html">Tax Calculator</a></li>
       <li><a href="filing-wizard.html">ITR Wizard</a></li>
@@ -29,7 +31,21 @@
         🤝 Partner Code: PART_MUMBAI_CA
       </span>
     </div>
-  </nav>
+      <div class="nav-actions" id="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+    <script>
+    function toggleNav() {
+      var menu = document.getElementById("nav-menu");
+      var btn = document.getElementById("nav-hamburger");
+      var actions = document.getElementById("nav-actions");
+      if (menu) menu.classList.toggle("open");
+      if (btn) btn.classList.toggle("open");
+      if (actions) actions.classList.toggle("open");
+      document.body.style.overflow = (menu && menu.classList.contains("open")) ? "hidden" : "";
+    }
+    </script></nav>
 
   <div class="section" style="padding-top:2rem;">
     <div class="section-header">
@@ -169,3 +185,4 @@
   <script src="js/ai_assistant.js"></script>
 </body>
 </html>
+
