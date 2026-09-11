@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital Gains Tax Calculator FY 2025-26 | Equity, Property, Crypto | TaxBuddy</title>
+  <meta name="description" content="Calculate STCG and LTCG tax on equity, mutual funds, property, debt funds and cryptocurrency for FY 2025-26 (AY 2026-27) with indexation benefit.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .asset-tabs { display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+    .asset-tab { padding:0.6rem 1.2rem; border-radius:var(--radius-md); border:2px solid #E2E8F0; font-weight:700; font-size:0.88rem; cursor:pointer; transition:all 0.2s; background:var(--white); }
+    .asset-tab.active { border-color:var(--primary); background:var(--primary-light); color:var(--primary); }
+    .result-box { background:linear-gradient(135deg,#0C101D,#161C2E); color:white; border-radius:var(--radius-lg); padding:2rem; }
+    .result-row { display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.9rem; }
+    .result-row:last-child { border-bottom:none; }
+    .result-row .val { font-weight:700; }
+    .result-row.highlight .val { color:var(--accent-teal); font-size:1.1rem; }
+    .result-row.tax-row .val { color:#F87171; }
+    .holding-badge { display:inline-block; padding:0.3rem 0.8rem; border-radius:20px; font-size:0.78rem; font-weight:800; margin-top:0.5rem; }
+    .badge-stcg { background:rgba(248,113,113,0.2); color:#F87171; }
+    .badge-ltcg { background:rgba(74,222,128,0.2); color:#4ADE80; }
+    .cii-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    .cii-table th { background:#F4F7FB; padding:0.6rem 0.8rem; text-align:left; color:var(--text-muted); font-weight:700; font-size:0.78rem; }
+    .cii-table td { padding:0.6rem 0.8rem; border-bottom:1px solid #E2E8F0; }
+    .cii-table tr:hover td { background:#F4F7FB; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>📈 Capital Gains Tax Calculator</h2>
+      <p>STCG & LTCG tax on Equity, Mutual Funds, Property, Debt Funds, Crypto — FY 2025-26 (AY 2026-27)</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      <!-- Input Panel -->
+      <div>
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">🏷️ Select Asset Type</h4>
+          <div class="asset-tabs">
+            <div class="asset-tab active" data-type="equity" onclick="setType(this,'equity')">📈 Equity / MF</div>
+            <div class="asset-tab" data-type="property" onclick="setType(this,'property')">🏠 Property</div>
+            <div class="asset-tab" data-type="debt" onclick="setType(this,'debt')">💼 Debt Fund</div>
+            <div class="asset-tab" data-type="crypto" onclick="setType(this,'crypto')">₿ Crypto / VDA</div>
+          </div>
+
+          <div id="asset-info-banner" style="background:#EDF5FF; border-radius:8px; padding:0.8rem 1rem; margin-bottom:1.2rem; font-size:0.85rem; color:var(--primary);">
+            📊 <strong>Equity:</strong> STCG = 15% (held &lt;12m) | LTCG = 10% on gains above ₹1.25L (held ≥12m)
+          </div>
+
+          <div class="form-group">
+            <label>Sale / Redemption Value (₹)</label>
+            <input type="number" id="cg-sale" class="form-control" value="500000">
+          </div>
+          <div class="form-group">
+            <label>Original Cost / Purchase Price (₹)</label>
+            <input type="number" id="cg-cost" class="form-control" value="300000">
+          </div>
+          <div id="indexed-cost-group" class="form-group" style="display:none;">
+            <label>Indexed Cost of Acquisition (₹) <small style="color:var(--text-muted);">(use CII table below)</small></label>
+            <input type="number" id="cg-indexed" class="form-control" placeholder="e.g. 380000">
+          </div>
+          <div class="form-group">
+            <label>Holding Period (months)</label>
+            <input type="number" id="cg-months" class="form-control" value="18" min="1">
+            <div id="holding-badge-container" style="margin-top:0.5rem;"></div>
+          </div>
+
+          <button id="btn-calc-cg" class="btn btn-primary" style="width:100%; margin-top:0.5rem; font-size:1rem;">📊 Calculate Capital Gains Tax</button>
+        </div>
+
+        <!-- CII Table -->
+        <div class="feature-card" style="margin-top:1.5rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">📋 Cost Inflation Index (CII)</h4>
+          <table class="cii-table">
+            <thead><tr><th>Financial Year</th><th>CII Value</th><th>Multiplier (from FY 2001-02)</th></tr></thead>
+            <tbody>
+              <tr><td>2025-26</td><td><strong>363</strong></td><td>3.63x</td></tr>
+              <tr><td>2024-25</td><td>348</td><td>3.48x</td></tr>
+              <tr><td>2023-24</td><td>348</td><td>3.48x</td></tr>
+              <tr><td>2022-23</td><td>331</td><td>3.31x</td></tr>
+              <tr><td>2021-22</td><td>317</td><td>3.17x</td></tr>
+              <tr><td>2020-21</td><td>301</td><td>3.01x</td></tr>
+              <tr><td>2015-16</td><td>254</td><td>2.54x</td></tr>
+              <tr><td>2010-11</td><td>167</td><td>1.67x</td></tr>
+              <tr><td>2001-02</td><td>100</td><td>1.00x (Base Year)</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">Indexed Cost = Purchase Price × (CII of Sale Year / CII of Purchase Year)</p>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div>
+        <div class="result-box" id="result-box" style="display:none; margin-bottom:1.5rem;">
+          <div style="font-size:0.85rem; font-weight:700; color:#38BDF8; margin-bottom:1.2rem;">📊 CAPITAL GAINS CALCULATION RESULT</div>
+          <div class="result-row">
+            <span>Sale Value</span>
+            <span class="val" id="r-sale">₹0</span>
+          </div>
+          <div class="result-row">
+            <span>Cost / Indexed Cost</span>
+            <span class="val" id="r-cost">₹0</span>
+          </div>
+          <div class="result-row highlight">
+            <span id="r-gain-label">Capital Gain</span>
+            <span class="val" id="r-gain">₹0</span>
+          </div>
+          <div class="result-row">
+            <span id="r-type-label">Gain Type</span>
+            <span class="val" id="r-type" style="font-size:0.82rem; text-align:right; max-width:55%;"></span>
+          </div>
+          <div class="result-row">
+            <span>Tax Rate</span>
+            <span class="val" id="r-rate">0%</span>
+          </div>
+          <div class="result-row tax-row">
+            <span>Tax Before Cess</span>
+            <span class="val" id="r-tax-base">₹0</span>
+          </div>
+          <div class="result-row">
+            <span>+ 4% Health & Education Cess</span>
+            <span class="val" id="r-cess">₹0</span>
+          </div>
+          <div style="margin-top:1rem; background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.3); border-radius:8px; padding:1rem; text-align:center;">
+            <div style="font-size:0.8rem; color:#94A3B8; margin-bottom:0.3rem;">TOTAL TAX PAYABLE</div>
+            <div id="r-total-tax" style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; color:#F87171;">₹0</div>
+          </div>
+          <div class="result-row" style="margin-top:1rem;">
+            <span>Net Profit After Tax</span>
+            <span class="val" style="color:#4ADE80;" id="r-net-profit">₹0</span>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-result" style="background:#F4F7FB; border-radius:var(--radius-lg); padding:3rem; text-align:center; margin-bottom:1.5rem;">
+          <div style="font-size:3.5rem; margin-bottom:1rem;">📈</div>
+          <h4 style="font-family:var(--font-heading); color:var(--text-dark);">Calculate Your Capital Gains Tax</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.5rem;">Enter sale value, cost, and holding period then click Calculate</p>
+        </div>
+
+        <!-- Tax Rules Quick Reference -->
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--primary);">📜 Capital Gains Tax Rates — Quick Reference</h4>
+          <table class="cii-table">
+            <thead><tr><th>Asset Type</th><th>STCG Rate</th><th>LTCG Rate</th><th>Threshold</th></tr></thead>
+            <tbody>
+              <tr><td>Equity / Equity MF</td><td>15%</td><td>10%</td><td>&lt;12m / ≥12m; ₹1.25L exempt</td></tr>
+              <tr><td>Debt Fund (post Apr 2023)</td><td>Slab Rate</td><td>Slab Rate</td><td>No indexation</td></tr>
+              <tr><td>Property / Land</td><td>Slab Rate</td><td>20%</td><td>&lt;24m / ≥24m; Indexation allowed</td></tr>
+              <tr><td>Crypto / VDA</td><td colspan="2" style="text-align:center;">Flat 30%</td><td>Sec 115BBH — No offset</td></tr>
+              <tr><td>Gold / Bonds</td><td>Slab Rate</td><td>20%</td><td>&lt;36m / ≥36m; Indexation allowed</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1rem; padding:0.8rem; background:#FFF7ED; border-radius:8px; font-size:0.82rem; color:#92400E;">
+            ⚠️ <strong>Budget 2024 Update:</strong> LTCG exemption on equity increased from ₹1L to ₹1.25L. STCG rate increased from 15% to 20% on equity (effective Jul 23, 2024). For assets sold before this date, old rates apply.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — Accurate Capital Gains Tax Calculator for FY 2025-26 | <a href="filing-wizard.html" style="color:var(--accent-teal);">File ITR with Capital Gains →</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  let currentType = 'equity';
+  const assetInfoMap = {
+    equity: '📊 <strong>Equity / Equity MF:</strong> STCG = 15% (held &lt;12m) | LTCG = 10% on gains above ₹1.25L (held ≥12m)',
+    property: '🏠 <strong>Property:</strong> STCG = Slab rate (held &lt;24m) | LTCG = 20% with Indexation (held ≥24m)',
+    debt: '💼 <strong>Debt Fund (post Apr 2023):</strong> STCG & LTCG both taxed at slab rate. No indexation benefit.',
+    crypto: '₿ <strong>Crypto / VDA:</strong> Flat 30% + 4% cess. 1% TDS deducted at source. No loss set-off allowed (Sec 115BBH).'
+  };
+  const holdingThresholds = { equity: 12, property: 24, debt: 36, crypto: 999 };
+
+  function setType(el, type) {
+    document.querySelectorAll('.asset-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    currentType = type;
+    document.getElementById('asset-info-banner').innerHTML = assetInfoMap[type];
+    document.getElementById('indexed-cost-group').style.display = (type === 'property' || type === 'debt') ? 'block' : 'none';
+    updateHoldingBadge();
+  }
+
+  function updateHoldingBadge() {
+    const months = Number(document.getElementById('cg-months').value) || 0;
+    const threshold = holdingThresholds[currentType];
+    const isLT = months >= threshold;
+    const container = document.getElementById('holding-badge-container');
+    if (currentType === 'crypto') {
+      container.innerHTML = `<span class="holding-badge badge-stcg">Crypto — Always 30% flat (no LTCG benefit)</span>`;
+    } else {
+      container.innerHTML = isLT
+        ? `<span class="holding-badge badge-ltcg">✅ Long Term Capital Gain (held ${months} months ≥ ${threshold}m)</span>`
+        : `<span class="holding-badge badge-stcg">⚡ Short Term Capital Gain (held ${months} months &lt; ${threshold}m)</span>`;
+    }
+  }
+
+  document.getElementById('cg-months').addEventListener('input', updateHoldingBadge);
+  updateHoldingBadge();
+
+  document.getElementById('btn-calc-cg').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-calc-cg');
+    btn.textContent = '⏳ Calculating...';
+    btn.disabled = true;
+    try {
+      const payload = {
+        assetType: currentType,
+        saleValue: Number(document.getElementById('cg-sale').value),
+        costValue: Number(document.getElementById('cg-cost').value),
+        indexedCost: Number(document.getElementById('cg-indexed').value) || Number(document.getElementById('cg-cost').value),
+        holdingMonths: Number(document.getElementById('cg-months').value)
+      };
+      const res = await fetch('/api/tax/capital-gains', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        const d = json.data;
+        document.getElementById('empty-result').style.display = 'none';
+        document.getElementById('result-box').style.display = 'block';
+        document.getElementById('r-sale').textContent = `₹${d.saleValue.toLocaleString('en-IN')}`;
+        document.getElementById('r-cost').textContent = `₹${(d.indexedCost || d.costValue).toLocaleString('en-IN')}`;
+        document.getElementById('r-gain').textContent = `₹${d.capitalGain.toLocaleString('en-IN')}`;
+        document.getElementById('r-gain-label').textContent = d.isLongTerm ? 'Long Term Capital Gain (LTCG)' : 'Short Term Capital Gain (STCG)';
+        document.getElementById('r-type').textContent = d.gainType;
+        document.getElementById('r-rate').textContent = d.taxRate;
+        document.getElementById('r-tax-base').textContent = `₹${d.taxBeforeCess.toLocaleString('en-IN')}`;
+        document.getElementById('r-cess').textContent = `₹${d.cess.toLocaleString('en-IN')}`;
+        document.getElementById('r-total-tax').textContent = `₹${d.totalTaxPayable.toLocaleString('en-IN')}`;
+        document.getElementById('r-net-profit').textContent = `₹${d.netProfit.toLocaleString('en-IN')}`;
+        document.getElementById('result-box').scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch(e) { alert('Calculation error. Please try again.'); }
+    btn.textContent = '📊 Calculate Capital Gains Tax';
+    btn.disabled = false;
+  });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

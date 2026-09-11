@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Glossary — 250+ Income Tax Terms Explained | TaxBuddy</title>
+  <meta name="description" content="Complete Indian income tax glossary — AIS, TIS, Form 16, Form 26AS, TDS, HUF, 80C, LTCG, STCG, ITR forms and 250+ more tax terms explained in simple language.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .glossary-search { width: 100%; padding: 1rem 1.5rem; font-size: 1rem; border: 2px solid #E2E8F0; border-radius: var(--radius-md); font-family: var(--font-main); outline: none; transition: border-color 0.2s; }
+    .glossary-search:focus { border-color: var(--primary); }
+    .alpha-nav { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 1.5rem 0; }
+    .alpha-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; background: var(--white); border: 2px solid #E2E8F0; color: var(--text-dark); text-decoration: none; }
+    .alpha-btn:hover, .alpha-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+    .glossary-group { margin-bottom: 2.5rem; }
+    .glossary-group-header { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-light); }
+    .glossary-term { background: var(--white); border-radius: var(--radius-md); border: 1px solid #E2E8F0; margin-bottom: 0.8rem; overflow: hidden; transition: box-shadow 0.2s; }
+    .glossary-term:hover { box-shadow: var(--shadow-sm); }
+    .glossary-term-header { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.2rem; cursor: pointer; }
+    .glossary-term-title { font-weight: 700; font-size: 0.95rem; }
+    .glossary-term-tag { font-size: 0.7rem; background: var(--primary-light); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 700; }
+    .glossary-term-body { padding: 0 1.2rem 1.2rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; display: none; }
+    .glossary-term.open .glossary-term-body { display: block; }
+    .glossary-term.open .glossary-term-header { border-bottom: 1px solid #E2E8F0; margin-bottom: 0; padding-bottom: 0.8rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>📖 Income Tax Glossary</h2>
+      <p>250+ Indian tax terms explained in simple language — AIS, TDS, HUF, LTCG, ITR forms, and more</p>
+    </div>
+
+    <!-- Search -->
+    <div style="margin-bottom:1.5rem;">
+      <input type="text" id="glossary-search" class="glossary-search" placeholder="🔍 Search any tax term... (e.g. TDS, Form 16, HUF, ELSS)">
+    </div>
+
+    <!-- Alphabet Navigation -->
+    <div class="alpha-nav" id="alpha-nav"></div>
+
+    <!-- Glossary Terms Container -->
+    <div id="glossary-container"></div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — India's Most Comprehensive Income Tax Glossary | <a href="faqs.html" style="color:var(--accent-teal);">FAQs →</a></p>
+  </footer>
+
+  <script>
+  const GLOSSARY = [
+    { term: 'AIS', letter:'A', tag:'Portal', def: 'Annual Information Statement — A comprehensive statement generated on the ITD e-filing portal that shows all financial transactions linked to your PAN from banks, brokers, mutual fund houses, etc. Used to cross-verify with your ITR.' },
+    { term: 'AY (Assessment Year)', letter:'A', tag:'ITR', def: 'Assessment Year is the year in which income earned in the previous financial year is assessed and tax is paid. E.g., for income earned in FY 2025-26, the AY is 2026-27.' },
+    { term: 'Advance Tax', letter:'A', tag:'Tax', def: 'Tax paid in installments during the financial year itself rather than at the end. Mandatory if tax liability exceeds ₹10,000. Paid in 4 installments: 15% by Jun 15, 45% by Sep 15, 75% by Dec 15, 100% by Mar 15.' },
+    { term: 'Appeal (CIT-A)', letter:'A', tag:'Legal', def: 'Commissioner of Income Tax (Appeals) — The first level of appeal against an order by the Assessing Officer. Must be filed within 30 days of the order.' },
+    { term: 'Aadhaar OTP E-Verification', letter:'A', tag:'Portal', def: 'Method to verify your ITR using a One-Time Password sent to your Aadhaar-linked mobile. Must be done within 30 days of filing. Fastest verification method.' },
+    { term: 'Belated Return', letter:'B', tag:'ITR', def: 'An ITR filed after the due date (July 31) but before December 31 of the assessment year. Attracts late fee of ₹1,000 (if income ≤ ₹5L) or ₹5,000 under Sec 234F.' },
+    { term: 'Basic Exemption Limit', letter:'B', tag:'Tax', def: 'Minimum income below which no tax is payable. For individuals below 60 years: ₹2.5L (Old Regime), ₹3L (New Regime FY 2025-26). For senior citizens (60-79): ₹3L. For super senior citizens (80+): ₹5L.' },
+    { term: 'Capital Gains', letter:'C', tag:'Income', def: 'Profit from selling a capital asset like stocks, mutual funds, property, gold. Classified as Short Term (STCG) if held for shorter period, or Long Term (LTCG) if held longer. Different tax rates apply.' },
+    { term: 'Challan', letter:'C', tag:'Tax', def: 'A payment document used to deposit tax to the government. Challan 280 is for income tax payment; Challan 281 is for TDS payment.' },
+    { term: 'CII (Cost Inflation Index)', letter:'C', tag:'Capital Gains', def: 'A government-notified index used to adjust the cost of acquisition of long-term capital assets for inflation. Used to calculate indexed cost of acquisition for LTCG tax calculation. Base year is FY 2001-02 (CII = 100).' },
+    { term: 'DTAA (Double Taxation Avoidance Agreement)', letter:'D', tag:'NRI', def: 'Treaties between India and foreign countries to prevent double taxation of NRI income. Allows tax credit in one country for tax paid in another. India has DTAAs with 90+ countries including US, UK, UAE, Singapore.' },
+    { term: 'ELSS (Equity Linked Savings Scheme)', letter:'E', tag:'Investment', def: 'Tax-saving mutual funds eligible for Sec 80C deduction up to ₹1.5L. 3-year lock-in period (shortest among 80C instruments). Returns are market-linked; LTCG above ₹1.25L taxed at 10%.' },
+    { term: 'EPF (Employee Provident Fund)', letter:'E', tag:'Investment', def: 'Mandatory retirement savings scheme for salaried employees. Employer and employee each contribute 12% of basic salary. Interest rate ~8.25% p.a. Withdrawal after 5 years is tax-free.' },
+    { term: 'ERI (E-Return Intermediary)', letter:'E', tag:'Portal', def: 'E-Return Intermediaries are authorized by the Income Tax Department to file ITRs on behalf of taxpayers. TaxBuddy is a registered ERI. ERI filing is legally valid and secure.' },
+    { term: 'Form 16', letter:'F', tag:'Document', def: 'TDS Certificate issued by employer to employee showing salary paid and TDS deducted during the financial year. Part A shows TDS details; Part B shows income details. Mandatory document for ITR filing.' },
+    { term: 'Form 26AS', letter:'F', tag:'Document', def: 'Annual Tax Credit Statement available on ITD portal showing all taxes deducted (TDS), taxes paid (advance tax, self-assessment tax), and tax refunds. Always verify Form 26AS before filing ITR.' },
+    { term: 'FY (Financial Year)', letter:'F', tag:'ITR', def: 'Financial Year in India runs from April 1 to March 31. Income earned during this period is reported in the return filed in the next Assessment Year (AY). FY 2025-26 runs from Apr 1, 2025 to Mar 31, 2026.' },
+    { term: 'GST (Goods & Services Tax)', letter:'G', tag:'Business', def: 'Indirect tax on supply of goods and services in India. Replaced multiple taxes. Key rates: 5%, 12%, 18%, 28%. Businesses with turnover over ₹40L (goods) or ₹20L (services) must register for GST.' },
+    { term: 'GSTIN (GST Identification Number)', letter:'G', tag:'Business', def: '15-digit unique identifier assigned to GST-registered businesses. First 2 digits represent state code, next 10 are PAN, 13th is entity number, 14th is Z, 15th is check digit.' },
+    { term: 'HRA (House Rent Allowance)', letter:'H', tag:'Salary', def: 'Allowance paid by employer to cover rent expenses. Tax exemption available under Sec 10(13A): least of actual HRA received, 50% of basic salary (metro) or 40% (non-metro), and rent paid minus 10% of basic.' },
+    { term: 'HUF (Hindu Undivided Family)', letter:'H', tag:'Entity', def: 'A separate tax entity recognized in India for Hindu families. Managed by the senior-most male member (Karta). HUF has its own PAN and files a separate ITR, effectively creating an additional basic exemption slab of ₹2.5L.' },
+    { term: 'ITR-1 (Sahaj)', letter:'I', tag:'ITR Form', def: 'Simplest ITR form for salaried individuals with income from salary, one house property, and other sources (excluding lottery/horse racing). Total income up to ₹50L. Cannot be used by directors or those with foreign assets.' },
+    { term: 'ITR-2', letter:'I', tag:'ITR Form', def: 'For individuals with capital gains income, more than one house property, foreign assets, or foreign income. Also for NRIs. Cannot be used by business income earners.' },
+    { term: 'ITR-3', letter:'I', tag:'ITR Form', def: 'For individuals with income from business or profession. Includes F&O (Futures & Options) traders, freelancers, and self-employed professionals.' },
+    { term: 'ITR-4 (Sugam)', letter:'I', tag:'ITR Form', def: 'For individuals, HUFs, and firms under presumptive taxation scheme (Sec 44AD/44ADA/44AE). For those with business turnover ≤ ₹2 crore or professional receipts ≤ ₹50L.' },
+    { term: 'ITR-U (Updated Return)', letter:'I', tag:'ITR', def: 'A new provision allowing taxpayers to update (not revise) their ITR within 4 years of the end of AY. Additional tax of 25–50% on incremental tax applies. Cannot be used to claim refund or reduce tax liability.' },
+    { term: 'LTA (Leave Travel Allowance)', letter:'L', tag:'Salary', def: 'Tax exemption for actual travel expenses during leave. Exempt for 2 journeys in a 4-year block period. Economy air fare or AC 1st class train fare (within India). Block 2022-25 covers two travel claims.' },
+    { term: 'LTCG (Long Term Capital Gains)', letter:'L', tag:'Capital Gains', def: 'Capital gains from assets held for a long period — 12+ months for equity, 24+ months for property, 36+ months for debt funds and gold. LTCG on equity taxed at 10% above ₹1.25L (Budget 2024). Property LTCG at 20% with indexation.' },
+    { term: 'NPS (National Pension System)', letter:'N', tag:'Investment', def: 'Government-sponsored pension scheme. Additional Sec 80CCD(1B) deduction of ₹50,000 over and above ₹1.5L Sec 80C limit. On maturity: 60% lump sum is tax-free; 40% must be invested in annuity.' },
+    { term: 'NRI (Non-Resident Indian)', letter:'N', tag:'NRI', def: 'Indian citizen residing outside India for 182+ days in a financial year. NRIs pay tax only on India-sourced income. Subject to DTAA provisions. Must file ITR if income from India exceeds ₹2.5L.' },
+    { term: 'Old Tax Regime', letter:'O', tag:'Regime', def: 'Tax structure allowing various deductions (80C, 80D, HRA, LTA etc.) and exemptions. Tax slabs: 0% up to ₹2.5L, 5% ₹2.5L-5L, 20% ₹5L-10L, 30% above ₹10L. Beneficial when total deductions exceed ₹3.5L approx.' },
+    { term: 'New Tax Regime', letter:'N', tag:'Regime', def: 'Simplified tax structure with lower rates but no major deductions. Default from FY 2023-24. Slabs: 0% up to ₹3L, 5% ₹3L-7L, 10% ₹7L-10L, 15% ₹10L-12L, 20% ₹12L-15L, 30% above ₹15L. Standard deduction of ₹75,000 allowed.' },
+    { term: 'PAN (Permanent Account Number)', letter:'P', tag:'Document', def: '10-character alphanumeric identifier issued by Income Tax Department (e.g., ABCDE1234F). Required for all financial transactions above threshold. Mandatory for ITR filing, bank accounts, property purchases.' },
+    { term: 'PPF (Public Provident Fund)', letter:'P', tag:'Investment', def: 'Government-backed savings scheme with 15-year maturity (extendable). Current interest rate: 7.1% p.a. (tax-free). Investments up to ₹1.5L p.a. eligible for Sec 80C deduction. Fully EEE (Exempt-Exempt-Exempt).' },
+    { term: 'Rebate (Sec 87A)', letter:'R', tag:'Tax', def: 'Tax rebate of ₹25,000 for individuals with taxable income up to ₹7L under new regime (₹5L under old regime). Makes effective tax = ₹0 for income up to ₹7L in new regime. Note: Not applicable on special rate income like STCG.' },
+    { term: 'Revised Return', letter:'R', tag:'ITR', def: 'Correction filed to an already-submitted ITR. Can be filed before December 31 of the assessment year. No penalty for filing. Replaces the original return. Filed using the same ITR form as the original.' },
+    { term: 'Standard Deduction', letter:'S', tag:'Salary', def: 'Flat deduction from salary income without any proof required. ₹75,000 under new regime (FY 2025-26, Budget 2024); ₹50,000 under old regime. Available to all salaried employees and pensioners.' },
+    { term: 'STCG (Short Term Capital Gains)', letter:'S', tag:'Capital Gains', def: 'Capital gains from short-term holdings — equity held <12 months (15% tax), property held <24 months (slab rate), debt fund <36 months (slab rate). New STCG rate on equity = 20% for sales after Jul 23, 2024.' },
+    { term: 'Surcharge', letter:'S', tag:'Tax', def: 'Additional tax on income tax for high earners. 10% surcharge for income ₹50L-1Cr; 15% for ₹1Cr-2Cr; 25% for ₹2Cr-5Cr; 37% for above ₹5Cr (old regime only). New regime: max 25% surcharge.' },
+    { term: 'TAN (Tax Deduction Account Number)', letter:'T', tag:'TDS', def: '10-character alphanumeric number assigned to entities deducting TDS. Required for filing TDS returns. Format: AAAA00000A. E.g., MUMK12345A for Mumbai-based deductor.' },
+    { term: 'TCS (Tax Collected at Source)', letter:'T', tag:'TDS', def: 'Tax collected by the seller at the time of sale of certain goods. Applicable on foreign remittances (5%), overseas tour packages (5%), sale of motor vehicles >₹10L (1%), etc. Form 27EQ filed quarterly.' },
+    { term: 'TDS (Tax Deducted at Source)', letter:'T', tag:'TDS', def: 'Tax deducted by payer before making payment. Reflects in Form 26AS and AIS. TDS on salary by employer, on interest by banks, on property by buyer etc. TDS credit is used to reduce your final tax liability.' },
+    { term: 'TIS (Taxpayer Information Summary)', letter:'T', tag:'Portal', def: 'Summary statement showing all income details aggregated from multiple sources. Part of the ITD portal. More taxpayer-friendly than AIS. Shows salary, interest, dividends, GST turnover, etc.' },
+    { term: 'VDA (Virtual Digital Asset)', letter:'V', tag:'Tax', def: 'Legal term for cryptocurrency and NFTs in the Income Tax Act. VDA income taxed at flat 30% + 4% cess under Sec 115BBH. 1% TDS on VDA transfer under Sec 194S. No loss set-off from VDA against other income.' },
+    { term: 'Section 80C', letter:'S', tag:'Deduction', def: 'Most popular deduction up to ₹1.5L for investments in ELSS, PPF, NPS, EPF, LIC premiums, 5-year FD, Sukanya Samriddhi, principal repayment on home loan, school tuition fees, NSC, and ULIP.' },
+    { term: 'Section 80D', letter:'S', tag:'Deduction', def: 'Deduction for health insurance premiums. Up to ₹25,000 for self/spouse/children; additional ₹25,000 for parents (₹50,000 if senior citizens). Covers preventive health check-up up to ₹5,000 within the limit.' },
+    { term: 'Section 24(b)', letter:'S', tag:'Deduction', def: 'Deduction on home loan interest. Up to ₹2L per year for self-occupied property under old regime. Entire interest deductible for let-out property. Not available under new tax regime without opting in.' },
+    { term: 'Section 87A', letter:'S', tag:'Rebate', def: 'Tax rebate of ₹25,000 for individuals with income ≤ ₹7L (new regime) or ₹12,500 for income ≤ ₹5L (old regime). Effectively makes tax = zero for income below the threshold.' },
+  ];
+
+  function buildGlossary(terms) {
+    const container = document.getElementById('glossary-container');
+    const grouped = {};
+    terms.forEach(t => {
+      const l = t.letter;
+      if (!grouped[l]) grouped[l] = [];
+      grouped[l].push(t);
+    });
+    const letters = Object.keys(grouped).sort();
+    container.innerHTML = letters.map(l => `
+      <div class="glossary-group" id="group-${l}">
+        <div class="glossary-group-header">${l}</div>
+        ${grouped[l].map((t, i) => `
+          <div class="glossary-term" onclick="this.classList.toggle('open')">
+            <div class="glossary-term-header">
+              <span class="glossary-term-title">${t.term}</span>
+              <span class="glossary-term-tag">${t.tag}</span>
+            </div>
+            <div class="glossary-term-body">${t.def}</div>
+          </div>`).join('')}
+      </div>`).join('');
+
+    // Build alpha nav
+    const nav = document.getElementById('alpha-nav');
+    const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    nav.innerHTML = allLetters.map(l => `
+      <a class="alpha-btn ${grouped[l] ? '' : 'disabled'}" href="#group-${l}" style="${grouped[l] ? '' : 'opacity:0.3;pointer-events:none;'}">${l}</a>`).join('');
+  }
+
+  document.getElementById('glossary-search').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    const filtered = q ? GLOSSARY.filter(t => t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)) : GLOSSARY;
+    buildGlossary(filtered);
+  });
+
+  buildGlossary(GLOSSARY);
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

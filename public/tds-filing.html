@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDS Return Filing Form 24Q 26Q 27Q Online | TaxBuddy</title>
+  <meta name="description" content="File TDS Returns online — Form 24Q (salary), 26Q (non-salary), 27Q (NRI payments), 27EQ (TCS). Quarterly TDS compliance for employers and deductors. AY 2026-27.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>📑 TDS Return Filing</h2>
+      <p>File Form 24Q (Salary TDS), 26Q (Non-Salary), 27Q (NRI Payments), 27EQ (TCS) — FY 2025-26</p>
+    </div>
+
+    <!-- Form Selector -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
+      <div class="feature-card" style="text-align:center; cursor:pointer; border:2px solid var(--primary); background:var(--primary-light);" onclick="selectForm('24Q')">
+        <div style="font-size:1.5rem; margin-bottom:0.4rem;">👔</div>
+        <div style="font-weight:800; font-family:var(--font-heading); color:var(--primary);">Form 24Q</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">Salary TDS</div>
+      </div>
+      <div class="feature-card" style="text-align:center; cursor:pointer;" onclick="selectForm('26Q')">
+        <div style="font-size:1.5rem; margin-bottom:0.4rem;">💼</div>
+        <div style="font-weight:800; font-family:var(--font-heading);">Form 26Q</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">Non-Salary TDS</div>
+      </div>
+      <div class="feature-card" style="text-align:center; cursor:pointer;" onclick="selectForm('27Q')">
+        <div style="font-size:1.5rem; margin-bottom:0.4rem;">🌍</div>
+        <div style="font-weight:800; font-family:var(--font-heading);">Form 27Q</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">NRI Payments</div>
+      </div>
+      <div class="feature-card" style="text-align:center; cursor:pointer;" onclick="selectForm('27EQ')">
+        <div style="font-size:1.5rem; margin-bottom:0.4rem;">🏭</div>
+        <div style="font-weight:800; font-family:var(--font-heading);">Form 27EQ</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">TCS Return</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      <div class="feature-card">
+        <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">📝 Deductor Details — <span id="selected-form-label">Form 24Q</span></h3>
+
+        <div class="form-group">
+          <label>Deductor / Employer Name</label>
+          <input type="text" id="tds-deductor" class="form-control" value="Tech Corp Pvt Ltd">
+        </div>
+        <div class="form-group">
+          <label>TAN Number</label>
+          <input type="text" id="tds-tan" class="form-control" value="MUMK12345A" style="text-transform:uppercase;" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label>Quarter</label>
+          <select id="tds-quarter" class="form-control">
+            <option>Q1 (Apr-Jun 2025)</option>
+            <option>Q2 (Jul-Sep 2025)</option>
+            <option>Q3 (Oct-Dec 2025)</option>
+            <option>Q4 (Jan-Mar 2026)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of Deductees / Employees</label>
+          <input type="number" id="tds-count" class="form-control" value="25" min="1">
+        </div>
+        <div class="form-group">
+          <label>Total TDS Deducted (₹)</label>
+          <input type="number" id="tds-amount" class="form-control" value="875000">
+        </div>
+        <div class="form-group">
+          <label>Challan Payment Date</label>
+          <input type="date" id="tds-challan-date" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Challan Serial Number</label>
+          <input type="text" id="tds-challan-no" class="form-control" value="CHL2025080012345">
+        </div>
+
+        <button id="btn-tds-file" class="btn btn-primary" style="width:100%; margin-top:0.5rem; font-size:1rem;">📑 File TDS Return →</button>
+      </div>
+
+      <div>
+        <!-- Success Result -->
+        <div id="tds-success" style="display:none; margin-bottom:1.5rem;">
+          <div class="feature-card" style="border:2px solid var(--accent-teal); text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">✅</div>
+            <h4 style="font-family:var(--font-heading); color:#047857;">TDS Return Filed!</h4>
+            <div id="tds-token-display" style="font-family:monospace; font-size:0.82rem; color:var(--text-muted); margin-top:0.3rem;"></div>
+            <p id="tds-success-msg" style="font-size:0.88rem; color:var(--text-dark); margin-top:0.7rem;"></p>
+          </div>
+        </div>
+
+        <!-- TDS Rate Reference -->
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--primary);">📊 Key TDS Rates (FY 2025-26)</h4>
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+            <thead><tr style="background:#F4F7FB;"><th style="padding:0.6rem; text-align:left; color:var(--text-muted); font-size:0.78rem;">Section</th><th style="padding:0.6rem; text-align:left; color:var(--text-muted); font-size:0.78rem;">Nature</th><th style="padding:0.6rem; text-align:right; color:var(--text-muted); font-size:0.78rem;">Rate</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">192</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Salary Income</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">As per slab</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194A</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Interest (Banks)</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">10%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194C</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Contractor Payments</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">1% / 2%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194D</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Insurance Commission</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">5%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194H</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Commission / Brokerage</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">5%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194I</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Rent (Land/Building)</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">10%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194IA</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Property Purchase (>50L)</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">1%</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">194J</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Professional Fees</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0; text-align:right;">10%</td></tr>
+              <tr><td style="padding:0.6rem;">194S</td><td style="padding:0.6rem;">Crypto / VDA Transfer</td><td style="padding:0.6rem; text-align:right;">1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Due Dates -->
+        <div class="feature-card" style="margin-top:1.5rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">📅 TDS Return Due Dates (FY 2025-26)</h4>
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+            <thead><tr style="background:#F4F7FB;"><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Quarter</th><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Period</th><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Due Date</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>Q1</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Apr–Jun 2025</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>31 Jul 2025</strong></td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>Q2</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Jul–Sep 2025</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>31 Oct 2025</strong></td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>Q3</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Oct–Dec 2025</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>31 Jan 2026</strong></td></tr>
+              <tr><td style="padding:0.6rem;"><strong>Q4</strong></td><td style="padding:0.6rem;">Jan–Mar 2026</td><td style="padding:0.6rem;"><strong>31 May 2026</strong></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:0.8rem; background:#FFF7ED; border-radius:8px; padding:0.7rem 1rem; font-size:0.82rem; color:#92400E;">
+            ⚠️ Late TDS return filing attracts penalty of ₹200/day under Sec 234E (max ₹10,000)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — Seamless TDS Filing Solutions | <a href="expert.html" style="color:var(--accent-teal);">CA Expert Desk →</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  let currentForm = '24Q';
+  function selectForm(form) {
+    currentForm = form;
+    document.getElementById('selected-form-label').textContent = `Form ${form}`;
+  }
+  document.getElementById('tds-challan-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('btn-tds-file').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-tds-file');
+    btn.textContent = '⏳ Filing TDS Return...';
+    btn.disabled = true;
+    try {
+      const payload = {
+        formType: currentForm,
+        deductorName: document.getElementById('tds-deductor').value,
+        tan: document.getElementById('tds-tan').value,
+        quarter: document.getElementById('tds-quarter').value,
+        deducteeCount: Number(document.getElementById('tds-count').value),
+        totalTDS: Number(document.getElementById('tds-amount').value),
+      };
+      const res = await fetch('/api/tds/file-return', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('tds-success').style.display = 'block';
+        document.getElementById('tds-token-display').textContent = `Token: ${json.data.provisionToken}`;
+        document.getElementById('tds-success-msg').textContent = json.message;
+        document.getElementById('tds-success').scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch(e) { alert('Error filing TDS return.'); }
+    btn.textContent = '📑 File TDS Return →';
+    btn.disabled = false;
+  });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

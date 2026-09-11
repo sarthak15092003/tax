@@ -975,10 +975,362 @@ app.get('/api/v1/partner/commission-ledger', (req, res) => {
   });
 });
 
+
+// =============================================================
+// 15. TAX PLANNER / INVESTMENT OPTIMIZER API
+// =============================================================
+app.post('/api/tax/plan-optimize', (req, res) => {
+  const gross = Number(req.body.grossSalary) || 1200000;
+  const sec80C = Number(req.body.sec80C) || 0;
+  const sec80D = Number(req.body.sec80D) || 0;
+  const nps = Number(req.body.nps80CCD) || 0;
+  const homeLoan = Number(req.body.homeLoanInterest) || 0;
+
+  const remaining80C = Math.max(0, 150000 - sec80C);
+  const remaining80D = Math.max(0, 25000 - sec80D);
+  const remainingNPS = Math.max(0, 50000 - nps);
+
+  const suggestions = [];
+  if (remaining80C > 0) suggestions.push({ section: 'Sec 80C', instrument: 'ELSS Mutual Fund / PPF / LIC', limit: 150000, used: sec80C, remaining: remaining80C, taxSaving: Math.round(remaining80C * 0.30 * 1.04) });
+  if (remaining80D > 0) suggestions.push({ section: 'Sec 80D', instrument: 'Health Insurance Premium', limit: 25000, used: sec80D, remaining: remaining80D, taxSaving: Math.round(remaining80D * 0.30 * 1.04) });
+  if (remainingNPS > 0) suggestions.push({ section: 'Sec 80CCD(1B)', instrument: 'NPS Additional Contribution', limit: 50000, used: nps, remaining: remainingNPS, taxSaving: Math.round(remainingNPS * 0.30 * 1.04) });
+  if (homeLoan === 0) suggestions.push({ section: 'Sec 24(b)', instrument: 'Home Loan Interest', limit: 200000, used: 0, remaining: 200000, taxSaving: Math.round(200000 * 0.30 * 1.04) });
+
+  const totalPossibleSaving = suggestions.reduce((a, s) => a + s.taxSaving, 0);
+
+  res.json({
+    success: true,
+    data: {
+      grossIncome: gross,
+      currentDeductions: sec80C + sec80D + nps + homeLoan,
+      suggestions,
+      totalPossibleTaxSaving: totalPossibleSaving,
+      message: `Invest wisely to save up to ₹${totalPossibleSaving.toLocaleString('en-IN')} in taxes!`
+    }
+  });
+});
+
+// =============================================================
+// 16. INCOME TAX NOTICE HUB API
+// =============================================================
+const NOTICES_FILE = path.join(__dirname, 'data', 'notices.json');
+
+app.post('/api/notices/submit', (req, res) => {
+  const notices = readJSON(NOTICES_FILE);
+  const noticeTypes = {
+    '143(1)': { reply: 'Intimation u/s 143(1) — Verify the demand/refund, submit rectification if data mismatch.', deadline: 30 },
+    '143(2)': { reply: 'Scrutiny Notice u/s 143(2) — Appear before AO with supporting documents for assessment.', deadline: 15 },
+    '148': { reply: 'Reassessment Notice u/s 148 — File return within 3 months or contest the notice.', deadline: 90 },
+    '156': { reply: 'Demand Notice u/s 156 — Pay demand within 30 days or apply for stay.', deadline: 30 },
+    '139(9)': { reply: 'Defective Return u/s 139(9) — Correct and refile within 15 days.', deadline: 15 },
+    '245': { reply: 'Refund Adjustment u/s 245 — Consent or object to refund setoff within 30 days.', deadline: 30 },
+    '154': { reply: 'Rectification u/s 154 — File rectification request on portal within 4 years.', deadline: 120 }
+  };
+  const nType = req.body.noticeType || '143(1)';
+  const info = noticeTypes[nType] || noticeTypes['143(1)'];
+  const newNotice = {
+    id: `ntc_${Date.now()}`,
+    userId: 'usr_101',
+    userName: req.body.userName || 'Rajesh Kumar',
+    pan: (req.body.pan || 'ABCDE1234F').toUpperCase(),
+    noticeType: `Section ${nType} ${req.body.noticeSubject || 'Income Tax Notice'}`,
+    assessmentYear: req.body.assessmentYear || '2025-26',
+    receivedDate: req.body.receivedDate || new Date().toISOString().split('T')[0],
+    status: 'Under CA Review',
+    suggestedAction: info.reply,
+    replyDeadlineDays: info.deadline,
+    assignedCA: 'CA Priya Mehta (Ex-IRS, 12 yrs exp)',
+    submittedAt: new Date().toISOString()
+  };
+  notices.unshift(newNotice);
+  writeJSON(NOTICES_FILE, notices);
+  res.json({ success: true, message: `Notice under Section ${nType} submitted. CA assigned. Reply deadline: ${info.deadline} days.`, data: newNotice });
+});
+
+app.get('/api/notices/list', (req, res) => {
+  const notices = readJSON(NOTICES_FILE);
+  res.json({ success: true, data: notices });
+});
+
+// =============================================================
+// 17. TDS RETURN FILING API (Form 24Q / 26Q)
+// =============================================================
+app.post('/api/tds/file-return', (req, res) => {
+  const tdsReturns = readJSON(path.join(__dirname, 'data', 'filings.json'));
+  const totalTDS = Number(req.body.totalTDS) || 485000;
+  const entries = Number(req.body.deducteeCount) || 15;
+  const token = `TDS${req.body.formType || '24Q'}${Date.now()}`;
+  const newReturn = {
+    id: `tds_${Date.now()}`,
+    type: 'TDS Return',
+    formType: req.body.formType || '24Q',
+    deductorName: req.body.deductorName || 'Tech Corp Pvt Ltd',
+    deductorTAN: (req.body.tan || 'MUMK12345A').toUpperCase(),
+    quarter: req.body.quarter || 'Q1 (Apr-Jun 2025)',
+    financialYear: '2025-26',
+    deducteeCount: entries,
+    totalTDSDeducted: totalTDS,
+    provisionToken: token,
+    status: 'Filed & Acknowledged',
+    filedAt: new Date().toISOString()
+  };
+  tdsReturns.unshift(newReturn);
+  writeJSON(path.join(__dirname, 'data', 'filings.json'), tdsReturns);
+  res.json({ success: true, message: `TDS Return Form ${req.body.formType || '24Q'} filed for ${entries} deductees. TDS: ₹${totalTDS.toLocaleString('en-IN')}. Token: ${token}`, data: newReturn });
+});
+
+// =============================================================
+// 18. HUF REGISTRATION & FILING API
+// =============================================================
+app.post('/api/huf/register', (req, res) => {
+  const hufId = `HUF${Date.now()}`;
+  const data = {
+    id: hufId,
+    hufName: `${req.body.kartaName || 'Rajesh Kumar'} HUF`,
+    kartaName: req.body.kartaName || 'Rajesh Kumar',
+    kartaPan: (req.body.kartaPan || 'ABCDE1234F').toUpperCase(),
+    hufPanApplied: `${hufId}_PAN_PENDING`,
+    members: req.body.members || ['Sunita Kumar (Spouse)', 'Ananya Kumar (Daughter)'],
+    createdAt: new Date().toISOString(),
+    status: 'HUF Deed Drafted — PAN Application Submitted'
+  };
+  res.json({ success: true, message: `HUF "${data.hufName}" registered. PAN application initiated. HUF can claim separate ₹2.5L basic exemption!`, data });
+});
+
+app.post('/api/huf/file', (req, res) => {
+  const hufTax = calculateTax({
+    grossSalary: Number(req.body.hufIncome) || 800000,
+    hraReceived: 0, rentPaidAnnual: 0, isMetro: false,
+    otherIncome: Number(req.body.otherIncome) || 0,
+    sec80C: Number(req.body.sec80C) || 150000,
+    sec80D: 0, nps80CCD: 0,
+    tdsPaid: Number(req.body.tdsPaid) || 0
+  });
+  const ack = `HUFACK2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  res.json({
+    success: true,
+    message: `HUF ITR-2 filed successfully! Acknowledgement: ${ack}`,
+    data: { hufName: `${req.body.kartaName || 'Rajesh Kumar'} HUF`, ackNumber: ack, taxSummary: hufTax, filedAt: new Date().toISOString() }
+  });
+});
+
+// =============================================================
+// 19. CAPITAL GAINS TAX CALCULATOR API
+// =============================================================
+app.post('/api/tax/capital-gains', (req, res) => {
+  const type = req.body.assetType || 'equity'; // equity | debt | property | crypto
+  const saleValue = Number(req.body.saleValue) || 500000;
+  const costValue = Number(req.body.costValue) || 300000;
+  const holdingMonths = Number(req.body.holdingMonths) || 18;
+  const indexedCost = Number(req.body.indexedCost) || costValue;
+
+  let isLongTerm = false;
+  let taxRate = 0;
+  let gainType = '';
+  let gain = 0;
+
+  if (type === 'equity') {
+    isLongTerm = holdingMonths >= 12;
+    gain = Math.max(0, saleValue - costValue);
+    if (isLongTerm) {
+      const exemption = 125000;
+      taxRate = 0.10;
+      gain = Math.max(0, gain - exemption);
+      gainType = 'LTCG (Equity) — 10% above ₹1.25L';
+    } else { taxRate = 0.15; gainType = 'STCG (Equity) — 15%'; }
+  } else if (type === 'debt') {
+    isLongTerm = holdingMonths >= 36;
+    gain = isLongTerm ? Math.max(0, saleValue - indexedCost) : Math.max(0, saleValue - costValue);
+    taxRate = isLongTerm ? 0.20 : null; // added to slab if STCG
+    gainType = isLongTerm ? 'LTCG (Debt) — 20% with Indexation' : 'STCG (Debt) — Added to slab income';
+  } else if (type === 'property') {
+    isLongTerm = holdingMonths >= 24;
+    gain = isLongTerm ? Math.max(0, saleValue - indexedCost) : Math.max(0, saleValue - costValue);
+    taxRate = isLongTerm ? 0.20 : null;
+    gainType = isLongTerm ? 'LTCG (Property) — 20% with Indexation' : 'STCG (Property) — Added to slab income';
+  } else if (type === 'crypto') {
+    gain = Math.max(0, saleValue - costValue);
+    taxRate = 0.30;
+    gainType = 'Crypto/VDA — Flat 30% (Sec 115BBH) + 4% Cess';
+  }
+
+  const taxBeforeCess = taxRate ? Math.round(gain * taxRate) : 0;
+  const cess = Math.round(taxBeforeCess * 0.04);
+  const totalTax = taxBeforeCess + cess;
+
+  res.json({
+    success: true,
+    data: {
+      assetType: type, saleValue, costValue, indexedCost, holdingMonths, isLongTerm,
+      capitalGain: gain, gainType, taxRate: taxRate ? `${(taxRate * 100).toFixed(0)}%` : 'Slab Rate',
+      taxBeforeCess, cess, totalTaxPayable: totalTax,
+      netProfit: saleValue - costValue - totalTax
+    }
+  });
+});
+
+// =============================================================
+// 20. GST FILING API
+// =============================================================
+app.post('/api/gst/file', (req, res) => {
+  const period = req.body.period || 'Aug 2025';
+  const taxableValue = Number(req.body.taxableValue) || 850000;
+  const cgst = Math.round(taxableValue * 0.09);
+  const sgst = Math.round(taxableValue * 0.09);
+  const totalGST = cgst + sgst;
+  const arn = `ARN-GST${Date.now()}`;
+  res.json({
+    success: true,
+    message: `GSTR-3B filed for ${period}. Total GST: ₹${totalGST.toLocaleString('en-IN')}. ARN: ${arn}`,
+    data: { period, taxableValue, cgst, sgst, igst: 0, totalGST, arn, status: 'Filed', filedAt: new Date().toISOString() }
+  });
+});
+
+app.get('/api/gst/lookup/:gstin', (req, res) => {
+  const gstin = req.params.gstin.toUpperCase();
+  const stateCode = gstin.substring(0, 2);
+  const statemap = { '27': 'Maharashtra', '07': 'Delhi', '29': 'Karnataka', '33': 'Tamil Nadu', '24': 'Gujarat', '09': 'Uttar Pradesh', '06': 'Haryana' };
+  res.json({
+    success: true,
+    data: {
+      gstin,
+      legalName: `Tech Business Pvt Ltd (${gstin.substring(2, 12)})`,
+      tradeName: 'TechBiz',
+      state: statemap[stateCode] || 'Maharashtra',
+      registrationType: 'Regular',
+      registrationDate: '2022-04-01',
+      status: 'Active'
+    }
+  });
+});
+
+// =============================================================
+// 21. US / NRI TAX ENQUIRY API
+// =============================================================
+app.post('/api/us-tax/enquiry', (req, res) => {
+  const usdIncome = Number(req.body.usdIncome) || 85000;
+  const inrEquivalent = Math.round(usdIncome * 84);
+  const dtaaCredit = Math.round(inrEquivalent * 0.20);
+  res.json({
+    success: true,
+    message: `NRI/US Tax Enquiry received. Expert will call within 24hrs. DTAA credit estimate: ₹${dtaaCredit.toLocaleString('en-IN')}`,
+    data: {
+      enquiryId: `NRI${Date.now()}`,
+      name: req.body.name || 'NRI Taxpayer',
+      email: req.body.email || 'nri@example.com',
+      residencyStatus: req.body.residencyStatus || 'NRI',
+      usdIncome,
+      inrEquivalent,
+      estimatedDTAACredit: dtaaCredit,
+      servicesRequired: req.body.services || ['Form 1040-NR', 'DTAA Sec 90 Credit', 'Schedule FA / FBAR'],
+      status: 'Expert Assigned — CA Rajiv Bhatia (US CPA + Indian CA)',
+      submittedAt: new Date().toISOString()
+    }
+  });
+});
+
+// =============================================================
+// 22. REVISED / BELATED / ITR-U RETURN FILING
+// =============================================================
+app.post('/api/itr/revise', (req, res) => {
+  const ack = `REV2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  res.json({ success: true, message: `Revised Return for AY ${req.body.assessmentYear || '2026-27'} filed. Ack: ${ack}. Original errors corrected.`, data: { ack, type: 'Revised Return', filedAt: new Date().toISOString() } });
+});
+
+app.post('/api/itr/belated', (req, res) => {
+  const lateFee = 5000; // Sec 234F
+  const ack = `BEL2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  res.json({ success: true, message: `Belated Return filed with ₹${lateFee} late fee (Sec 234F). Ack: ${ack}.`, data: { ack, type: 'Belated Return', lateFee, filedAt: new Date().toISOString() } });
+});
+
+app.post('/api/itr/itr-u', (req, res) => {
+  const additionalTax = Math.round((Number(req.body.additionalIncome) || 200000) * 0.30 * 0.25); // 25% additional tax
+  const ack = `ITRU2026${Math.floor(100000000 + Math.random() * 900000000)}`;
+  res.json({ success: true, message: `Updated Return (ITR-U) filed. Additional tax + 25% surcharge: ₹${additionalTax.toLocaleString('en-IN')}. Ack: ${ack}.`, data: { ack, type: 'Updated Return (ITR-U)', additionalTax, filedAt: new Date().toISOString() } });
+});
+
+// =============================================================
+// 23. SPECIAL CALCULATORS APIs
+// =============================================================
+app.post('/api/calc/hra', (req, res) => {
+  const basic = Number(req.body.basicSalary) || 600000;
+  const hra = Number(req.body.hraReceived) || 240000;
+  const rent = Number(req.body.rentPaidAnnual) || 300000;
+  const isMetro = req.body.isMetro !== false;
+  const metroPercent = isMetro ? 0.50 : 0.40;
+  const exemption = Math.min(hra, Math.min(basic * metroPercent, Math.max(0, rent - basic * 0.10)));
+  res.json({ success: true, data: { basicSalary: basic, hraReceived: hra, rentPaidAnnual: rent, isMetro, hraExemption: Math.round(exemption), taxableHRA: Math.round(hra - exemption) } });
+});
+
+app.post('/api/calc/advance-tax', (req, res) => {
+  const totalIncome = Number(req.body.totalIncome) || 1500000;
+  const tds = Number(req.body.tdsExpected) || 100000;
+  const taxSummary = calculateTax({ grossSalary: totalIncome, hraReceived: 0, rentPaidAnnual: 0, isMetro: false, otherIncome: 0, sec80C: 0, sec80D: 0, nps80CCD: 0, tdsPaid: 0 });
+  const netTax = Math.max(0, (taxSummary.newRegime.totalTaxPayable || 0) - tds);
+  const installments = [
+    { due: 'Jun 15, 2025', pct: '15%', amount: Math.round(netTax * 0.15) },
+    { due: 'Sep 15, 2025', pct: '45%', amount: Math.round(netTax * 0.30) },
+    { due: 'Dec 15, 2025', pct: '75%', amount: Math.round(netTax * 0.30) },
+    { due: 'Mar 15, 2026', pct: '100%', amount: Math.round(netTax * 0.25) }
+  ];
+  res.json({ success: true, data: { totalIncome, estimatedTDSByEmployer: tds, netAdvanceTaxDue: netTax, installments } });
+});
+
+app.post('/api/calc/gratuity', (req, res) => {
+  const last = Number(req.body.lastBasicSalary) || 75000;
+  const years = Number(req.body.yearsOfService) || 10;
+  const gratuity = Math.min(2000000, Math.round((last * 15 * years) / 26));
+  const exemptLimit = 2000000;
+  const taxableGratuity = Math.max(0, gratuity - exemptLimit);
+  res.json({ success: true, data: { lastBasicSalary: last, yearsOfService: years, gratuityAmount: gratuity, exemptLimit, taxableGratuity, formula: '(Last Basic × 15 × Years) / 26' } });
+});
+
+app.post('/api/calc/emi', (req, res) => {
+  const principal = Number(req.body.loanAmount) || 5000000;
+  const rate = (Number(req.body.annualRate) || 8.5) / 12 / 100;
+  const months = Number(req.body.tenureMonths) || 240;
+  const emi = Math.round(principal * rate * Math.pow(1 + rate, months) / (Math.pow(1 + rate, months) - 1));
+  const totalPayment = emi * months;
+  const totalInterest = totalPayment - principal;
+  res.json({ success: true, data: { loanAmount: principal, annualRate: req.body.annualRate || 8.5, tenureMonths: months, emi, totalPayment, totalInterest } });
+});
+
+app.post('/api/calc/sip', (req, res) => {
+  const monthly = Number(req.body.monthlyAmount) || 10000;
+  const rate = (Number(req.body.expectedReturnRate) || 12) / 12 / 100;
+  const months = Number(req.body.tenureMonths) || 120;
+  const corpus = Math.round(monthly * (Math.pow(1 + rate, months) - 1) / rate * (1 + rate));
+  const invested = monthly * months;
+  const gains = corpus - invested;
+  const ltcgTax = Math.round(Math.max(0, gains - 125000) * 0.10);
+  res.json({ success: true, data: { monthlyAmount: monthly, expectedReturnRate: req.body.expectedReturnRate || 12, tenureMonths: months, maturityCorpus: corpus, totalInvested: invested, estimatedGains: gains, ltcgTaxEstimate: ltcgTax } });
+});
+
+app.post('/api/calc/crypto-tax', (req, res) => {
+  const income = Number(req.body.cryptoIncome) || 500000;
+  const tax30 = Math.round(income * 0.30);
+  const cess = Math.round(tax30 * 0.04);
+  const tds1pct = Math.round(income * 0.01);
+  res.json({ success: true, data: { cryptoIncome: income, flatTaxRate: '30%', taxAmount: tax30, cess4Pct: cess, totalTax: tax30 + cess, tdsAlreadyDeducted1Pct: tds1pct, netTaxPayable: tax30 + cess - tds1pct, rule: 'Sec 115BBH — No deduction except cost of acquisition. Losses cannot be set off.' } });
+});
+
+app.post('/api/calc/nps', (req, res) => {
+  const monthly = Number(req.body.monthlyContribution) || 5000;
+  const years = Number(req.body.yearsToRetirement) || 25;
+  const rate = (Number(req.body.expectedReturn) || 10) / 12 / 100;
+  const months = years * 12;
+  const corpus = Math.round(monthly * (Math.pow(1 + rate, months) - 1) / rate * (1 + rate));
+  const annuity40pct = Math.round(corpus * 0.40);
+  const lumpsum60pct = Math.round(corpus * 0.60);
+  const taxFreeAmount = lumpsum60pct; // 60% lumpsum is tax-free
+  res.json({ success: true, data: { monthlyContribution: monthly, yearsToRetirement: years, maturityCorpus: corpus, annuityPurchase40pct: annuity40pct, taxFreeLumpsum60pct: lumpsum60pct, taxFreeAmount, sec80CCDDeduction: Math.min(monthly * 12, 50000) } });
+});
+
 // Fallback route
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 
 if (process.env.NODE_ENV !== 'test' && require.main === module) {
   app.listen(PORT, () => {

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Notice Response & Management | TaxBuddy Notice Hub</title>
+  <meta name="description" content="Received an income tax notice? Get expert help to respond to notices under Sec 143(1), 143(2), 148, 156, 139(9), 245, 154. Free notice support for all TaxBuddy users.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .notice-type-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .notice-type-card { background: var(--white); border: 2px solid #E2E8F0; border-radius: var(--radius-md); padding: 1.2rem; cursor: pointer; transition: all 0.2s ease; text-align: center; }
+    .notice-type-card:hover, .notice-type-card.selected { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+    .notice-type-card .notice-code { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+    .notice-type-card .notice-name { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+    .notice-timeline { position: relative; padding-left: 2rem; }
+    .notice-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), var(--accent-teal)); }
+    .timeline-item { position: relative; margin-bottom: 1.5rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -1.55rem; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); border: 2px solid white; box-shadow: 0 0 0 3px rgba(15,98,254,0.2); }
+    .timeline-item.completed::before { background: var(--accent-teal); }
+    .timeline-item.active::before { background: #F59E0B; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(245,158,11,0.2); } 50% { box-shadow: 0 0 0 6px rgba(245,158,11,0.15); } }
+    .notice-stat { text-align: center; background: var(--white); border-radius: var(--radius-md); padding: 1.5rem; border: 1px solid #E2E8F0; }
+    .notice-stat .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--primary); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>📬 Income Tax Notice Hub</h2>
+      <p>Expert-backed notice response for Sections 143(1), 143(2), 148, 156, 139(9), 245, 154 & more</p>
+    </div>
+
+    <!-- Stats Row -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-bottom:2rem;">
+      <div class="notice-stat"><div class="stat-num">98%</div><div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Notices Resolved</div></div>
+      <div class="notice-stat"><div class="stat-num">24hr</div><div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Expert Assigned</div></div>
+      <div class="notice-stat"><div class="stat-num">Free</div><div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">For Assisted Users</div></div>
+      <div class="notice-stat"><div class="stat-num">3000+</div><div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Notices Handled</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      <!-- Submit Notice Form -->
+      <div>
+        <div class="feature-card">
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">📨 Submit Your Notice</h3>
+
+          <div style="margin-bottom:1.2rem;">
+            <label style="display:block; font-weight:700; font-size:0.85rem; margin-bottom:0.6rem; color:var(--text-muted);">SELECT NOTICE TYPE</label>
+            <div class="notice-type-grid">
+              <div class="notice-type-card selected" data-type="143(1)" onclick="selectNotice(this,'143(1)')">
+                <div class="notice-code">143(1)</div>
+                <div class="notice-name">Intimation / Mismatch</div>
+              </div>
+              <div class="notice-type-card" data-type="143(2)" onclick="selectNotice(this,'143(2)')">
+                <div class="notice-code">143(2)</div>
+                <div class="notice-name">Scrutiny Assessment</div>
+              </div>
+              <div class="notice-type-card" data-type="148" onclick="selectNotice(this,'148')">
+                <div class="notice-code">148</div>
+                <div class="notice-name">Reassessment</div>
+              </div>
+              <div class="notice-type-card" data-type="156" onclick="selectNotice(this,'156')">
+                <div class="notice-code">156</div>
+                <div class="notice-name">Tax Demand Notice</div>
+              </div>
+              <div class="notice-type-card" data-type="139(9)" onclick="selectNotice(this,'139(9)')">
+                <div class="notice-code">139(9)</div>
+                <div class="notice-name">Defective Return</div>
+              </div>
+              <div class="notice-type-card" data-type="245" onclick="selectNotice(this,'245)')">
+                <div class="notice-code">245</div>
+                <div class="notice-name">Refund Adjustment</div>
+              </div>
+              <div class="notice-type-card" data-type="154" onclick="selectNotice(this,'154')">
+                <div class="notice-code">154</div>
+                <div class="notice-name">Rectification</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Your Full Name</label>
+            <input type="text" id="n-name" class="form-control" value="Rajesh Kumar">
+          </div>
+          <div class="form-group">
+            <label>PAN Number</label>
+            <input type="text" id="n-pan" class="form-control" value="ABCDE1234F" maxlength="10" style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label>Assessment Year Mentioned in Notice</label>
+            <select id="n-ay" class="form-control">
+              <option value="2026-27">AY 2026-27 (FY 2025-26)</option>
+              <option value="2025-26">AY 2025-26 (FY 2024-25)</option>
+              <option value="2024-25">AY 2024-25 (FY 2023-24)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Date Notice Received</label>
+            <input type="date" id="n-date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Brief Description of Notice</label>
+            <textarea id="n-desc" class="form-control" rows="3" placeholder="e.g. TDS mismatch of ₹23,000 found in 26AS vs ITR..."></textarea>
+          </div>
+
+          <button id="btn-notice-submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">📬 Submit to Expert CA Team →</button>
+          <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:0.5rem;">Free for Assisted Filing users. ₹499 for self-filers.</p>
+        </div>
+      </div>
+
+      <!-- Right Column: AI Reply + Status -->
+      <div>
+        <!-- AI Draft Reply -->
+        <div class="feature-card" style="margin-bottom:1.5rem;">
+          <h4 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:0.8rem;">🤖 AI-Generated Action Plan</h4>
+          <div id="notice-ai-reply" style="background:#F4F7FB; border-radius:8px; padding:1rem; font-size:0.9rem; line-height:1.7; color:var(--text-dark); min-height:80px;">
+            <span style="color:var(--text-muted);">Select a notice type above to see the recommended action plan...</span>
+          </div>
+          <div id="notice-deadline-badge" style="margin-top:0.8rem; display:none;">
+            <span style="background:#FEF9C3; color:#854D0E; border:1px solid #FCD34D; font-size:0.82rem; font-weight:700; padding:0.3rem 0.8rem; border-radius:20px;">⏰ Reply Deadline: <span id="deadline-days"></span> days</span>
+          </div>
+        </div>
+
+        <!-- Success Card (hidden initially) -->
+        <div id="notice-success-card" style="display:none;">
+          <div class="feature-card" style="border:2px solid var(--accent-teal); text-align:center; margin-bottom:1.5rem;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">✅</div>
+            <h4 style="font-family:var(--font-heading); color:#047857;">Notice Submitted Successfully!</h4>
+            <div id="notice-id-display" style="font-family:monospace; font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;"></div>
+            <p style="font-size:0.88rem; color:var(--text-dark); margin-top:0.7rem;" id="notice-success-msg"></p>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem;">CA <strong>Priya Mehta</strong> (Ex-IRS, 12 yrs) has been assigned to your case.</p>
+          </div>
+        </div>
+
+        <!-- Existing Notices -->
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--text-dark);">📋 Your Active Notices</h4>
+          <div id="notices-list">
+            <div style="text-align:center; color:var(--text-muted); padding:1rem; font-size:0.9rem;">Loading notices...</div>
+          </div>
+          <a href="dashboard.html" style="font-size:0.85rem; color:var(--primary); font-weight:700; display:block; margin-top:0.8rem;">View All in Dashboard →</a>
+        </div>
+
+        <!-- How It Works -->
+        <div class="feature-card" style="margin-top:1.5rem; background:linear-gradient(135deg,#0C101D,#161C2E); color:white;">
+          <h4 style="font-family:var(--font-heading); color:white; margin-bottom:1rem;">🔒 How TaxBuddy Resolves Notices</h4>
+          <div class="notice-timeline">
+            <div class="timeline-item completed">
+              <div style="font-weight:700; font-size:0.9rem;">1. Submit Your Notice</div>
+              <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.2rem;">Upload notice or describe it. Takes 2 minutes.</div>
+            </div>
+            <div class="timeline-item completed">
+              <div style="font-weight:700; font-size:0.9rem;">2. Expert CA Review</div>
+              <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.2rem;">Dedicated CA reviews within 24 hrs.</div>
+            </div>
+            <div class="timeline-item active">
+              <div style="font-weight:700; font-size:0.9rem;">3. Draft Reply Prepared</div>
+              <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.2rem;">AI + expert prepares your response letter.</div>
+            </div>
+            <div class="timeline-item">
+              <div style="font-weight:700; font-size:0.9rem;">4. You Approve & We File</div>
+              <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.2rem;">Response submitted to ITD portal on your behalf.</div>
+            </div>
+            <div class="timeline-item">
+              <div style="font-weight:700; font-size:0.9rem;">5. Notice Resolved ✅</div>
+              <div style="font-size:0.8rem; color:#94A3B8; margin-top:0.2rem;">Confirmation received. Case closed.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — Free Notice Support for all Assisted Filing users | <a href="tel:9321908755" style="color:var(--accent-teal);">+91 93219 08755</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  const noticeActions = {
+    '143(1)': { reply: '📋 Intimation u/s 143(1) — Compare ITR with ITD computation. File rectification if data mismatch. Pay demand if justified within 30 days to avoid interest.', deadline: 30 },
+    '143(2)': { reply: '🔎 Scrutiny Notice u/s 143(2) — Appear before Assessing Officer with salary slips, Form 16, 26AS, investment proofs, bank statements. DO NOT ignore — penalty up to 10,000.', deadline: 15 },
+    '148': { reply: '⚠️ Reassessment u/s 148 — You have 3 months to file return or contest the notice. Income likely escaped assessment. Consult CA immediately.', deadline: 90 },
+    '156': { reply: '💰 Demand Notice u/s 156 — Pay tax demand within 30 days or apply for stay. Challenge if demand is incorrect via rectification u/s 154.', deadline: 30 },
+    '139(9)': { reply: '📝 Defective Return u/s 139(9) — You must correct your ITR within 15 days of receiving notice. Common reasons: missing income, wrong ITR form, bank account not validated.', deadline: 15 },
+    '245': { reply: '💳 Refund Adjustment u/s 245 — ITD wants to adjust your refund against old demand. Submit consent or objection within 30 days through e-filing portal.', deadline: 30 },
+    '154': { reply: '✏️ Rectification u/s 154 — File a rectification request within 4 years. Applicable for arithmetic/clerical errors in your ITR or ITD computation.', deadline: 120 }
+  };
+  let selectedNoticeType = '143(1)';
+
+  function selectNotice(el, type) {
+    document.querySelectorAll('.notice-type-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedNoticeType = type;
+    const info = noticeActions[type] || noticeActions['143(1)'];
+    document.getElementById('notice-ai-reply').innerHTML = `<strong style="color:var(--primary);">${type} — Recommended Action:</strong><br><br>${info.reply}`;
+    document.getElementById('notice-deadline-badge').style.display = 'block';
+    document.getElementById('deadline-days').textContent = info.deadline;
+  }
+  selectNotice(document.querySelector('.notice-type-card'), '143(1)');
+
+  // Load existing notices
+  fetch('/api/notices/list').then(r=>r.json()).then(data => {
+    const container = document.getElementById('notices-list');
+    if (data.data && data.data.length > 0) {
+      const colors = { 'Under CA Review': '#D97706', 'In Progress': '#2563EB', 'Resolved': '#047857' };
+      container.innerHTML = data.data.slice(0,4).map(n => `
+        <div style="background:#F4F7FB; border-radius:8px; padding:0.8rem 1rem; margin-bottom:0.7rem; border-left:3px solid var(--primary);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; font-size:0.88rem;">${n.noticeType}</span>
+            <span style="font-size:0.72rem; font-weight:700; color:${colors[n.status] || '#666'};">${n.status}</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">AY ${n.assessmentYear} • ${n.receivedDate || 'N/A'}</div>
+        </div>`).join('');
+    } else {
+      container.innerHTML = '<p style="font-size:0.88rem; color:var(--text-muted);">No active notices. You\'re clean! 🎉</p>';
+    }
+  }).catch(() => { document.getElementById('notices-list').innerHTML = '<p style="color:var(--text-muted); font-size:0.88rem;">Could not load notices.</p>'; });
+
+  document.getElementById('btn-notice-submit').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-notice-submit');
+    btn.textContent = '⏳ Submitting to CA team...';
+    btn.disabled = true;
+    try {
+      const payload = {
+        noticeType: selectedNoticeType,
+        userName: document.getElementById('n-name').value,
+        pan: document.getElementById('n-pan').value,
+        assessmentYear: document.getElementById('n-ay').value,
+        receivedDate: document.getElementById('n-date').value,
+        noticeSubject: document.getElementById('n-desc').value || 'Income Tax Notice'
+      };
+      const res = await fetch('/api/notices/submit', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('notice-success-card').style.display = 'block';
+        document.getElementById('notice-id-display').textContent = `Notice ID: ${json.data.id}`;
+        document.getElementById('notice-success-msg').textContent = json.message;
+        document.getElementById('notice-success-card').scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch(e) { alert('Submission error. Please try again.'); }
+    btn.textContent = '📬 Submit to Expert CA Team →';
+    btn.disabled = false;
+  });
+
+  // Set today's date as default
+  document.getElementById('n-date').value = new Date().toISOString().split('T')[0];
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax FAQs FY 2025-26 | Frequently Asked Questions | TaxBuddy</title>
+  <meta name="description" content="Find answers to the most common income tax questions for FY 2025-26 (AY 2026-27) — ITR filing deadlines, tax regimes, deductions, refunds, and more. Expert answers by TaxBuddy.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .faq-category-tabs { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .faq-cat-tab { padding:0.5rem 1.2rem; border-radius:var(--radius-md); border:2px solid #E2E8F0; font-weight:700; font-size:0.85rem; cursor:pointer; background:var(--white); transition:all 0.2s; }
+    .faq-cat-tab.active { border-color:var(--primary); background:var(--primary-light); color:var(--primary); }
+    .faq-item { background:var(--white); border-radius:var(--radius-md); border:1px solid #E2E8F0; margin-bottom:0.8rem; overflow:hidden; transition:box-shadow 0.2s; }
+    .faq-item:hover { box-shadow:var(--shadow-sm); }
+    .faq-q { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.2rem; cursor:pointer; font-weight:700; font-size:0.92rem; gap:1rem; }
+    .faq-toggle { font-size:1.2rem; color:var(--primary); flex-shrink:0; transition:transform 0.2s; }
+    .faq-a { display:none; padding:0 1.2rem 1.2rem; font-size:0.88rem; color:var(--text-muted); line-height:1.8; border-top:1px solid #E2E8F0; }
+    .faq-item.open .faq-a { display:block; }
+    .faq-item.open .faq-toggle { transform:rotate(45deg); }
+    .faq-search { width:100%; padding:0.9rem 1.2rem; font-size:0.95rem; border:2px solid #E2E8F0; border-radius:var(--radius-md); font-family:var(--font-main); outline:none; margin-bottom:1.5rem; transition:border-color 0.2s; }
+    .faq-search:focus { border-color:var(--primary); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>❓ Income Tax FAQs</h2>
+      <p>Frequently asked questions about ITR filing, tax savings, deductions, and tax notices — FY 2025-26 (AY 2026-27)</p>
+    </div>
+
+    <!-- Hero Stats -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
+      <div style="text-align:center; background:var(--white); border-radius:var(--radius-md); padding:1.2rem; border:1px solid #E2E8F0;">
+        <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:var(--primary);">50+</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">Expert Answers</div>
+      </div>
+      <div style="text-align:center; background:var(--white); border-radius:var(--radius-md); padding:1.2rem; border:1px solid #E2E8F0;">
+        <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:var(--primary);">8</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">Topic Categories</div>
+      </div>
+      <div style="text-align:center; background:var(--white); border-radius:var(--radius-md); padding:1.2rem; border:1px solid #E2E8F0;">
+        <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:var(--primary);">Updated</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">FY 2025-26</div>
+      </div>
+      <div style="text-align:center; background:var(--white); border-radius:var(--radius-md); padding:1.2rem; border:1px solid #E2E8F0;">
+        <div style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:var(--primary);">CA</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">Expert Verified</div>
+      </div>
+    </div>
+
+    <input type="text" id="faq-search" class="faq-search" placeholder="🔍 Search FAQs... (e.g. refund, due date, 80C, new regime)">
+
+    <div class="faq-category-tabs">
+      <div class="faq-cat-tab active" data-cat="all" onclick="filterFaq(this,'all')">All</div>
+      <div class="faq-cat-tab" data-cat="ITR Filing" onclick="filterFaq(this,'ITR Filing')">📋 ITR Filing</div>
+      <div class="faq-cat-tab" data-cat="Tax Regime" onclick="filterFaq(this,'Tax Regime')">⚖️ Tax Regime</div>
+      <div class="faq-cat-tab" data-cat="Deductions" onclick="filterFaq(this,'Deductions')">💰 Deductions</div>
+      <div class="faq-cat-tab" data-cat="TDS & Refund" onclick="filterFaq(this,'TDS & Refund')">🔄 TDS & Refund</div>
+      <div class="faq-cat-tab" data-cat="Capital Gains" onclick="filterFaq(this,'Capital Gains')">📈 Capital Gains</div>
+      <div class="faq-cat-tab" data-cat="Notices" onclick="filterFaq(this,'Notices')">📬 Notices</div>
+      <div class="faq-cat-tab" data-cat="NRI" onclick="filterFaq(this,'NRI')">🌍 NRI</div>
+    </div>
+
+    <div id="faq-container"></div>
+
+    <!-- CTA -->
+    <div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark)); border-radius:var(--radius-lg); padding:2.5rem; text-align:center; margin-top:2rem; color:white;">
+      <h3 style="font-family:var(--font-heading); margin-bottom:0.8rem;">Still have a question?</h3>
+      <p style="margin-bottom:1.5rem; color:rgba(255,255,255,0.85);">Talk to one of our 3,000+ tax experts for a personalized answer</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="filing-wizard.html" class="btn" style="background:white; color:var(--primary); font-weight:800;">Start ITR Filing →</a>
+        <a href="notice-hub.html" class="btn" style="background:transparent; border:2px solid rgba(255,255,255,0.5); color:white;">Notice Help →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — Expert-Verified Tax FAQs | <a href="tax-glossary.html" style="color:var(--accent-teal);">Tax Glossary →</a></p>
+  </footer>
+
+  <script>
+  const FAQS = [
+    { cat:'ITR Filing', q:'What is the ITR filing due date for FY 2025-26?', a:'The due date for filing ITR for FY 2025-26 (AY 2026-27) is <strong>July 31, 2026</strong> for individuals and HUFs not requiring audit. For those requiring audit, the due date is October 31, 2026. If you miss the deadline, you can file a belated return up to December 31, 2026 with a late fee of ₹5,000 (₹1,000 if income ≤ ₹5L).' },
+    { cat:'ITR Filing', q:'Who is required to file an ITR for FY 2025-26?', a:'You must file ITR if: (1) Your gross income exceeds the basic exemption limit (₹2.5L for below 60 years, ₹3L for senior citizens, ₹5L for super senior citizens). (2) You have deposited ₹1 crore or more in bank accounts. (3) You have paid ₹2L+ for foreign travel. (4) You have incurred ₹1L+ on electricity bills. (5) You have foreign income or assets. (6) You want to claim a tax refund.' },
+    { cat:'ITR Filing', q:'Which ITR form should I file?', a:'<strong>ITR-1 (Sahaj):</strong> Salaried individuals with income ≤ ₹50L, one house property, other sources. <strong>ITR-2:</strong> Capital gains, multiple properties, foreign assets, NRI. <strong>ITR-3:</strong> Business/professional income, F&O traders. <strong>ITR-4 (Sugam):</strong> Presumptive income under Sec 44AD/44ADA. Most salaried employees file ITR-1.' },
+    { cat:'ITR Filing', q:'What documents do I need to file ITR?', a:'Essential documents: PAN card, Aadhaar number, Form 16 (from employer), Form 26AS (from ITD portal), AIS/TIS (from portal), bank statements, investment proof (80C — ELSS, PPF, LIC), health insurance premium receipts (80D), home loan interest certificate (Sec 24b), rent receipts (HRA), capital gains statements from broker.' },
+    { cat:'ITR Filing', q:'Can I file ITR without Form 16?', a:'Yes! Form 16 is not mandatory to file ITR. You can use your salary slips to compute salary income, Form 26AS/AIS to verify TDS deducted, and investment proofs for deductions. TaxBuddy\'s AI auto-fills your return from AIS and TIS data even without Form 16.' },
+    { cat:'ITR Filing', q:'How do I file a revised ITR?', a:'If you made an error in your original return, you can file a revised return u/s 139(5) by December 31 of the assessment year. Log in to incometax.gov.in → e-File → Income Tax Returns → File ITR → Select "Revised Return". Or use TaxBuddy — we handle all revisions for free for Assisted Filing users.' },
+    { cat:'Tax Regime', q:'What is the New Tax Regime for FY 2025-26?', a:'The New Tax Regime (default from FY 2023-24) offers lower tax rates but removes most deductions. Slabs: 0% up to ₹3L, 5% ₹3L-7L, 10% ₹7L-10L, 15% ₹10L-12L, 20% ₹12L-15L, 30% above ₹15L. Standard deduction of ₹75,000 allowed. Income up to ₹7L is tax-free with Sec 87A rebate.' },
+    { cat:'Tax Regime', q:'Which tax regime is better — Old or New?', a:'It depends on your deductions. <strong>New Regime is better if:</strong> Your deductions are low (total deductions < ₹3.5L approx), or income is below ₹7L (zero tax with rebate). <strong>Old Regime is better if:</strong> You have home loan interest, high HRA, max 80C (₹1.5L), 80D (₹25K), NPS (₹50K), and total deductions exceed ₹3.75L. Use our <a href="calculator.html" style="color:var(--primary);">Tax Calculator</a> to compare exactly.' },
+    { cat:'Tax Regime', q:'Can I switch between tax regimes every year?', a:'Yes, salaried individuals can switch between old and new regimes every year by informing their employer via Form 10IEA before the first salary. However, if you have business income, you can switch only once — from new to old — and then cannot switch back.' },
+    { cat:'Deductions', q:'What can I claim under Section 80C?', a:'Section 80C allows deductions up to ₹1,50,000 for: ELSS Mutual Funds, PPF (Public Provident Fund), EPF employee contribution, Life Insurance Premium, 5-year Tax Saver FD, NPS Tier-I, NSC (National Savings Certificate), Sukanya Samriddhi Yojana, principal repayment on home loan, school tuition fees (up to 2 children), ULIP.' },
+    { cat:'Deductions', q:'What is the deduction limit under Section 80D?', a:'Sec 80D covers health insurance premiums: Up to ₹25,000 for self, spouse, and children. Additional ₹25,000 for parents (₹50,000 if parents are senior citizens). Preventive health check-up up to ₹5,000 is included within the above limit. Total maximum: ₹75,000 (self + senior citizen parents).' },
+    { cat:'Deductions', q:'What is Section 80CCD(1B) and how does it help?', a:'Sec 80CCD(1B) provides an additional deduction of ₹50,000 for contribution to NPS Tier-I account. This is OVER and ABOVE the ₹1.5L Sec 80C limit. So effectively, you can claim ₹2L in total through 80C+80CCD(1B). This is one of the best tax-saving opportunities for salaried professionals.' },
+    { cat:'Deductions', q:'Can I claim HRA and home loan interest both?', a:'Yes! You can claim both HRA exemption (if paying rent) and home loan interest deduction (Sec 24b up to ₹2L) simultaneously if: (1) Your rented home and owned property are in different cities, or (2) You own a property but it\'s let out or under construction. Many working professionals in metros claim both.' },
+    { cat:'TDS & Refund', q:'How do I check my income tax refund status?', a:'Go to incometax.gov.in → Login with PAN → e-File → Income Tax Returns → View Filed Returns → Check ITR status. Or use the NSDL Refund Helpdesk: 1800-103-0025. Refunds are typically credited within 30-45 days of ITR processing. TaxBuddy notifies you automatically once your refund is credited.' },
+    { cat:'TDS & Refund', q:'What should I do if TDS is more than my actual tax?', a:'The excess TDS becomes your tax refund. File your ITR accurately, declare all income and deductions. The ITD will process your return and credit the refund directly to your pre-validated bank account. Refund = Total TDS deducted - Actual Tax Liability.' },
+    { cat:'TDS & Refund', q:'How do I check if employer deducted correct TDS?', a:'Check Form 26AS on the ITD e-filing portal — it shows all TDS entries. Cross-verify with your salary slips and Form 16. If TDS appears incorrect, inform your employer before March 31 to adjust. After year-end, file ITR declaring correct income to get excess TDS refunded.' },
+    { cat:'Capital Gains', q:'What is the tax on equity mutual fund LTCG in FY 2025-26?', a:'After Budget 2024: LTCG on equity mutual funds/shares (held ≥12 months) is taxed at <strong>10%</strong> on gains above ₹1,25,000. The first ₹1.25L of LTCG in a financial year is fully exempt. Gains must be reported in Schedule 112A of ITR-2. Also, 1% TDS applies on redemption above ₹1L.' },
+    { cat:'Capital Gains', q:'How is property sale taxed?', a:'Property sold after 24 months (LTCG): Taxed at 20% with indexation benefit. You can also invest the gains in another property within 2 years or construct within 3 years to claim Sec 54 exemption. Property sold within 24 months (STCG): Taxed at your income slab rate.' },
+    { cat:'Capital Gains', q:'What is the tax on cryptocurrency in India?', a:'Crypto/VDA income is taxed at a flat <strong>30% + 4% cess</strong> under Sec 115BBH — regardless of holding period. 1% TDS is deducted at source by exchanges under Sec 194S. Crypto losses CANNOT be set off against any other income. Gifts of crypto also taxable. Must be reported in Schedule VDA.' },
+    { cat:'Notices', q:'What should I do if I receive a Section 143(1) notice?', a:'Sec 143(1) is an intimation (not a scrutiny notice). The ITD has processed your return and may have raised a demand or granted a refund. Steps: (1) Check if the demand is correct. (2) If there\'s a mismatch, file a rectification u/s 154. (3) If demand is valid, pay within 30 days via Challan 280. TaxBuddy\'s <a href="notice-hub.html" style="color:var(--primary);">Notice Hub</a> handles this for free.' },
+    { cat:'Notices', q:'What is a scrutiny notice under Section 143(2)?', a:'Sec 143(2) is a serious notice requiring you to appear before the Assessing Officer (AO). The ITD suspects discrepancies in your income/deductions. You must respond within 15-30 days. Provide all supporting documents — salary slips, investment proofs, bank statements. DO NOT ignore this notice; it can lead to ex-parte assessment.' },
+    { cat:'Notices', q:'Can TaxBuddy help me respond to tax notices for free?', a:'Yes! TaxBuddy provides <strong>free notice management</strong> for all Assisted Filing users for routine notices (143(1), 139(9), 245). For complex notices (143(2) scrutiny), support is available at a preferential discounted rate. Our team of 3,000+ CAs and ex-IRS officers handles all types of notices.' },
+    { cat:'NRI', q:'Do NRIs need to file ITR in India?', a:'Yes, NRIs must file ITR in India if their India-sourced income exceeds ₹2.5L. India-sourced income includes: salary for services rendered in India, rent from Indian property, interest from NRO accounts, capital gains from Indian investments. Income from NRE accounts (interest) is tax-exempt.' },
+    { cat:'NRI', q:'What is DTAA and how does it benefit NRIs?', a:'DTAA (Double Taxation Avoidance Agreement) prevents NRIs from paying tax on the same income in both India and their country of residence. For example, a US-based NRI can claim credit for Indian TDS under the India-US DTAA. India has DTAAs with 90+ countries. File a Tax Residency Certificate (TRC) to avail DTAA benefit.' },
+    { cat:'NRI', q:'Is NRE fixed deposit interest taxable in India?', a:'No! Interest earned on NRE (Non-Resident External) fixed deposits is completely exempt from Indian income tax as long as you maintain NRI status. However, interest on NRO (Non-Resident Ordinary) accounts is fully taxable at 30% + cess, with TDS deducted by the bank.' },
+  ];
+
+  let currentCat = 'all';
+  let searchQ = '';
+
+  function filterFaq(el, cat) {
+    document.querySelectorAll('.faq-cat-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    currentCat = cat;
+    renderFaqs();
+  }
+
+  function renderFaqs() {
+    const container = document.getElementById('faq-container');
+    const filtered = FAQS.filter(f => {
+      const catMatch = currentCat === 'all' || f.cat === currentCat;
+      const searchMatch = !searchQ || f.q.toLowerCase().includes(searchQ) || f.a.toLowerCase().includes(searchQ);
+      return catMatch && searchMatch;
+    });
+    if (filtered.length === 0) {
+      container.innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-muted);"><div style="font-size:2.5rem; margin-bottom:1rem;">🔍</div><p>No FAQs found. Try a different search term.</p></div>';
+      return;
+    }
+    container.innerHTML = filtered.map((f, i) => `
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">
+          <span>${f.q}</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">${f.a}</div>
+      </div>`).join('');
+  }
+
+  document.getElementById('faq-search').addEventListener('input', function() {
+    searchQ = this.value.toLowerCase();
+    renderFaqs();
+  });
+
+  renderFaqs();
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

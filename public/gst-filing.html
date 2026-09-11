@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Filing — GSTR-1, GSTR-3B, GST Registration | TaxBuddy</title>
+  <meta name="description" content="File GST returns online — GSTR-1, GSTR-3B, GSTR-9. GST registration, GSTIN lookup, and GST compliance for businesses and freelancers. TaxBuddy GST experts.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>🏭 GST Filing & Compliance</h2>
+      <p>GSTR-1 (outward supplies), GSTR-3B (monthly return), GSTR-9 (annual), GST Registration, GSTIN Lookup</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      <!-- GSTR-3B Filing -->
+      <div>
+        <div class="feature-card" style="margin-bottom:1.5rem;">
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">📋 File GSTR-3B (Monthly Return)</h3>
+
+          <div class="form-group">
+            <label>Business Name</label>
+            <input type="text" id="gst-biz" class="form-control" value="Sharma Enterprises">
+          </div>
+          <div class="form-group">
+            <label>GSTIN</label>
+            <input type="text" id="gst-gstin" class="form-control" value="27AABCS1429B1Z5" style="text-transform:uppercase;" maxlength="15">
+          </div>
+          <div class="form-group">
+            <label>Filing Period</label>
+            <select id="gst-period" class="form-control">
+              <option>Aug 2025</option>
+              <option>Jul 2025</option>
+              <option>Jun 2025</option>
+              <option>May 2025</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Total Taxable Turnover (₹)</label>
+            <input type="number" id="gst-turnover" class="form-control" value="850000">
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label>CGST (9%)</label>
+              <input type="text" id="gst-cgst-display" class="form-control" readonly style="background:#F4F7FB;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label>SGST (9%)</label>
+              <input type="text" id="gst-sgst-display" class="form-control" readonly style="background:#F4F7FB;">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Input Tax Credit (ITC) Available (₹)</label>
+            <input type="number" id="gst-itc" class="form-control" value="50000">
+          </div>
+          <button id="btn-gst-file" class="btn btn-primary" style="width:100%;">🏭 File GSTR-3B →</button>
+        </div>
+
+        <!-- GSTIN Lookup -->
+        <div class="feature-card">
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">🔍 GSTIN Lookup</h3>
+          <div class="form-group">
+            <label>Enter GSTIN to Verify</label>
+            <div style="display:flex; gap:0.5rem;">
+              <input type="text" id="gstin-lookup" class="form-control" placeholder="e.g. 27AABCS1429B1Z5" maxlength="15" style="text-transform:uppercase;">
+              <button id="btn-gstin-lookup" class="btn btn-outline" style="white-space:nowrap;">🔍 Verify</button>
+            </div>
+          </div>
+          <div id="gstin-result" style="display:none; background:#F4F7FB; border-radius:8px; padding:1rem; font-size:0.88rem;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+              <div><strong>GSTIN:</strong> <span id="gr-gstin">—</span></div>
+              <div><strong>Status:</strong> <span id="gr-status" style="color:#047857; font-weight:700;">—</span></div>
+              <div><strong>Legal Name:</strong> <span id="gr-name">—</span></div>
+              <div><strong>State:</strong> <span id="gr-state">—</span></div>
+              <div><strong>Registered:</strong> <span id="gr-date">—</span></div>
+              <div><strong>Type:</strong> <span id="gr-type">—</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Result + GST Reference -->
+      <div>
+        <!-- Filing Success -->
+        <div id="gst-success" style="display:none; margin-bottom:1.5rem;">
+          <div class="feature-card" style="border:2px solid var(--accent-teal); text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">✅</div>
+            <h4 style="font-family:var(--font-heading); color:#047857;">GSTR-3B Filed!</h4>
+            <div id="gst-arn" style="font-family:monospace; font-size:0.82rem; color:var(--text-muted); margin-top:0.3rem;"></div>
+            <p id="gst-success-msg" style="font-size:0.88rem; color:var(--text-dark); margin-top:0.7rem;"></p>
+          </div>
+        </div>
+
+        <!-- GST Due Dates -->
+        <div class="feature-card" style="margin-bottom:1.5rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--primary);">📅 GST Filing Due Dates</h4>
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+            <thead><tr style="background:#F4F7FB;"><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Return</th><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Frequency</th><th style="padding:0.6rem; text-align:left; font-size:0.78rem; color:var(--text-muted);">Due Date</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>GSTR-1</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Monthly</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">11th of next month</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>GSTR-1 (QRMP)</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Quarterly</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">13th of month after quarter</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>GSTR-3B</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Monthly</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">20th of next month</td></tr>
+              <tr><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;"><strong>GSTR-4</strong></td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">Annually</td><td style="padding:0.6rem; border-bottom:1px solid #E2E8F0;">30th April (for FY)</td></tr>
+              <tr><td style="padding:0.6rem;"><strong>GSTR-9</strong></td><td style="padding:0.6rem;">Annually</td><td style="padding:0.6rem;">31st December</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- GST Rate Reference -->
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--primary);">📊 GST Rate Slabs</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+            <div style="background:#F0FDF4; border-radius:8px; padding:0.8rem; text-align:center; border:1px solid #86EFAC;">
+              <div style="font-weight:800; font-size:1.3rem; color:#166534;">0%</div>
+              <div style="font-size:0.78rem; color:#166534; margin-top:0.2rem;">Essential goods: rice, wheat, eggs, salt, fresh fruits/veg, books</div>
+            </div>
+            <div style="background:#FFF7ED; border-radius:8px; padding:0.8rem; text-align:center; border:1px solid #FCD34D;">
+              <div style="font-weight:800; font-size:1.3rem; color:#92400E;">5%</div>
+              <div style="font-size:0.78rem; color:#92400E; margin-top:0.2rem;">Basic food items, transport services, kerosene</div>
+            </div>
+            <div style="background:#EFF6FF; border-radius:8px; padding:0.8rem; text-align:center; border:1px solid #93C5FD;">
+              <div style="font-weight:800; font-size:1.3rem; color:#1E40AF;">12%</div>
+              <div style="font-size:0.78rem; color:#1E40AF; margin-top:0.2rem;">Processed food, mobiles (under ₹12K), cloth</div>
+            </div>
+            <div style="background:#EDE9FE; border-radius:8px; padding:0.8rem; text-align:center; border:1px solid #C4B5FD;">
+              <div style="font-weight:800; font-size:1.3rem; color:#5B21B6;">18%</div>
+              <div style="font-size:0.78rem; color:#5B21B6; margin-top:0.2rem;">Most services, electronics, restaurant (AC), IT services</div>
+            </div>
+            <div style="background:#FEF2F2; border-radius:8px; padding:0.8rem; text-align:center; border:1px solid #FCA5A5; grid-column:1/-1;">
+              <div style="font-weight:800; font-size:1.3rem; color:#991B1B;">28%</div>
+              <div style="font-size:0.78rem; color:#991B1B; margin-top:0.2rem;">Luxury goods, cars, tobacco, cement, large appliances</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — GST Registration & Filing Experts | <a href="business.html" style="color:var(--accent-teal);">MyBizCFO Virtual CFO →</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  document.getElementById('gst-turnover').addEventListener('input', function() {
+    const v = Number(this.value) || 0;
+    document.getElementById('gst-cgst-display').value = `₹${Math.round(v*0.09).toLocaleString('en-IN')}`;
+    document.getElementById('gst-sgst-display').value = `₹${Math.round(v*0.09).toLocaleString('en-IN')}`;
+  });
+  document.getElementById('gst-turnover').dispatchEvent(new Event('input'));
+
+  document.getElementById('btn-gst-file').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-gst-file');
+    btn.textContent = '⏳ Filing GSTR-3B...';
+    btn.disabled = true;
+    try {
+      const payload = {
+        period: document.getElementById('gst-period').value,
+        taxableValue: Number(document.getElementById('gst-turnover').value)
+      };
+      const res = await fetch('/api/gst/file', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('gst-success').style.display = 'block';
+        document.getElementById('gst-arn').textContent = `ARN: ${json.data.arn}`;
+        document.getElementById('gst-success-msg').textContent = json.message;
+        document.getElementById('gst-success').scrollIntoView({ behavior:'smooth' });
+      }
+    } catch(e) { alert('GST filing error.'); }
+    btn.textContent = '🏭 File GSTR-3B →';
+    btn.disabled = false;
+  });
+
+  document.getElementById('btn-gstin-lookup').addEventListener('click', async () => {
+    const gstin = document.getElementById('gstin-lookup').value.trim().toUpperCase();
+    if (gstin.length !== 15) { alert('Please enter a valid 15-character GSTIN'); return; }
+    try {
+      const res = await fetch(`/api/gst/lookup/${gstin}`);
+      const json = await res.json();
+      if (json.success) {
+        const d = json.data;
+        document.getElementById('gstin-result').style.display = 'block';
+        document.getElementById('gr-gstin').textContent = d.gstin;
+        document.getElementById('gr-status').textContent = d.status;
+        document.getElementById('gr-name').textContent = d.legalName;
+        document.getElementById('gr-state').textContent = d.state;
+        document.getElementById('gr-date').textContent = d.registrationDate;
+        document.getElementById('gr-type').textContent = d.registrationType;
+      }
+    } catch(e) { alert('Lookup error.'); }
+  });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

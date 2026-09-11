@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Planner & Investment Optimizer FY 2025-26 | TaxBuddy</title>
+  <meta name="description" content="Plan and reduce your tax liability for FY 2025-26. Get AI-powered investment suggestions across Sec 80C, 80D, 80CCD, 24(b) and more with TaxBuddy Tax Planner.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .planner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .suggestion-card { background: var(--white); border-radius: var(--radius-md); padding: 1.5rem; border: 1px solid #E2E8F0; margin-bottom: 1rem; border-left: 4px solid var(--primary); transition: all 0.2s ease; }
+    .suggestion-card:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .suggestion-card .section-tag { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.7rem; border-radius: 20px; margin-bottom: 0.7rem; }
+    .suggestion-card .saving-amount { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #047857; }
+    .progress-bar-wrap { background: #E2E8F0; border-radius: 20px; height: 10px; margin-top: 0.5rem; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent-teal)); border-radius: 20px; transition: width 0.8s ease; }
+    .total-saving-banner { background: linear-gradient(135deg, #0C101D, #161C2E); color: white; border-radius: var(--radius-md); padding: 2rem; text-align: center; margin-bottom: 2rem; border: 2px solid var(--accent-teal); }
+    .instrument-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .instrument-table th { background: #F4F7FB; padding: 0.7rem 1rem; font-size: 0.82rem; text-align: left; color: var(--text-muted); }
+    .instrument-table td { padding: 0.7rem 1rem; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; }
+    .instrument-table tr:hover td { background: #F4F7FB; }
+    @media(max-width:768px) { .planner-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>💡 Tax Planner & Investment Optimizer</h2>
+      <p>AI-powered suggestions to reduce your tax liability for FY 2025-26 (AY 2026-27)</p>
+    </div>
+
+    <div class="planner-grid">
+      <!-- Input Panel -->
+      <div>
+        <div class="feature-card">
+          <h3 style="font-family:var(--font-heading); margin-bottom:1.2rem; color:var(--primary);">📋 Your Current Tax Profile</h3>
+
+          <div class="form-group">
+            <label>Gross Annual Salary / Income (₹)</label>
+            <input type="number" id="p-gross" class="form-control" value="1500000" min="0">
+          </div>
+          <div class="form-group">
+            <label>Current Sec 80C Investments (₹) <small style="color:var(--accent-teal);">Limit: ₹1,50,000</small></label>
+            <input type="number" id="p-80c" class="form-control" value="50000" min="0" max="150000">
+            <div class="progress-bar-wrap" style="margin-top:0.4rem;"><div id="bar-80c" class="progress-bar-fill" style="width:33%;"></div></div>
+          </div>
+          <div class="form-group">
+            <label>Sec 80D — Health Insurance Premium (₹) <small style="color:var(--accent-teal);">Limit: ₹25,000</small></label>
+            <input type="number" id="p-80d" class="form-control" value="0" min="0" max="25000">
+            <div class="progress-bar-wrap" style="margin-top:0.4rem;"><div id="bar-80d" class="progress-bar-fill" style="width:0%;"></div></div>
+          </div>
+          <div class="form-group">
+            <label>NPS Sec 80CCD(1B) Contribution (₹) <small style="color:var(--accent-teal);">Limit: ₹50,000</small></label>
+            <input type="number" id="p-nps" class="form-control" value="0" min="0" max="50000">
+            <div class="progress-bar-wrap" style="margin-top:0.4rem;"><div id="bar-nps" class="progress-bar-fill" style="width:0%;"></div></div>
+          </div>
+          <div class="form-group">
+            <label>Home Loan Interest Paid (₹) <small style="color:var(--accent-teal);">Sec 24(b) Limit: ₹2,00,000</small></label>
+            <input type="number" id="p-homeloan" class="form-control" value="0" min="0">
+          </div>
+
+          <button id="btn-plan" class="btn btn-primary" style="width:100%; margin-top:1rem; font-size:1rem;">⚡ Generate My Tax Saving Plan</button>
+        </div>
+
+        <!-- 80C Investment Comparison Table -->
+        <div class="feature-card" style="margin-top:1.5rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">📊 Sec 80C Best Instruments (FY 2025-26)</h4>
+          <table class="instrument-table">
+            <thead><tr><th>Instrument</th><th>Lock-in</th><th>Returns</th><th>Risk</th></tr></thead>
+            <tbody>
+              <tr><td>ELSS Mutual Fund</td><td>3 years</td><td>12–15%*</td><td><span style="color:#047857;">Low-Med</span></td></tr>
+              <tr><td>PPF (Public Provident Fund)</td><td>15 years</td><td>7.1%</td><td><span style="color:#047857;">Nil</span></td></tr>
+              <tr><td>NPS Tier-I</td><td>Till 60</td><td>10–12%*</td><td><span style="color:#D97706;">Med</span></td></tr>
+              <tr><td>5yr Tax Saver FD</td><td>5 years</td><td>6.5–7%</td><td><span style="color:#047857;">Nil</span></td></tr>
+              <tr><td>SSY (Sukanya Samriddhi)</td><td>21 years</td><td>8.2%</td><td><span style="color:#047857;">Nil</span></td></tr>
+              <tr><td>NSC (National Savings Cert)</td><td>5 years</td><td>7.7%</td><td><span style="color:#047857;">Nil</span></td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">*Market-linked returns — past performance not guaranteed.</p>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div>
+        <div class="total-saving-banner" id="saving-banner" style="display:none;">
+          <div style="font-size:0.85rem; font-weight:700; color:var(--accent-teal); margin-bottom:0.4rem;">💡 POTENTIAL TAX SAVINGS IDENTIFIED</div>
+          <div id="banner-amount" style="font-family:var(--font-heading); font-size:2.8rem; font-weight:800; color:white;">₹0</div>
+          <div id="banner-sub" style="font-size:0.9rem; color:#94A3B8; margin-top:0.3rem;">Invest in recommended instruments to save this much tax</div>
+        </div>
+
+        <div id="suggestions-container">
+          <div style="text-align:center; padding:3rem; color:var(--text-muted);">
+            <div style="font-size:3rem;">💡</div>
+            <p style="margin-top:1rem;">Click "Generate My Tax Saving Plan" to see personalized investment suggestions</p>
+          </div>
+        </div>
+
+        <!-- Regime Recommendation -->
+        <div class="feature-card" style="margin-top:1.5rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--primary);">⚖️ Which Regime Is Better For You?</h4>
+          <div id="regime-rec" style="color:var(--text-muted); font-size:0.9rem;">
+            Enter your income and click Generate Plan to see regime recommendation.
+          </div>
+        </div>
+
+        <!-- Tax Saving Tips -->
+        <div class="feature-card" style="margin-top:1.5rem; background:linear-gradient(135deg,#EDF5FF,#F0FDF4);">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">🏆 Pro Tax Saving Tips</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+            <li style="display:flex; gap:0.7rem; align-items:flex-start;"><span style="color:var(--accent-teal); font-size:1.1rem;">✅</span><span style="font-size:0.9rem;">Declare HRA properly — ensure rent receipts are submitted to your employer before March 31</span></li>
+            <li style="display:flex; gap:0.7rem; align-items:flex-start;"><span style="color:var(--accent-teal); font-size:1.1rem;">✅</span><span style="font-size:0.9rem;">Invest in ELSS early in FY — don't wait till March. Get more compounding time</span></li>
+            <li style="display:flex; gap:0.7rem; align-items:flex-start;"><span style="color:var(--accent-teal); font-size:1.1rem;">✅</span><span style="font-size:0.9rem;">NPS Sec 80CCD(1B) gives extra ₹50,000 deduction BEYOND the ₹1.5L Sec 80C limit</span></li>
+            <li style="display:flex; gap:0.7rem; align-items:flex-start;"><span style="color:var(--accent-teal); font-size:1.1rem;">✅</span><span style="font-size:0.9rem;">Family floater health insurance covers all members — claim up to ₹50,000 (self + parents)</span></li>
+            <li style="display:flex; gap:0.7rem; align-items:flex-start;"><span style="color:var(--accent-teal); font-size:1.1rem;">✅</span><span style="font-size:0.9rem;">If renting, pay via bank transfer and keep receipts — HRA exemption needs proof</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy (SSBA Innovations Ltd) — India's #1 AI-Powered Tax Filing Platform | <a href="dashboard.html" style="color:var(--accent-teal);">Login</a> | <a href="filing-wizard.html" style="color:var(--accent-teal);">Start ITR Filing</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputs = ['p-gross','p-80c','p-80d','p-nps','p-homeloan'];
+    inputs.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.addEventListener('input', updateBars);
+    });
+
+    function updateBars() {
+      const v80c = Number(document.getElementById('p-80c').value) || 0;
+      const v80d = Number(document.getElementById('p-80d').value) || 0;
+      const vnps = Number(document.getElementById('p-nps').value) || 0;
+      document.getElementById('bar-80c').style.width = `${Math.min(100, (v80c/150000)*100)}%`;
+      document.getElementById('bar-80d').style.width = `${Math.min(100, (v80d/25000)*100)}%`;
+      document.getElementById('bar-nps').style.width = `${Math.min(100, (vnps/50000)*100)}%`;
+    }
+
+    document.getElementById('btn-plan').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-plan');
+      btn.textContent = '⏳ Analyzing your tax profile...';
+      btn.disabled = true;
+      try {
+        const data = {
+          grossSalary: Number(document.getElementById('p-gross').value),
+          sec80C: Number(document.getElementById('p-80c').value),
+          sec80D: Number(document.getElementById('p-80d').value),
+          nps80CCD: Number(document.getElementById('p-nps').value),
+          homeLoanInterest: Number(document.getElementById('p-homeloan').value)
+        };
+        const res = await fetch('/api/tax/plan-optimize', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        const json = await res.json();
+        if (json.success) renderSuggestions(json.data, data.grossSalary);
+      } catch(e) { alert('Error fetching plan. Please try again.'); }
+      btn.textContent = '⚡ Generate My Tax Saving Plan';
+      btn.disabled = false;
+    });
+
+    function renderSuggestions(data, gross) {
+      const banner = document.getElementById('saving-banner');
+      const container = document.getElementById('suggestions-container');
+      banner.style.display = 'block';
+      document.getElementById('banner-amount').textContent = `₹${data.totalPossibleTaxSaving.toLocaleString('en-IN')}`;
+      document.getElementById('banner-sub').textContent = `By investing ₹${(data.suggestions.reduce((a,s)=>a+s.remaining,0)).toLocaleString('en-IN')} more across ${data.suggestions.length} sections`;
+
+      if (data.suggestions.length === 0) {
+        container.innerHTML = `<div class="feature-card" style="text-align:center; padding:2rem;"><div style="font-size:2.5rem;">🎉</div><h4 style="color:#047857; margin-top:1rem;">Excellent! You've maximized all deductions!</h4><p style="color:var(--text-muted); margin-top:0.5rem;">You're already using all available tax-saving sections optimally.</p></div>`;
+      } else {
+        container.innerHTML = `<h4 style="font-family:var(--font-heading); margin-bottom:1rem; color:var(--text-dark);">🎯 Your Personalized Saving Roadmap</h4>` +
+          data.suggestions.map(s => `
+            <div class="suggestion-card">
+              <div class="section-tag">${s.section}</div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="font-weight:700; font-size:0.95rem; margin-bottom:0.2rem;">${s.instrument}</div>
+                  <div style="font-size:0.82rem; color:var(--text-muted);">Limit: ₹${s.limit.toLocaleString('en-IN')} | Used: ₹${s.used.toLocaleString('en-IN')} | Remaining: ₹${s.remaining.toLocaleString('en-IN')}</div>
+                  <div class="progress-bar-wrap" style="margin-top:0.5rem;"><div class="progress-bar-fill" style="width:${Math.round(s.used/s.limit*100)}%;"></div></div>
+                </div>
+                <div style="text-align:right; margin-left:1rem; flex-shrink:0;">
+                  <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.2rem;">TAX SAVING</div>
+                  <div class="saving-amount">₹${s.taxSaving.toLocaleString('en-IN')}</div>
+                </div>
+              </div>
+            </div>`).join('');
+      }
+
+      // Regime recommendation
+      const oldDeductions = data.currentDeductions + data.suggestions.reduce((a,s)=>a+s.remaining,0);
+      const regimeRec = document.getElementById('regime-rec');
+      if (gross <= 700000) {
+        regimeRec.innerHTML = `<div style="background:#ECFDF5; border:1px solid #6EE7B7; padding:1rem; border-radius:8px;"><strong style="color:#047857;">✅ New Tax Regime Recommended</strong><br><span style="font-size:0.85rem; color:#065F46;">Income ≤ ₹7L — Zero tax under new regime with Sec 87A rebate.</span></div>`;
+      } else if (oldDeductions >= 350000) {
+        regimeRec.innerHTML = `<div style="background:#EDF5FF; border:1px solid #93C5FD; padding:1rem; border-radius:8px;"><strong style="color:var(--primary);">✅ Old Tax Regime Recommended</strong><br><span style="font-size:0.85rem; color:#1E40AF;">Total deductions ₹${oldDeductions.toLocaleString('en-IN')} — Old regime saves more tax for you.</span></div>`;
+      } else {
+        regimeRec.innerHTML = `<div style="background:#FFF7ED; border:1px solid #FCD34D; padding:1rem; border-radius:8px;"><strong style="color:#D97706;">⚖️ Marginal — Compare Both Regimes</strong><br><span style="font-size:0.85rem; color:#92400E;">Use the <a href="calculator.html" style="color:var(--primary);">Tax Calculator</a> to compare both regimes precisely.</span></div>`;
+      }
+    }
+  });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUF Registration & ITR Filing | Hindu Undivided Family | TaxBuddy</title>
+  <meta name="description" content="Register HUF and file HUF ITR online. Save extra tax by creating a Hindu Undivided Family (HUF). HUF gets separate ₹2.5L exemption, 80C, 80D deductions. Expert assistance.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo"><div class="logo-icon">T</div>Tax<span class="highlight">Buddy</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calculator.html">Tax Calculator</a></li>
+      <li><a href="filing-wizard.html">ITR Wizard</a></li>
+      <li><a href="flexibuddy.html">FlexiBuddy</a></li>
+      <li><a href="portfolio-doctor.html">Portfolio Doctor</a></li>
+      <li><a href="business.html">MyBizCFO</a></li>
+      <li><a href="legal.html">Legal &amp; 26QB</a></li>
+      <li><a href="calculators-suite.html">Tax Tools</a></li>
+      <li><a href="dashboard.html">Taxpayer Portal</a></li>
+      <li><a href="expert.html">CA Desk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-outline">Login</a>
+      <a href="filing-wizard.html" class="btn btn-primary">Start ITR Filing</a>
+    </div>
+  </nav>
+
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <h2>👨‍👩‍👧‍👦 HUF Registration & Filing</h2>
+      <p>Hindu Undivided Family (HUF) — a powerful tax-saving entity that gets its own ₹2.5L exemption, Sec 80C, 80D deductions, separate from individual taxes</p>
+    </div>
+
+    <!-- HUF Benefits Banner -->
+    <div style="background:linear-gradient(135deg,#0C101D,#161C2E); border-radius:var(--radius-lg); padding:2rem; margin-bottom:2rem; display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; text-align:center; color:white;">
+      <div><div style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); color:var(--accent-teal);">₹2.5L</div><div style="font-size:0.82rem; color:#94A3B8; margin-top:0.3rem;">Separate Basic Exemption</div></div>
+      <div><div style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); color:var(--accent-teal);">₹1.5L</div><div style="font-size:0.82rem; color:#94A3B8; margin-top:0.3rem;">Own Sec 80C Deduction</div></div>
+      <div><div style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); color:var(--accent-teal);">₹25K</div><div style="font-size:0.82rem; color:#94A3B8; margin-top:0.3rem;">Own Sec 80D Deduction</div></div>
+      <div><div style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); color:var(--accent-teal);">₹87A</div><div style="font-size:0.82rem; color:#94A3B8; margin-top:0.3rem;">Own Tax Rebate</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+      <!-- Registration Form -->
+      <div>
+        <div class="feature-card">
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">📝 HUF Registration</h3>
+
+          <div class="form-group">
+            <label>Karta Name (Senior Male Member)</label>
+            <input type="text" id="huf-karta" class="form-control" value="Rajesh Kumar">
+          </div>
+          <div class="form-group">
+            <label>Karta PAN Number</label>
+            <input type="text" id="huf-karta-pan" class="form-control" value="ABCDE1234F" style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label>Karta Date of Birth</label>
+            <input type="date" id="huf-dob" class="form-control" value="1975-06-15">
+          </div>
+          <div class="form-group">
+            <label>Spouse Name</label>
+            <input type="text" id="huf-spouse" class="form-control" value="Sunita Kumar">
+          </div>
+          <div class="form-group">
+            <label>Children Names (comma separated)</label>
+            <input type="text" id="huf-children" class="form-control" value="Ananya Kumar, Arjun Kumar">
+          </div>
+          <div class="form-group">
+            <label>HUF Address</label>
+            <input type="text" id="huf-address" class="form-control" value="123 MG Road, Mumbai - 400001">
+          </div>
+
+          <button id="btn-huf-register" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">📜 Register HUF & Apply for PAN →</button>
+        </div>
+
+        <!-- HUF ITR Filing -->
+        <div class="feature-card" style="margin-top:1.5rem;">
+          <h3 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1.2rem;">📋 File HUF ITR-2</h3>
+          <div class="form-group">
+            <label>HUF Total Income (₹)</label>
+            <input type="number" id="huf-income" class="form-control" value="800000">
+          </div>
+          <div class="form-group">
+            <label>HUF Sec 80C Investments (₹)</label>
+            <input type="number" id="huf-80c" class="form-control" value="150000" max="150000">
+          </div>
+          <div class="form-group">
+            <label>TDS Already Paid on HUF Income (₹)</label>
+            <input type="number" id="huf-tds" class="form-control" value="0">
+          </div>
+          <button id="btn-huf-file" class="btn btn-outline" style="width:100%;">📑 File HUF ITR-2 →</button>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <!-- Registration Success -->
+        <div id="huf-reg-success" style="display:none; margin-bottom:1.5rem;">
+          <div class="feature-card" style="border:2px solid var(--accent-teal); text-align:center;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">✅</div>
+            <h4 style="font-family:var(--font-heading); color:#047857;">HUF Registered!</h4>
+            <p id="huf-reg-msg" style="font-size:0.88rem; color:var(--text-dark); margin-top:0.5rem;"></p>
+          </div>
+        </div>
+
+        <!-- ITR Success -->
+        <div id="huf-itr-success" style="display:none; margin-bottom:1.5rem;">
+          <div class="feature-card" style="border:2px solid var(--primary);">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">📄</div>
+            <h4 style="font-family:var(--font-heading); color:var(--primary);">HUF ITR Filed!</h4>
+            <p id="huf-itr-msg" style="font-size:0.88rem; color:var(--text-dark); margin-top:0.5rem;"></p>
+          </div>
+        </div>
+
+        <!-- What Is HUF -->
+        <div class="feature-card" style="margin-bottom:1.5rem;">
+          <h4 style="font-family:var(--font-heading); color:var(--primary); margin-bottom:1rem;">💡 What Is HUF? Why Should You Create One?</h4>
+          <p style="font-size:0.88rem; color:var(--text-dark); line-height:1.7; margin-bottom:1rem;">HUF (Hindu Undivided Family) is a separate legal entity for income tax purposes. It gets its own PAN, files its own ITR, and enjoys the full slate of tax deductions independently from you as an individual.</p>
+
+          <div style="background:#ECFDF5; border-radius:8px; padding:1rem; margin-bottom:0.8rem;">
+            <strong style="color:#047857; font-size:0.88rem;">Example Tax Saving:</strong>
+            <div style="font-size:0.85rem; color:#065F46; margin-top:0.4rem; line-height:1.7;">
+              Individual tax (₹20L income after deductions): ~₹3.1L<br>
+              After HUF: Transfer ₹8L to HUF → HUF pays ~₹52K → You pay ~₹1.8L<br>
+              <strong>Total Tax Saved: ~₹1.28L per year! 🎉</strong>
+            </div>
+          </div>
+
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+            <li style="display:flex; gap:0.6rem; font-size:0.85rem;"><span style="color:var(--accent-teal);">✅</span>HUF can own property, invest in stocks, mutual funds</li>
+            <li style="display:flex; gap:0.6rem; font-size:0.85rem;"><span style="color:var(--accent-teal);">✅</span>HUF can have its own FD, NPS, PPF, LIC policy</li>
+            <li style="display:flex; gap:0.6rem; font-size:0.85rem;"><span style="color:var(--accent-teal);">✅</span>HUF can run a business and show business income</li>
+            <li style="display:flex; gap:0.6rem; font-size:0.85rem;"><span style="color:var(--accent-teal);">✅</span>All slab rates, rebates apply to HUF just like individuals</li>
+            <li style="display:flex; gap:0.6rem; font-size:0.85rem;"><span style="color:var(--accent-teal);">✅</span>Available to Hindus, Sikhs, Jains, Buddhists</li>
+          </ul>
+        </div>
+
+        <!-- HUF Creation Steps -->
+        <div class="feature-card">
+          <h4 style="font-family:var(--font-heading); margin-bottom:1rem;">🚀 How To Create HUF — 3 Steps</h4>
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div style="background:#F4F7FB; border-radius:8px; padding:0.8rem 1rem; border-left:3px solid var(--primary);">
+              <div style="font-weight:800; color:var(--primary);">Step 1: HUF Deed</div>
+              <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.2rem;">Draft a notarized HUF Deed declaring Karta and members. TaxBuddy prepares this for you.</div>
+            </div>
+            <div style="background:#F4F7FB; border-radius:8px; padding:0.8rem 1rem; border-left:3px solid var(--primary);">
+              <div style="font-weight:800; color:var(--primary);">Step 2: PAN Application</div>
+              <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.2rem;">Apply for HUF PAN using Form 49A. PAN is issued in the name "Rajesh Kumar HUF". Received within 7-10 days.</div>
+            </div>
+            <div style="background:#F4F7FB; border-radius:8px; padding:0.8rem 1rem; border-left:3px solid var(--primary);">
+              <div style="font-weight:800; color:var(--primary);">Step 3: Open HUF Bank Account</div>
+              <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.2rem;">Open a bank account in HUF name. Start routing family income (gifts, ancestral property income, FD interest) through HUF.</div>
+            </div>
+          </div>
+          <div style="margin-top:1rem; background:#FFF7ED; border-radius:8px; padding:0.7rem 1rem; font-size:0.8rem; color:#92400E;">
+            ⚠️ <strong>Note:</strong> HUF cannot be created solely for tax savings purposes. It should have legitimate coparceners (family members). Consult a CA before creating HUF.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--dark-bg); color:#94A3B8; padding:3rem 2rem; margin-top:4rem; text-align:center;">
+    <p style="font-size:0.85rem;">© 2026 TaxBuddy — HUF Registration & Filing Experts | <a href="expert.html" style="color:var(--accent-teal);">Talk to CA Expert →</a></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+  document.getElementById('btn-huf-register').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-huf-register');
+    btn.textContent = '⏳ Registering HUF...';
+    btn.disabled = true;
+    try {
+      const members = [document.getElementById('huf-spouse').value, ...document.getElementById('huf-children').value.split(',').map(s => s.trim())].filter(Boolean);
+      const payload = { kartaName: document.getElementById('huf-karta').value, kartaPan: document.getElementById('huf-karta-pan').value, members };
+      const res = await fetch('/api/huf/register', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('huf-reg-success').style.display = 'block';
+        document.getElementById('huf-reg-msg').textContent = json.message;
+        document.getElementById('huf-reg-success').scrollIntoView({ behavior:'smooth' });
+      }
+    } catch(e) { alert('Registration error. Please try again.'); }
+    btn.textContent = '📜 Register HUF & Apply for PAN →';
+    btn.disabled = false;
+  });
+
+  document.getElementById('btn-huf-file').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-huf-file');
+    btn.textContent = '⏳ Filing HUF ITR...';
+    btn.disabled = true;
+    try {
+      const payload = {
+        kartaName: document.getElementById('huf-karta').value,
+        hufIncome: Number(document.getElementById('huf-income').value),
+        sec80C: Number(document.getElementById('huf-80c').value),
+        tdsPaid: Number(document.getElementById('huf-tds').value)
+      };
+      const res = await fetch('/api/huf/file', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('huf-itr-success').style.display = 'block';
+        document.getElementById('huf-itr-msg').textContent = json.message;
+        document.getElementById('huf-itr-success').scrollIntoView({ behavior:'smooth' });
+      }
+    } catch(e) { alert('Filing error. Please try again.'); }
+    btn.textContent = '📑 File HUF ITR-2 →';
+    btn.disabled = false;
+  });
+  </script>
+  <script src="js/ai_assistant.js"></script>
+</body>
+</html>
